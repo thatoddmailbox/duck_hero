@@ -1,9 +1,15 @@
 #ifndef _GAME_HPP
 #define _GAME_HPP
 
+#include <iostream>
+#include <string>
+
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <SDL_ttf.h>
+
+#include "physfsrwops.h"
 
 namespace duckhero
 {
@@ -16,6 +22,8 @@ namespace duckhero
 	public:
 		Game();
 		~Game();
+
+		void FatalSDLError(std::string error);
 		int Run();
 	};	
 }

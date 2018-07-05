@@ -32,3 +32,7 @@ include_directories("${SDL2_MIXER_INCLUDE_DIR}")
 find_package(SDL2_ttf REQUIRED)
 target_link_libraries(${PROJECT_NAME} "${SDL2_TTF_LIBRARY}")
 include_directories("${SDL2_TTF_INCLUDE_DIR}")
+
+find_package(PhysFS REQUIRED)
+target_link_libraries(${PROJECT_NAME} "${PHYSFS_LIBRARY}")
+include_directories("${PHYSFS_INCLUDE_DIR}")
