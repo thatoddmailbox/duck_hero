@@ -1,7 +1,10 @@
 #include <iostream>
-#include <SDL.h>
+
+#include "game.hpp"
 
 int main() {
-	std::cout << "Test" << std::endl;
-	return 0;
+	std::cout << "duck hero" << std::endl;
+
+	duckhero::Game game = duckhero::Game();
+	return game.Run();
 }
