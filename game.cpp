@@ -69,7 +69,7 @@ namespace duckhero
 		GUIManager::Init();
 
 		// create window
-		_window = SDL_CreateWindow("Duck Hero", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+		_window = SDL_CreateWindow("Duck Hero", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 600, SDL_WINDOW_SHOWN);
 		if (_window == nullptr)
 		{
 			FatalSDLError("SDL_CreateWindow");
@@ -94,6 +94,7 @@ namespace duckhero
 				}
 			}
 
+			GUIManager::Update(_renderer);
 			GUIManager::Draw(_renderer);
 		}
 

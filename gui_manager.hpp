@@ -13,6 +13,7 @@ namespace duckhero
 		static GUIScreen menu;
 
 		static void Init();
+		static void Update(SDL_Renderer * r);
 		static void Draw(SDL_Renderer * r);
 	};
 }

@@ -2,18 +2,26 @@
 
 namespace duckhero
 {
-	GUIScreen GUIManager::menu = GUIScreen();
-
 	GUIScreen * GUIManager::current_screen = &menu;
+
+	GUIScreen GUIManager::menu = GUIScreen();
 
 	void GUIManager::Init()
 	{
-		GUIButton * play = new GUIButton("Test", 10, 10, 100, 40);
+		GUIButton * play = new GUIButton("Test", 10, 10, 200, 32);
 		menu.AddElement(play);
+	}
+
+	void GUIManager::Update(SDL_Renderer * r)
+	{
+		current_screen->Update(r);
 	}
 
 	void GUIManager::Draw(SDL_Renderer * r)
 	{
+		SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
+		SDL_RenderClear(r);
 		current_screen->Draw(r);
+		SDL_RenderPresent(r);
 	}
 }
