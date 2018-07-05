@@ -9,6 +9,8 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+#include "content.hpp"
+#include "gui_manager.hpp"
 #include "physfsrwops.h"
 
 namespace duckhero
