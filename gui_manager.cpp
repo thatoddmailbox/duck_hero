@@ -6,9 +6,14 @@ namespace duckhero
 
 	GUIScreen GUIManager::menu = GUIScreen();
 
+	void menutest()
+	{
+		printf("yay\n");
+	}
+
 	void GUIManager::Init()
 	{
-		GUIButton * play = new GUIButton("Test", 10, 10, 200, 32);
+		GUIButton * play = new GUIButton("Test", 10, 10, 200, 32, &menutest);
 		menu.AddElement(play);
 	}
 

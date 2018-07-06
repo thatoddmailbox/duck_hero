@@ -10,6 +10,7 @@
 #include <SDL_ttf.h>
 
 #include "content.hpp"
+#include "input.hpp"
 #include "spritesheet.hpp"
 
 #define GUI_FONT_NAME "fonts/fixedsys.ttf"
@@ -29,13 +30,17 @@ namespace duckhero
 	class GUIButton : public GUIElement
 	{
 	private:
-		SDL_Texture * _text_texure;
+		SDL_Texture * _text_texture;
+		SDL_Texture * _text_hover_texture;
 		SDL_Rect _text_rect;
+		SDL_Rect _rect;
+		bool _hover, _clicked;
 	public:
 		std::string text;
 		int font_size;
+		void (*handler)();
 
-		GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h);
+		GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)());
 		~GUIButton();
 		void Update(SDL_Renderer * r) override;
 		void Draw(SDL_Renderer * r) override;

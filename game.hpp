@@ -11,6 +11,7 @@
 
 #include "content.hpp"
 #include "gui_manager.hpp"
+#include "input.hpp"
 #include "physfsrwops.h"
 
 namespace duckhero

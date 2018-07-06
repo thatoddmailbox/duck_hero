@@ -94,7 +94,9 @@ namespace duckhero
 				}
 			}
 
+			Input::Update();
 			GUIManager::Update(_renderer);
+
 			GUIManager::Draw(_renderer);
 		}
 

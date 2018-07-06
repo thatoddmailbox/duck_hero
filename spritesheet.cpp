@@ -3,6 +3,7 @@
 namespace duckhero
 {
 	Spritesheet Spritesheet::ui = Spritesheet::Spritesheet("tiles/ui.png", 30, 33, 16, 16, 2);
+	Spritesheet Spritesheet::base = Spritesheet::Spritesheet("tiles/base.png", 57, 31, 16, 16, 1);
 
 	Spritesheet::Spritesheet(std::string in_path, int in_cols, int in_rows, int in_tile_w, int in_tile_h, int in_margin)
 	{

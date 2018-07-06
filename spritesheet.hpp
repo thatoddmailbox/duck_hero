@@ -15,6 +15,7 @@ namespace duckhero
 		SDL_Texture * _texture;
 	public:
 		static Spritesheet ui;
+		static Spritesheet base;
 
 		Spritesheet(std::string in_path, int in_cols, int in_rows, int in_tile_w, int in_tile_h, int in_margin);
 
