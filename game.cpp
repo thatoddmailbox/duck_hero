@@ -91,6 +91,10 @@ namespace duckhero
 		Level l = Level();
 		l.LoadFromFile("levels/test.tmx");
 
+		int x = -300;
+		int y = -300;
+		uint8_t timer = 0;
+
 		SDL_Event e;
 		while (_running)
 		{
@@ -108,7 +112,15 @@ namespace duckhero
 			SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
 			SDL_RenderClear(_renderer);
 
-			l.Draw(_renderer, 0, 0);
+			timer++;
+			if (timer == 5)
+			{
+				x--;
+				y--;
+				timer = 0;
+			}
+
+			l.Draw(_renderer, x, y);
 			GUIManager::Draw(_renderer);
 
 			SDL_RenderPresent(_renderer);

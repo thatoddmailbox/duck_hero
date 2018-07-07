@@ -85,7 +85,6 @@ namespace duckhero
 						layer.data[x][y].id = -1;
 						layer.data[x][y].sheet = nullptr;
 					}
-					
 				}
 
 				// read the tiles
@@ -157,7 +156,7 @@ namespace duckhero
 
 	void Level::Draw(SDL_Renderer * r, int x_offset, int y_offset)
 	{
-		for (Layer layer : layers)
+		for (Layer& layer : layers)
 		{
 			for (int y = 0; y < height; y++)
 			{
@@ -207,6 +206,10 @@ namespace duckhero
 	{
 		if (data)
 		{
+			for (int x = 0; x < width; x++)
+			{
+				free(data[x]);
+			}
 			free(data);
 		}
 	}
