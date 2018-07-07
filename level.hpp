@@ -11,7 +11,8 @@
 
 #include "external/pugixml.hpp"
 
-#include "game.hpp"
+#include "log.hpp"
+#include "spritesheet.hpp"
 
 namespace duckhero
 {

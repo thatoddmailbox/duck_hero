@@ -11,6 +11,7 @@
 
 #include "content.hpp"
 #include "input.hpp"
+#include "level.hpp"
 #include "spritesheet.hpp"
 
 #define GUI_FONT_NAME "fonts/fixedsys.ttf"
@@ -51,9 +52,9 @@ namespace duckhero
 	{
 	public:
 		void AddElement(GUIElement * e);
-		void Update(SDL_Renderer * r);
-		void Draw(SDL_Renderer * r);
-	private:
+		virtual void Update(SDL_Renderer * r);
+		virtual void Draw(SDL_Renderer * r);
+
 		std::vector<GUIElement *> elements;
 	};
 }

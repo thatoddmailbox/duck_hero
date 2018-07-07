@@ -2,6 +2,7 @@
 #define _GUI_MANAGER_HPP
 
 #include "gui.hpp"
+#include "gui_level.hpp"
 
 namespace duckhero
 {
@@ -11,6 +12,7 @@ namespace duckhero
 		static GUIScreen * current_screen;
 
 		static GUIScreen menu;
+		static GUILevelScreen game;
 
 		static void Init();
 		static void Update(SDL_Renderer * r);

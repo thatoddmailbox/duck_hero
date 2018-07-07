@@ -1,12 +1,21 @@
 #ifndef _INPUT_HPP
 #define _INPUT_HPP
 
+#include <map>
 #include <string>
 
 #include <SDL.h>
 
 namespace duckhero
 {
+	enum class Button
+	{
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
+	};
+
 	struct MouseState
 	{
 		int x, y;
@@ -23,6 +32,10 @@ namespace duckhero
 
 		static MouseState GetMouseState();
 		static SDL_Rect GetMouseRect();
+
+		static const uint8_t * GetKeyboardState();
+
+		static bool IsButtonDown(Button b);
 	};
 }
 

@@ -42,7 +42,7 @@ namespace duckhero
 				const char * source = image.attribute("source").value();
 				if (!source)
 				{
-					Game::Warning("Level::LoadFromFile", "bad tileset declaration (missing source image?)");
+					Log::Warning("Level::LoadFromFile", "bad tileset declaration (missing source image?)");
 					continue;
 				}
 
@@ -72,7 +72,7 @@ namespace duckhero
 
 				if (sheet == nullptr)
 				{
-					Game::Warning("Level::LoadFromFile", "couldn't find spritesheet for tileset!");
+					Log::Warning("Level::LoadFromFile", "couldn't find spritesheet for tileset!");
 					continue;
 				}
 
@@ -161,7 +161,7 @@ namespace duckhero
 		}
 		else
 		{
-			Game::Warning("Level::LoadFromFile", "invalid XML file!");
+			Log::Warning("Level::LoadFromFile", "invalid XML file!");
 			returnValue = false;
 		}
 

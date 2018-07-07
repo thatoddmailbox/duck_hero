@@ -14,7 +14,6 @@
 #include "content.hpp"
 #include "gui_manager.hpp"
 #include "input.hpp"
-#include "level.hpp"
 
 namespace duckhero
 {
@@ -29,7 +28,6 @@ namespace duckhero
 		~Game();
 
 		void FatalSDLError(std::string error);
-		static void Warning(std::string tag, std::string message);
 		int Run();
 	};	
 }
