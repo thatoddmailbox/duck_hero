@@ -20,6 +20,13 @@ namespace duckhero
 		return SDL_Rect{ x * (tile_w + margin), y * (tile_h + margin), tile_w, tile_h };
 	}
 
+	SDL_Rect Spritesheet::GetCoordinatesForTile(int id)
+	{
+		int x = (id % cols);
+		int y = (id / cols);
+		return GetCoordinatesForTile(x, y);
+	}
+
 	SDL_Texture * Spritesheet::GetTexture(SDL_Renderer * r)
 	{
 		if (_texture == nullptr)

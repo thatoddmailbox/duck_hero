@@ -18,6 +18,11 @@ namespace duckhero
 		_running = false;
 	}
 
+	void Game::Warning(std::string tag, std::string message)
+	{
+		std::cerr << "[" << tag << "][warning] " << message << std::endl;
+	}
+
 	int Game::Run()
 	{
 		// set up library subsystems
@@ -83,6 +88,9 @@ namespace duckhero
 			return 1;
 		}
 
+		Level l = Level();
+		l.LoadFromFile("levels/test.tmx");
+
 		SDL_Event e;
 		while (_running)
 		{
@@ -97,7 +105,13 @@ namespace duckhero
 			Input::Update();
 			GUIManager::Update(_renderer);
 
+			SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+			SDL_RenderClear(_renderer);
+
+			l.Draw(_renderer, 0, 0);
 			GUIManager::Draw(_renderer);
+
+			SDL_RenderPresent(_renderer);
 		}
 
 		SDL_DestroyWindow(_window);

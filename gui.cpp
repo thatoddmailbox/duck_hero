@@ -142,18 +142,6 @@ namespace duckhero
 
 	void GUIScreen::Draw(SDL_Renderer * r)
 	{
-		SDL_Texture * base_sheet_texture = Spritesheet::base.GetTexture(r);
-		SDL_Rect tile_rect = Spritesheet::base.GetCoordinatesForTile(5, 0);
-		
-		for(int y = 0; y < 19; y++)
-		{
-			for (int x = 0; x < 32; x++)
-			{
-				SDL_Rect dst_rect = { x * 32, y * 32, 32, 32 };
-				SDL_RenderCopy(r, base_sheet_texture, &tile_rect, &dst_rect);
-			}
-		}
-
 		for (std::vector<GUIElement *>::iterator it = elements.begin(); it != elements.end(); ++it)
 		{
 			(*it.base())->Draw(r);

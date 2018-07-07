@@ -7,6 +7,8 @@ project(duck_hero)
 file(GLOB SOURCES 
 	"*.c"
 	"*.cpp"
+	"external/*.c"
+	"external/*.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

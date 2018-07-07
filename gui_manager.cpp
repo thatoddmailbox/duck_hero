@@ -24,9 +24,6 @@ namespace duckhero
 
 	void GUIManager::Draw(SDL_Renderer * r)
 	{
-		SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
-		SDL_RenderClear(r);
 		current_screen->Draw(r);
-		SDL_RenderPresent(r);
 	}
 }

@@ -8,7 +8,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
-#include "physfsrwops.h"
+#include "external/physfsrwops.h"
 
 namespace duckhero
 {

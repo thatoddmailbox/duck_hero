@@ -24,6 +24,7 @@ namespace duckhero
 		int tile_w, tile_h;
 		int margin;
 		SDL_Rect GetCoordinatesForTile(int x, int y);
+		SDL_Rect GetCoordinatesForTile(int id);
 		SDL_Texture * GetTexture(SDL_Renderer * r);
 	};
 }
