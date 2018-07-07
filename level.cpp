@@ -48,10 +48,26 @@ namespace duckhero
 
 				// try and match it to a spritesheet
 				Spritesheet * sheet;
-				
+
 				if (strstr(source, "base.png") != nullptr)
 				{
 					sheet = &Spritesheet::base;
+				}
+				else if (strstr(source, "characters.png") != nullptr)
+				{
+					sheet = &Spritesheet::characters;
+				}
+				else if (strstr(source, "city.png") != nullptr)
+				{
+					sheet = &Spritesheet::city;
+				}
+				else if (strstr(source, "dungeon.png") != nullptr)
+				{
+					sheet = &Spritesheet::dungeon;
+				}
+				else if (strstr(source, "indoor.png") != nullptr)
+				{
+					sheet = &Spritesheet::indoor;
 				}
 
 				if (sheet == nullptr)
@@ -169,10 +185,10 @@ namespace duckhero
 						continue;
 					}
 					
-					SDL_Texture * base_sheet_texture = t.sheet->GetTexture(r);
+					SDL_Texture * sheet_texture = t.sheet->GetTexture(r);
 					SDL_Rect tile_rect = t.sheet->GetCoordinatesForTile(t.id);
 					SDL_Rect dst_rect = { x_offset + (x * 32), y_offset + (y * 32), 32, 32 };
-					SDL_RenderCopy(r, base_sheet_texture, &tile_rect, &dst_rect);
+					SDL_RenderCopy(r, sheet_texture, &tile_rect, &dst_rect);
 				}
 			}
 		}

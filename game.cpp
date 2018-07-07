@@ -91,8 +91,8 @@ namespace duckhero
 		Level l = Level();
 		l.LoadFromFile("levels/test.tmx");
 
-		int x = -300;
-		int y = -300;
+		int x = -1400;
+		int y = -800;
 		uint8_t timer = 0;
 
 		SDL_Event e;
@@ -115,8 +115,8 @@ namespace duckhero
 			timer++;
 			if (timer == 5)
 			{
-				x--;
-				y--;
+				// x--;
+				// y--;
 				timer = 0;
 			}
 
