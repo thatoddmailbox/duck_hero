@@ -9,6 +9,8 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+#include <SDL2_framerate.h>
+
 #include "external/physfsrwops.h"
 
 #include "content.hpp"
@@ -21,6 +23,7 @@ namespace duckhero
 	{
 	private:
 		bool _running;
+		FPSmanager _fpsManager;
 		SDL_Window * _window;
 		SDL_Renderer * _renderer;
 	public:

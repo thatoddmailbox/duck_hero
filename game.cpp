@@ -83,6 +83,9 @@ namespace duckhero
 			return 1;
 		}
 
+		SDL_initFramerate(&_fpsManager);
+		SDL_setFramerate(&_fpsManager, 60);
+
 		SDL_Event e;
 		while (_running)
 		{
@@ -103,6 +106,8 @@ namespace duckhero
 			GUIManager::Draw(_renderer);
 
 			SDL_RenderPresent(_renderer);
+
+			SDL_framerateDelay(&_fpsManager);
 		}
 
 		SDL_DestroyWindow(_window);

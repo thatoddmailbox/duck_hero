@@ -311,11 +311,6 @@ namespace duckhero
 			if (SDL_HasIntersection(&entity_box, &tile_to_check))
 			{
 				// we can't do this movement!
-				// printf(
-				// 	"intersection! {%d, %d, %d, %d} with {%d, %d, %d, %d}\n",
-				// 	entity_box.x, entity_box.y, entity_box.w, entity_box.h,
-				// 	tile_to_check.x, tile_to_check.y, tile_to_check.w, tile_to_check.h
-				// );
 				return false;
 			}
 		}
@@ -362,12 +357,17 @@ namespace duckhero
 			if (layer.IsFixedBottom())
 			{
 				// it's a ground thing so the player is always above
-				layer.Draw(r, x_offset, y_offset, 0, height );
+				layer.Draw(r, x_offset, y_offset, 0, height);
 			}
 			else
 			{
 				// draw up to the player
-				layer.Draw(r, x_offset, y_offset, 0, (player.y / 32) + 1);
+				int player_tile_y = ((player.y - 1) / 32);
+				if (player_tile_y < 0)
+				{
+					player_tile_y = 0;
+				}
+				layer.Draw(r, x_offset, y_offset, 0, player_tile_y + 1);
 			}
 		}
 
@@ -380,7 +380,12 @@ namespace duckhero
 			if (!layer.IsFixedBottom())
 			{
 				// draw after the player
-				layer.Draw(r, x_offset, y_offset, (player.y / 32) + 1, height);
+				int player_tile_y = ((player.y - 1) / 32);
+				if (player_tile_y < 0)
+				{
+					player_tile_y = 0;
+				}
+				layer.Draw(r, x_offset, y_offset, player_tile_y + 1, height);
 			}
 		}
 	}
