@@ -11,8 +11,10 @@
 
 #include "external/pugixml.hpp"
 
+#include "entity.hpp"
 #include "log.hpp"
 #include "spritesheet.hpp"
+#include "player.hpp"
 
 namespace duckhero
 {
@@ -33,6 +35,9 @@ namespace duckhero
 		Layer& operator=(const Layer& other);
 		~Layer();
 
+		bool IsFixedBottom();
+		void Draw(SDL_Renderer * r, int x_offset, int y_offset, int start_y, int end_y);
+
 		std::string name;
 		int width, height;
 		Tile ** data;
@@ -45,6 +50,7 @@ namespace duckhero
 	public:
 		std::vector<Layer> layers;
 		int width, height;
+		Player player;
 
 		Level();
 		bool LoadFromFile(std::string path);

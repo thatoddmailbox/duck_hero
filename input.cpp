@@ -7,10 +7,10 @@ namespace duckhero
 
 	std::map<Button, SDL_Keycode> keyboard_bindings =
 	{
-		{ Button::UP, SDLK_w },
-		{ Button::DOWN, SDLK_s },
-		{ Button::LEFT, SDLK_a },
-		{ Button::RIGHT, SDLK_d }
+		{ Button::UP, SDL_SCANCODE_W },
+		{ Button::DOWN, SDL_SCANCODE_S },
+		{ Button::LEFT, SDL_SCANCODE_A },
+		{ Button::RIGHT, SDL_SCANCODE_D }
 	};
 
 	void Input::Update()
@@ -30,12 +30,12 @@ namespace duckhero
 		return _mouse_rect;
 	}
 
-	const uint8_t * GetKeyboardState()
+	const uint8_t * Input::GetKeyboardState()
 	{
 		return SDL_GetKeyboardState(NULL);
 	}
 
-	bool IsButtonDown(Button b)
+	bool Input::IsButtonDown(Button b)
 	{
 		SDL_Keycode keycode = keyboard_bindings.at(b);
 		if (GetKeyboardState()[keycode])

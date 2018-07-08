@@ -172,24 +172,31 @@ namespace duckhero
 
 	void Level::Draw(SDL_Renderer * r, int x_offset, int y_offset)
 	{
+		// draw the layers up to the player's y
 		for (Layer& layer : layers)
 		{
-			for (int y = 0; y < height; y++)
+			if (layer.IsFixedBottom())
 			{
-				for (int x = 0; x < width; x++)
-				{
-					Tile t = layer.data[x][y];
+				// it's a ground thing so the player is always above
+				layer.Draw(r, x_offset, y_offset, 0, height );
+			}
+			else
+			{
+				// draw up to the player
+				layer.Draw(r, x_offset, y_offset, 0, (player.y / 32) + 1);
+			}
+		}
 
-					if (t.id == -1)
-					{
-						continue;
-					}
-					
-					SDL_Texture * sheet_texture = t.sheet->GetTexture(r);
-					SDL_Rect tile_rect = t.sheet->GetCoordinatesForTile(t.id);
-					SDL_Rect dst_rect = { x_offset + (x * 32), y_offset + (y * 32), 32, 32 };
-					SDL_RenderCopy(r, sheet_texture, &tile_rect, &dst_rect);
-				}
+		// draw the player
+		player.Draw(r, x_offset, y_offset);
+
+		// draw the layers up to the player's y
+		for (Layer& layer : layers)
+		{
+			if (!layer.IsFixedBottom())
+			{
+				// draw after the player
+				layer.Draw(r, x_offset, y_offset, (player.y / 32) + 1, height);
 			}
 		}
 	}
@@ -239,6 +246,43 @@ namespace duckhero
 			for (int y = 0; y < other.height; y++)
 			{
 				data[x][y] = other.data[x][y];
+			}
+		}
+	}
+
+	bool Layer::IsFixedBottom()
+	{
+		if (name == "Ground" || name == "Ground overlay")
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void Layer::Draw(SDL_Renderer * r, int x_offset, int y_offset, int start_y, int end_y)
+	{
+		for (int y = start_y; y < height; y++)
+		{
+			if (y >= end_y)
+			{
+				break;
+			}
+			for (int x = 0; x < width; x++)
+			{
+				Tile t = data[x][y];
+
+				if (t.id == -1)
+				{
+					continue;
+				}
+
+				SDL_Texture * sheet_texture = t.sheet->GetTexture(r);
+				SDL_Rect tile_rect = t.sheet->GetCoordinatesForTile(t.id);
+				SDL_Rect dst_rect = { x_offset + (x * 32), y_offset + (y * 32), 32, 32 };
+				SDL_RenderCopy(r, sheet_texture, &tile_rect, &dst_rect);
 			}
 		}
 	}
