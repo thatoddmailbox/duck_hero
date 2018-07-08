@@ -11,6 +11,7 @@
 
 #include "external/pugixml.hpp"
 
+#include "consts.hpp"
 #include "entity.hpp"
 #include "log.hpp"
 #include "spritesheet.hpp"
@@ -18,6 +19,14 @@
 
 namespace duckhero
 {
+	enum CollisionMode
+	{
+		NONE = 0,
+		FULL = 1,
+		BOTTOM_HALF = 2,
+		TOP_HALF = 3
+	};
+
 	class Tile
 	{
 	public:
@@ -46,14 +55,23 @@ namespace duckhero
 	class Level
 	{
 	private:
-		
+		void copy_into_data_from(const Level& other);
 	public:
 		std::vector<Layer> layers;
 		int width, height;
 		Player player;
+		CollisionMode ** collision_map;
 
 		Level();
+		Level(const Level& other);
+		Level& operator=(const Level& other);
+		~Level();
+
 		bool LoadFromFile(std::string path);
+
+		bool TryMoveEntity(Entity * e, int x_offset, int y_offset);
+		SDL_Rect GetCollisionBoxForTile(int x, int y);
+
 		void Draw(SDL_Renderer * r, int x_offset, int y_offset);
 	};
 }

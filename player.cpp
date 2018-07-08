@@ -39,6 +39,11 @@ namespace duckhero
 		return "characters/ducky.png";
 	}
 
+	SDL_Rect Player::GetCollisionBox(int x, int y)
+	{
+		return { x + 4, y + (TILE_HEIGHT / 2), TILE_WIDTH - (4 * 2), (TILE_HEIGHT / 2) };
+	}
+
 	void Player::Update()
 	{
 		Entity::Update();

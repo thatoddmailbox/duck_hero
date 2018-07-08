@@ -4,7 +4,69 @@ namespace duckhero
 {
 	Level::Level()
 	{
+		layers = std::vector<Layer>();
+		width = 0;
+		height = 0;
+		player = Player();
+		collision_map = nullptr;
+	}
 
+	Level::Level(const Level& other)
+	{
+		layers = other.layers;
+		width = other.width;
+		height = other.height;
+		player = other.player;
+		if (other.collision_map)
+		{
+			copy_into_data_from(other);
+		}
+		else
+		{
+			collision_map = nullptr;
+		}
+	}
+
+	Level& Level::operator=(const Level& other)
+	{
+		layers = other.layers;
+		width = other.width;
+		height = other.height;
+		player = other.player;
+		if (other.collision_map)
+		{
+			copy_into_data_from(other);
+		}
+		else
+		{
+			collision_map = nullptr;
+		}
+		return *this;
+	}
+
+	Level::~Level()
+	{
+		if (collision_map)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				free(collision_map[x]);
+			}
+			free(collision_map);
+		}
+	}
+
+	void Level::copy_into_data_from(const Level& other)
+	{
+		collision_map = (CollisionMode **) calloc(other.width, sizeof(CollisionMode *));
+		for (int x = 0; x < other.width; x++)
+		{
+			collision_map[x] = (CollisionMode *) calloc(other.height, sizeof(CollisionMode));
+			for (int y = 0; y < other.height; y++)
+			{
+				collision_map[x][y] = other.collision_map[x][y];
+			}
+		}
 	}
 
 	bool Level::LoadFromFile(std::string path)
@@ -32,6 +94,8 @@ namespace duckhero
 
 			// the std::greater<int> at the end sorts the map by descending order, helpful later for comparison to determine the spritesheet of a tile
 			std::map<int, Spritesheet *, std::greater<int>> spritesheets;
+
+			int collisionGid = 0;
 
 			// read the tileset information
 			for (pugi::xml_node tileset : map.children("tileset"))
@@ -70,6 +134,13 @@ namespace duckhero
 					sheet = &Spritesheet::indoor;
 				}
 
+				if (strstr(source, "collision.png") != nullptr)
+				{
+					// skip it, it's not a real tileset
+					collisionGid = firstgid;
+					continue;
+				}
+
 				if (sheet == nullptr)
 				{
 					Log::Warning("Level::LoadFromFile", "couldn't find spritesheet for tileset!");
@@ -83,6 +154,50 @@ namespace duckhero
 			for (pugi::xml_node layerNode : map.children("layer"))
 			{
 				const char * name = layerNode.attribute("name").value();
+
+				if (strncmp(name, "COLLISION", 9) == 0)
+				{
+					// it's a collision layer
+
+					// clear data that we might already have
+					if (collision_map)
+					{
+						for (int x = 0; x < width; x++)
+						{
+							free(collision_map[x]);
+						}
+						free(collision_map);
+					}
+
+					// create a new array
+					collision_map = (CollisionMode **) calloc(width, sizeof(CollisionMode *));
+					for (int x = 0; x < width; x++)
+					{
+						collision_map[x] = (CollisionMode *) calloc(height, sizeof(CollisionMode));
+					}
+
+					// read in tile collision data
+					pugi::xml_node data = layerNode.child("data");
+					int x = 0;
+					int y = 0;
+					for (pugi::xml_node tile : data.children("tile"))
+					{
+						if (tile.attribute("gid"))
+						{
+							int gid = tile.attribute("gid").as_int();
+							int id = gid - collisionGid;
+							collision_map[x][y] = static_cast<CollisionMode>(id + 1);
+						}
+
+						x++;
+						if (x >= width)
+						{
+							y++;
+							x = 0;
+						}
+					}
+					continue;
+				}
 
 				// create a new layer object for the layer
 				Layer layer;
@@ -170,6 +285,75 @@ namespace duckhero
 		return returnValue;
 	}
 
+	bool Level::TryMoveEntity(Entity * e, int x_offset, int y_offset)
+	{
+		int new_x = e->x + x_offset;
+		int new_y = e->y + y_offset;
+		int tile_x = new_x / TILE_WIDTH;
+		int tile_y = new_y / TILE_HEIGHT;
+
+		SDL_Rect entity_box = e->GetCollisionBox(new_x, new_y);
+
+		// TODO: there's probably a smarter way of doing this...this is somewhat brute-forcey
+		std::vector<SDL_Rect> tiles_to_check = std::vector<SDL_Rect>();
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x - 1, tile_y - 1));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x - 1, tile_y));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x - 1, tile_y + 1));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x, tile_y - 1));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x, tile_y));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x, tile_y + 1));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x + 1, tile_y - 1));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x + 1, tile_y));
+		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x + 1, tile_y + 1));
+
+		for (SDL_Rect tile_to_check : tiles_to_check)
+		{
+			if (SDL_HasIntersection(&entity_box, &tile_to_check))
+			{
+				// we can't do this movement!
+				// printf(
+				// 	"intersection! {%d, %d, %d, %d} with {%d, %d, %d, %d}\n",
+				// 	entity_box.x, entity_box.y, entity_box.w, entity_box.h,
+				// 	tile_to_check.x, tile_to_check.y, tile_to_check.w, tile_to_check.h
+				// );
+				return false;
+			}
+		}
+
+		// we made it this far, we can move
+		e->x += x_offset;
+		e->y += y_offset;
+
+		return true;
+	}
+
+	SDL_Rect Level::GetCollisionBoxForTile(int x, int y)
+	{
+		if (x < 0 || x >= width || y < 0 || y >= height)
+		{
+			return { 0, 0, 0, 0 };
+		}
+		CollisionMode mode = collision_map[x][y];
+		if (mode == CollisionMode::NONE)
+		{
+			return { 0, 0, 0, 0 };
+		}
+		else if (mode == CollisionMode::FULL)
+		{
+			return { x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };
+		}
+		else if (mode == CollisionMode::TOP_HALF)
+		{
+			return { x * TILE_WIDTH, y * TILE_HEIGHT, TILE_WIDTH, (TILE_HEIGHT / 2) };
+		}
+		else if (mode == CollisionMode::BOTTOM_HALF)
+		{
+			return { x * TILE_WIDTH, (y * TILE_HEIGHT) + (TILE_HEIGHT / 2), TILE_WIDTH, (TILE_HEIGHT / 2) };
+		}
+
+		return { 0, 0, 0, 0 };
+	}
+
 	void Level::Draw(SDL_Renderer * r, int x_offset, int y_offset)
 	{
 		// draw the layers up to the player's y
@@ -206,6 +390,7 @@ namespace duckhero
 		name = "";
 		width = 0;
 		height = 0;
+		data = nullptr;
 	}
 
 	Layer::Layer(const Layer& other)
@@ -278,6 +463,7 @@ namespace duckhero
 				{
 					continue;
 				}
+
 
 				SDL_Texture * sheet_texture = t.sheet->GetTexture(r);
 				SDL_Rect tile_rect = t.sheet->GetCoordinatesForTile(t.id);

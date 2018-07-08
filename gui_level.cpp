@@ -9,20 +9,20 @@ namespace duckhero
 	{
 		if (Input::IsButtonDown(Button::UP))
 		{
-			level.player.y -= 1;
+			level.TryMoveEntity(&level.player, 0, -1);
 		}
 		else if (Input::IsButtonDown(Button::DOWN))
 		{
-			level.player.y += 1;
+			level.TryMoveEntity(&level.player, 0, 1);
 		}
 
 		if (Input::IsButtonDown(Button::LEFT))
 		{
-			level.player.x -= 1;
+			level.TryMoveEntity(&level.player, -1, 0);
 		}
 		else if (Input::IsButtonDown(Button::RIGHT))
 		{
-			level.player.x += 1;
+			level.TryMoveEntity(&level.player, 1, 0);
 		}
 
 		camera_x = -(level.player.x - (1024/2) - 16);

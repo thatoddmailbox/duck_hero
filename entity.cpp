@@ -2,6 +2,11 @@
 
 namespace duckhero
 {
+	SDL_Rect Entity::GetCollisionBox(int x, int y)
+	{
+		return { x, y, TILE_WIDTH, TILE_HEIGHT };
+	}
+
 	void Entity::Update()
 	{
 

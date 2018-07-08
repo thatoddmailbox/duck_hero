@@ -20,6 +20,8 @@ namespace duckhero
 
 		std::string GetSpritePath();
 
+		SDL_Rect GetCollisionBox(int x, int y);
+
 		void Update();
 		void Draw(SDL_Renderer * r, int x_offset, int y_offset);
 	};
