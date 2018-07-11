@@ -17,6 +17,26 @@ namespace duckhero
 
 		if (dialogueManager->showingLine)
 		{
+			if (state->cached_character_texture == nullptr || dialogueManager->currentLine.character != state->cached_character)
+			{
+				if (state->cached_character_texture != nullptr)
+				{
+					SDL_DestroyTexture(state->cached_character_texture);
+				}
+
+				std::string character = dialogueManager->currentLine.character;
+
+				SDL_Surface * character_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, 18 }), character.c_str(), { 0, 0, 0, 255 }, WIDTH - (10 * 2));
+				state->cached_character_texture = SDL_CreateTextureFromSurface(r, character_surface);
+
+				state->cached_character_rect = { 0, 0, 0, 0 };
+				SDL_QueryTexture(state->cached_character_texture, NULL, NULL, &(state->cached_character_rect.w), &(state->cached_character_rect.h));
+
+				SDL_FreeSurface(character_surface);
+
+				state->cached_character = character;
+			}
+
 			if (state->cached_text_texture == nullptr || dialogueManager->currentLine.text != state->cached_text)
 			{
 				if (state->cached_text_texture != nullptr)
@@ -26,7 +46,7 @@ namespace duckhero
 
 				std::string text = dialogueManager->currentLine.text;
 
-				SDL_Surface * text_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, 18 }), text.c_str(), { 0, 0, 0, 255 }, WIDTH);
+				SDL_Surface * text_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, 18 }), text.c_str(), { 0, 0, 0, 255 }, WIDTH - (10 * 2));
 				state->cached_text_texture = SDL_CreateTextureFromSurface(r, text_surface);
 
 				state->cached_text_rect = { 0, 0, 0, 0 };
@@ -39,7 +59,6 @@ namespace duckhero
 
 			if (Input::IsButtonReleased(Button::ADVANCE_DIALOGUE))
 			{
-				printf("asdf\n");
 				if (dialogueManager->lines.size() > 1)
 				{
 					// go to the next line
@@ -62,10 +81,16 @@ namespace duckhero
 		{
 			SDL_Rect frame_rect = { 50, 600 - HEIGHT - 50, WIDTH, HEIGHT };
 			GUIHelper::DrawFrame(r, frame_rect, GUIHelper::FRAME_BROWN_PAPER);
+			if (state->cached_character_texture != nullptr)
+			{
+				state->cached_character_rect.x = frame_rect.x + 10;
+				state->cached_character_rect.y = frame_rect.y + 10;
+				SDL_RenderCopy(r, state->cached_character_texture, NULL, &state->cached_character_rect);
+			}
 			if (state->cached_text_texture != nullptr)
 			{
 				state->cached_text_rect.x = frame_rect.x + 10;
-				state->cached_text_rect.y = frame_rect.y + 10;
+				state->cached_text_rect.y = frame_rect.y + 10 + 18 + 5;
 				SDL_RenderCopy(r, state->cached_text_texture, NULL, &state->cached_text_rect);
 			}
 			if (state->cached_instruction_texture != nullptr)

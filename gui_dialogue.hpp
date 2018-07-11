@@ -16,6 +16,10 @@ namespace duckhero
 		SDL_Texture * cached_instruction_texture;
 		SDL_Rect cached_instruction_rect;
 
+		std::string cached_character;
+		SDL_Texture * cached_character_texture;
+		SDL_Rect cached_character_rect;
+
 		std::string cached_text;
 		SDL_Texture * cached_text_texture;
 		SDL_Rect cached_text_rect;

@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 
+#include "physfs.h"
+
+#include "external/pugixml.hpp"
+
 #include <SDL.h>
 
 namespace duckhero
@@ -24,6 +28,7 @@ namespace duckhero
 		DialogueManager();
 
 		void AddLine(DialogueLine line);
+		bool LoadXMLScript(std::string name);
 	};
 }
 
