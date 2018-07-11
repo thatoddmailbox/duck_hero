@@ -13,24 +13,32 @@ namespace duckhero
 
 	void GUILevelScreen::Update(SDL_Renderer * r)
 	{
-		int speed = 2;
+		if (!level.dialogueManager.showingLine)
+		{
+			int speed = 2;
 
-		if (Input::IsButtonDown(Button::UP))
-		{
-			level.TryMoveEntity(&level.player, 0, -speed);
-		}
-		else if (Input::IsButtonDown(Button::DOWN))
-		{
-			level.TryMoveEntity(&level.player, 0, speed);
-		}
+			if (Input::IsButtonDown(Button::UP))
+			{
+				level.TryMoveEntity(&level.player, 0, -speed);
+			}
+			else if (Input::IsButtonDown(Button::DOWN))
+			{
+				level.TryMoveEntity(&level.player, 0, speed);
+			}
 
-		if (Input::IsButtonDown(Button::LEFT))
-		{
-			level.TryMoveEntity(&level.player, -speed, 0);
-		}
-		else if (Input::IsButtonDown(Button::RIGHT))
-		{
-			level.TryMoveEntity(&level.player, speed, 0);
+			if (Input::IsButtonDown(Button::LEFT))
+			{
+				level.TryMoveEntity(&level.player, -speed, 0);
+			}
+			else if (Input::IsButtonDown(Button::RIGHT))
+			{
+				level.TryMoveEntity(&level.player, speed, 0);
+			}
+
+			if (Input::IsButtonReleased(Button::INTERACT))
+			{
+				
+			}
 		}
 
 		camera_x = -(level.player.x - (1024/2) + 16);

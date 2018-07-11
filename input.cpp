@@ -11,7 +11,8 @@ namespace duckhero
 		{ Button::DOWN, false },
 		{ Button::LEFT, false },
 		{ Button::RIGHT, false },
-		{ Button::ADVANCE_DIALOGUE, false }
+		{ Button::ADVANCE_DIALOGUE, false },
+		{ Button::INTERACT, false }
 	};
 
 	std::map<Button, SDL_Keycode> keyboard_bindings =
@@ -20,7 +21,8 @@ namespace duckhero
 		{ Button::DOWN, SDL_SCANCODE_S },
 		{ Button::LEFT, SDL_SCANCODE_A },
 		{ Button::RIGHT, SDL_SCANCODE_D },
-		{ Button::ADVANCE_DIALOGUE, SDL_SCANCODE_SPACE }
+		{ Button::ADVANCE_DIALOGUE, SDL_SCANCODE_SPACE },
+		{ Button::INTERACT, SDL_SCANCODE_E }
 	};
 
 	void Input::Update()

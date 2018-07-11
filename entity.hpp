@@ -1,6 +1,8 @@
 #ifndef _ENTITY_HPP
 #define _ENTITY_HPP
 
+#include <string>
+
 #include <SDL.h>
 
 #include "consts.hpp"
@@ -12,7 +14,9 @@ namespace duckhero
 	public:
 		int health;
 		int x, y;
+		virtual std::string GetSpritePath();
 		virtual SDL_Rect GetCollisionBox(int x, int y);
+		virtual void Interact(void * level);
 		virtual void Update();
 		virtual void Draw(SDL_Renderer * r, int x_offset, int y_offset);
 	};

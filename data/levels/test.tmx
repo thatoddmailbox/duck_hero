@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="1">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="3">
  <tileset firstgid="1" name="base" tilewidth="16" tileheight="16" spacing="1" tilecount="1767" columns="57">
   <image source="../tiles/base.png" width="968" height="526"/>
  </tileset>
@@ -17,6 +17,9 @@
  </tileset>
  <tileset firstgid="4460" name="collision" tilewidth="16" tileheight="16" spacing="1" tilecount="3" columns="3">
   <image source="../tiles/collision.png" width="50" height="16"/>
+ </tileset>
+ <tileset firstgid="4463" name="npc" tilewidth="16" tileheight="16" spacing="1" tilecount="1" columns="1">
+  <image source="../tiles/npc.png" width="16" height="16"/>
  </tileset>
  <layer name="Ground" width="100" height="100">
   <data>
@@ -60042,4 +60045,11 @@
    <tile/>
   </data>
  </layer>
+ <objectgroup name="NPC">
+  <object id="1" gid="4463" x="360" y="521" width="16" height="16">
+   <properties>
+    <property name="npc" value="joe"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

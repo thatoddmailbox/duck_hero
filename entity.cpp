@@ -1,10 +1,22 @@
 #include "entity.hpp"
 
+#include "level.hpp"
+
 namespace duckhero
 {
+	std::string Entity::GetSpritePath()
+	{
+		return "";
+	}
+
 	SDL_Rect Entity::GetCollisionBox(int x, int y)
 	{
 		return { x, y, TILE_WIDTH, TILE_HEIGHT };
+	}
+
+	void Entity::Interact(void * level)
+	{
+
 	}
 
 	void Entity::Update()

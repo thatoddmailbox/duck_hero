@@ -26,7 +26,6 @@ namespace duckhero
 		//
 		game.level = Level();
 		game.level.LoadFromFile("levels/test.tmx");
-		game.level.dialogueManager.LoadXMLScript("intro");
 	}
 
 	void GUIManager::Update(SDL_Renderer * r)

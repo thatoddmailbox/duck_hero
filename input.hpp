@@ -14,7 +14,8 @@ namespace duckhero
 		DOWN,
 		LEFT,
 		RIGHT,
-		ADVANCE_DIALOGUE
+		ADVANCE_DIALOGUE,
+		INTERACT
 	};
 
 	struct MouseState

@@ -5,6 +5,7 @@ namespace duckhero
 	Level::Level()
 	{
 		layers = std::vector<Layer>();
+		entities = std::vector<std::shared_ptr<Entity>>();
 		width = 0;
 		height = 0;
 		player = Player();
@@ -15,6 +16,7 @@ namespace duckhero
 	Level::Level(const Level& other)
 	{
 		layers = other.layers;
+		entities = other.entities;
 		width = other.width;
 		height = other.height;
 		player = other.player;
@@ -32,6 +34,7 @@ namespace duckhero
 	Level& Level::operator=(const Level& other)
 	{
 		layers = other.layers;
+		entities = other.entities;
 		width = other.width;
 		height = other.height;
 		player = other.player;
@@ -154,9 +157,9 @@ namespace duckhero
 			}
 
 			// start reading the layers
-			for (pugi::xml_node layerNode : map.children("layer"))
+			for (pugi::xml_node layer_node : map.children("layer"))
 			{
-				const char * name = layerNode.attribute("name").value();
+				const char * name = layer_node.attribute("name").value();
 
 				if (strncmp(name, "COLLISION", 9) == 0)
 				{
@@ -180,7 +183,7 @@ namespace duckhero
 					}
 
 					// read in tile collision data
-					pugi::xml_node data = layerNode.child("data");
+					pugi::xml_node data = layer_node.child("data");
 					int x = 0;
 					int y = 0;
 					for (pugi::xml_node tile : data.children("tile"))
@@ -222,7 +225,7 @@ namespace duckhero
 				}
 
 				// read the tiles
-				pugi::xml_node data = layerNode.child("data");
+				pugi::xml_node data = layer_node.child("data");
 				int x = 0;
 				int y = 0;
 				for (pugi::xml_node tile : data.children("tile"))
@@ -275,6 +278,41 @@ namespace duckhero
 				}
 
 				layers.push_back(layer);
+			}
+
+			// load object groups
+			for (pugi::xml_node object_group_node : map.children("objectgroup"))
+			{
+				const char * name = object_group_node.attribute("name").as_string();
+				if (strcmp(name, "NPC") == 0)
+				{
+					// it's the NPC layer
+					for (pugi::xml_node object_node : object_group_node.children("object"))
+					{
+						int x = object_node.attribute("x").as_int();
+						int y = object_node.attribute("y").as_int();
+						for (pugi::xml_node property_node : object_node.child("properties").children("property"))
+						{
+							const char * property_name = property_node.attribute("name").as_string();
+							const char * property_value = property_node.attribute("value").as_string();
+
+							if (strcmp(property_name, "npc") == 0)
+							{
+								NPC * npc = new NPC();
+								npc->LoadXMLInfo(std::string(property_value));
+								npc->x = (x) * 2;
+								npc->y = (y - 16) * 2;
+								entities.push_back(std::shared_ptr<Entity>(npc));
+							}
+						}
+					}
+				}
+				else
+				{
+					// unknown layer
+					Log::Warning("Level::LoadFromFile", "unrecognized object group (incorrect name?)");
+					returnValue = false;
+				}
 			}
 		}
 		else
@@ -390,6 +428,12 @@ namespace duckhero
 				}
 				layer.Draw(r, x_offset, y_offset, player_tile_y + 1, height);
 			}
+		}
+
+		// draw entities
+		for (std::shared_ptr<Entity>& e : entities)
+		{
+			e->Draw(r, x_offset, y_offset);
 		}
 	}
 

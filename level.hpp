@@ -15,6 +15,7 @@
 #include "dialogue.hpp"
 #include "entity.hpp"
 #include "log.hpp"
+#include "npc.hpp"
 #include "spritesheet.hpp"
 #include "player.hpp"
 
@@ -59,6 +60,7 @@ namespace duckhero
 		void copy_into_data_from(const Level& other);
 	public:
 		std::vector<Layer> layers;
+		std::vector<std::shared_ptr<Entity>> entities;
 		int width, height;
 		Player player;
 		DialogueManager dialogueManager;
