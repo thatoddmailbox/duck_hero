@@ -97,8 +97,8 @@ namespace duckhero
 				}
 			}
 
-			Input::Update();
 			GUIManager::Update(_renderer);
+			Input::Update();
 
 			SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
 			SDL_RenderClear(_renderer);

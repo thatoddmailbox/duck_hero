@@ -12,6 +12,7 @@
 #include "external/pugixml.hpp"
 
 #include "consts.hpp"
+#include "dialogue.hpp"
 #include "entity.hpp"
 #include "log.hpp"
 #include "spritesheet.hpp"
@@ -60,6 +61,7 @@ namespace duckhero
 		std::vector<Layer> layers;
 		int width, height;
 		Player player;
+		DialogueManager dialogueManager;
 		CollisionMode ** collision_map;
 
 		Level();

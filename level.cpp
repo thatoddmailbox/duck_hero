@@ -8,6 +8,7 @@ namespace duckhero
 		width = 0;
 		height = 0;
 		player = Player();
+		dialogueManager = DialogueManager();
 		collision_map = nullptr;
 	}
 
@@ -17,6 +18,7 @@ namespace duckhero
 		width = other.width;
 		height = other.height;
 		player = other.player;
+		dialogueManager = other.dialogueManager;
 		if (other.collision_map)
 		{
 			copy_into_data_from(other);
@@ -33,6 +35,7 @@ namespace duckhero
 		width = other.width;
 		height = other.height;
 		player = other.player;
+		dialogueManager = other.dialogueManager;
 		if (other.collision_map)
 		{
 			copy_into_data_from(other);

@@ -22,6 +22,7 @@ namespace duckhero
 	{
 	public:
 		int x, y, w, h;
+		bool enabled = true;
 
 		virtual void Update(SDL_Renderer * r) = 0;
 		virtual void Draw(SDL_Renderer * r) = 0;

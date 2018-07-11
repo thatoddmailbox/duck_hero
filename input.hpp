@@ -13,7 +13,8 @@ namespace duckhero
 		UP,
 		DOWN,
 		LEFT,
-		RIGHT
+		RIGHT,
+		ADVANCE_DIALOGUE
 	};
 
 	struct MouseState
@@ -27,6 +28,7 @@ namespace duckhero
 	private:
 		static MouseState _mouse_state;
 		static SDL_Rect _mouse_rect;
+		static std::map<Button, bool> _last_frame_status;
 	public:
 		static void Update();
 
@@ -36,6 +38,7 @@ namespace duckhero
 		static const uint8_t * GetKeyboardState();
 
 		static bool IsButtonDown(Button b);
+		static bool IsButtonReleased(Button b);
 	};
 }
 

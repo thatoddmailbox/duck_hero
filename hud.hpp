@@ -2,6 +2,7 @@
 #define _HUD_HPP
 
 #include "gui.hpp"
+#include "gui_dialogue.hpp"
 #include "level.hpp"
 
 namespace duckhero
@@ -10,11 +11,12 @@ namespace duckhero
 	{
 	private:
 		GUIScreen _screen;
+		GUIDialogueState _dialogueState;
 	public:
 		HUD();
 
-		void Update(SDL_Renderer * r, Player * player);
-		void Draw(SDL_Renderer * r, Player * player);
+		void Update(SDL_Renderer * r, Player * player, DialogueManager * dialogueManager);
+		void Draw(SDL_Renderer * r, Player * player, DialogueManager * dialogueManager);
 	};
 }
 
