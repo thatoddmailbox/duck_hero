@@ -15,8 +15,8 @@ namespace duckhero
 	public:
 		HUD();
 
-		void Update(SDL_Renderer * r, Player * player, DialogueManager * dialogueManager);
-		void Draw(SDL_Renderer * r, Player * player, DialogueManager * dialogueManager);
+		void Update(SDL_Renderer * r, Player * player, Level * level);
+		void Draw(SDL_Renderer * r, Player * player, Level * level);
 	};
 }
 

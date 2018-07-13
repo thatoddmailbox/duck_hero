@@ -44,7 +44,7 @@ namespace duckhero
 				std::string character = std::string(line.child_value("character"));
 				std::string text = std::string(line.child_value("text"));
 
-				AddLine({ character, text });
+				AddLine({ character, text, DialogueLineSpecial::NormalLine, "" });
 			}
 		}
 		else

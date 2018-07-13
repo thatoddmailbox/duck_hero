@@ -7,7 +7,7 @@ namespace duckhero
 	GUIScreen GUIManager::menu = GUIScreen();
 	GUILevelScreen GUIManager::game = GUILevelScreen();
 
-	void menutest()
+	void menutest(GUIButton * button)
 	{
 		printf("yay\n");
 		GUIManager::current_screen = &GUIManager::game;

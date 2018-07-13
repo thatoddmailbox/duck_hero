@@ -1,0 +1,22 @@
+<quest>
+	<name>Fetch thing</name>
+	<npc>joe</npc>
+	<requirements></requirements>
+	<dialogue>
+		<prompt>fetch_ask</prompt>
+		<progress>fetch_progress</progress>
+		<accept>fetch_accept</accept>
+		<decline>fetch_decline</decline>
+	</dialogue>
+	<tasks>
+		<task type="item">
+			<display>Go get a thing</display>
+			<data>1</data>
+		</task>
+	</tasks>
+	<rewards>
+		<reward type="coins">
+			<data>100</data>
+		</reward>
+	</rewards>
+</quest>

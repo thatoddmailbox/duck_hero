@@ -1,0 +1,10 @@
+<dialogue>
+	<line>
+		<character>Joe</character>
+		<text>Do this thing for me!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Go get this item!</text>
+	</line>
+</dialogue>

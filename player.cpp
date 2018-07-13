@@ -44,6 +44,11 @@ namespace duckhero
 		return { x + 4, y + (TILE_HEIGHT / 2), TILE_WIDTH - (4 * 2), (TILE_HEIGHT / 2) };
 	}
 
+	void Player::AddQuest(std::string quest_name)
+	{
+		
+	}
+
 	void Player::Update()
 	{
 		Entity::Update();

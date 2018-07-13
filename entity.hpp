@@ -16,6 +16,7 @@ namespace duckhero
 		int x, y;
 		virtual std::string GetSpritePath();
 		virtual SDL_Rect GetCollisionBox(int x, int y);
+		virtual bool CanInteract();
 		virtual void Interact(void * level);
 		virtual void Update();
 		virtual void Draw(SDL_Renderer * r, int x_offset, int y_offset);

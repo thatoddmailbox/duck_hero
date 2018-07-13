@@ -12,10 +12,18 @@
 
 namespace duckhero
 {
+	enum DialogueLineSpecial
+	{
+		NormalLine = 0,
+		QuestPromptLine
+	};
+
 	struct DialogueLine
 	{
 		std::string character;
 		std::string text;
+		DialogueLineSpecial special;
+		std::string metadata;
 	};
 
 	class DialogueManager

@@ -5,7 +5,7 @@ namespace duckhero
 	//
 	// GUIButton
 	//
-	GUIButton::GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)())
+	GUIButton::GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *))
 	{
 		text = in_text;
 		x = in_x;
@@ -120,7 +120,7 @@ namespace duckhero
 	{
 		if (handler)
 		{
-			handler();
+			handler(this);
 		}
 	}
 
@@ -136,6 +136,10 @@ namespace duckhero
 	{
 		for (std::vector<GUIElement *>::iterator it = elements.begin(); it != elements.end(); ++it)
 		{
+			if (!(*it.base())->enabled)
+			{
+				continue;
+			}
 			(*it.base())->Update(r);
 		}
 	}
@@ -144,6 +148,10 @@ namespace duckhero
 	{
 		for (std::vector<GUIElement *>::iterator it = elements.begin(); it != elements.end(); ++it)
 		{
+			if (!(*it.base())->enabled)
+			{
+				continue;
+			}
 			(*it.base())->Draw(r);
 		}
 	}

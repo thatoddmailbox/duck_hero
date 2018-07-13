@@ -326,6 +326,30 @@ namespace duckhero
 		return returnValue;
 	}
 
+	bool Level::TryInteract()
+	{
+		int range = 5;
+
+		SDL_Rect player_box = player.GetCollisionBox(player.x, player.y);
+		player_box.x -= range;
+		player_box.y -= range;
+		player_box.w += (range * 2);
+		player_box.h += (range * 2);
+
+		for (std::shared_ptr<Entity>& other_entity : entities)
+		{
+			SDL_Rect other_box = other_entity->GetCollisionBox(other_entity->x, other_entity->y);
+			if (SDL_HasIntersection(&player_box, &other_box))
+			{
+				// found something
+				other_entity->Interact((void *) this);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	bool Level::TryMoveEntity(Entity * e, int x_offset, int y_offset)
 	{
 		int new_x = e->x + x_offset;
@@ -350,6 +374,17 @@ namespace duckhero
 		for (SDL_Rect tile_to_check : tiles_to_check)
 		{
 			if (SDL_HasIntersection(&entity_box, &tile_to_check))
+			{
+				// we can't do this movement!
+				return false;
+			}
+		}
+
+		// are we colliding with any other entities?
+		for (std::shared_ptr<Entity>& test_entity : entities)
+		{
+			SDL_Rect test_box = test_entity->GetCollisionBox(test_entity->x, test_entity->y);
+			if (test_entity.get() != e && SDL_HasIntersection(&entity_box, &test_box))
 			{
 				// we can't do this movement!
 				return false;
@@ -412,6 +447,12 @@ namespace duckhero
 			}
 		}
 
+		// draw entities
+		for (std::shared_ptr<Entity>& e : entities)
+		{
+			e->Draw(r, x_offset, y_offset);
+		}
+
 		// draw the player
 		player.Draw(r, x_offset, y_offset);
 
@@ -428,12 +469,6 @@ namespace duckhero
 				}
 				layer.Draw(r, x_offset, y_offset, player_tile_y + 1, height);
 			}
-		}
-
-		// draw entities
-		for (std::shared_ptr<Entity>& e : entities)
-		{
-			e->Draw(r, x_offset, y_offset);
 		}
 	}
 

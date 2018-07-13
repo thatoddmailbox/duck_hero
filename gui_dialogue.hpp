@@ -8,6 +8,7 @@
 #include "dialogue.hpp"
 #include "gui.hpp"
 #include "gui_helper.hpp"
+#include "level.hpp"
 
 namespace duckhero
 {
@@ -23,6 +24,11 @@ namespace duckhero
 		std::string cached_text;
 		SDL_Texture * cached_text_texture;
 		SDL_Rect cached_text_rect;
+
+		GUIScreen * action_screen;
+
+		GUIButton * action_button_accept;
+		GUIButton * action_button_decline;
 	};
 
 	class GUIDialogue
@@ -31,8 +37,8 @@ namespace duckhero
 		static const int WIDTH = 1024 - 100;
 		static const int HEIGHT = 150;
 
-		static void Update(SDL_Renderer * r, DialogueManager * dialogueManager, GUIDialogueState * state);
-		static void Draw(SDL_Renderer * r, DialogueManager * dialogueManager, GUIDialogueState * state);
+		static void Update(SDL_Renderer * r, Level * level, GUIDialogueState * state);
+		static void Draw(SDL_Renderer * r, Level * level, GUIDialogueState * state);
 	};
 }
 

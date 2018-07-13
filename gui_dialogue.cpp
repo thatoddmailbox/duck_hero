@@ -2,8 +2,52 @@
 
 namespace duckhero
 {
-	void GUIDialogue::Update(SDL_Renderer * r, DialogueManager * dialogueManager, GUIDialogueState * state)
+	void accept_quest(GUIButton * button)
 	{
+		Level * level = (Level *) button->metadata;
+
+		std::string quest_name = level->dialogueManager.currentLine.metadata;
+		Quest quest = Quest();
+		quest.LoadXMLInfo(quest_name);
+
+		level->dialogueManager.lines.clear();
+		level->dialogueManager.showingLine = false;
+		level->dialogueManager.LoadXMLScript(quest.dialogue_accept);
+
+		level->player.AddQuest(quest_name);
+	}
+
+	void decline_quest(GUIButton * button)
+	{
+		Level * level = (Level *) button->metadata;
+
+		std::string quest_name = level->dialogueManager.currentLine.metadata;
+		Quest quest = Quest();
+		quest.LoadXMLInfo(quest_name);
+
+		level->dialogueManager.lines.clear();
+		level->dialogueManager.showingLine = false;
+		level->dialogueManager.LoadXMLScript(quest.dialogue_decline);
+	}
+
+	void GUIDialogue::Update(SDL_Renderer * r, Level * level, GUIDialogueState * state)
+	{
+		DialogueManager * dialogueManager = &level->dialogueManager;
+
+		if (state->action_screen == nullptr)
+		{
+			state->action_screen = new GUIScreen();
+			state->action_button_decline = new GUIButton("Decline", (1024 - 350) / 2, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest);
+			state->action_button_decline->metadata = level;
+			state->action_screen->AddElement(state->action_button_decline);
+			state->action_button_accept = new GUIButton("Accept", ((1024 - 350) / 2) + 200, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest);
+			state->action_button_accept->metadata = level;
+			state->action_screen->AddElement(state->action_button_accept);
+
+			state->action_button_accept->enabled = false;
+			state->action_button_decline->enabled = false;
+		}
+
 		if (state->cached_instruction_texture == nullptr)
 		{
 			SDL_Surface * instruction_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, 16 }), "Press SPACE to continue...", { 0, 0, 0, 255 }, WIDTH);
@@ -55,28 +99,44 @@ namespace duckhero
 				SDL_FreeSurface(text_surface);
 
 				state->cached_text = text;
+
+				// also use this time to update the buttons
+				state->action_button_accept->enabled = false;
+				state->action_button_decline->enabled = false;
+				if (dialogueManager->currentLine.special == DialogueLineSpecial::QuestPromptLine)
+				{
+					state->action_button_accept->enabled = true;
+					state->action_button_decline->enabled = true;
+				}
 			}
 
 			if (Input::IsButtonReleased(Button::ADVANCE_DIALOGUE))
 			{
-				if (dialogueManager->lines.size() > 1)
+				if (dialogueManager->currentLine.special == DialogueLineSpecial::NormalLine)
 				{
-					// go to the next line
-					dialogueManager->lines.erase(dialogueManager->lines.begin());
-					dialogueManager->currentLine = dialogueManager->lines.at(0);
-				}
-				else
-				{
-					// out of lines!
-					dialogueManager->lines.clear();
-					dialogueManager->showingLine = false;
+					if (dialogueManager->lines.size() > 1)
+					{
+						// go to the next line
+						dialogueManager->lines.erase(dialogueManager->lines.begin());
+						dialogueManager->currentLine = dialogueManager->lines.at(0);
+					}
+					else
+					{
+						// out of lines!
+						dialogueManager->lines.clear();
+						dialogueManager->showingLine = false;
+					}
 				}
 			}
+
+			state->action_screen->Update(r);
 		}
 	}
 
-	void GUIDialogue::Draw(SDL_Renderer * r, DialogueManager * dialogueManager, GUIDialogueState * state)
+	void GUIDialogue::Draw(SDL_Renderer * r, Level * level, GUIDialogueState * state)
 	{
+		DialogueManager * dialogueManager = &level->dialogueManager;
+
 		if (dialogueManager->showingLine)
 		{
 			SDL_Rect frame_rect = { 50, 600 - HEIGHT - 50, WIDTH, HEIGHT };
@@ -93,12 +153,14 @@ namespace duckhero
 				state->cached_text_rect.y = frame_rect.y + 10 + 18 + 5;
 				SDL_RenderCopy(r, state->cached_text_texture, NULL, &state->cached_text_rect);
 			}
-			if (state->cached_instruction_texture != nullptr)
+			if (state->cached_instruction_texture != nullptr && dialogueManager->currentLine.special == DialogueLineSpecial::NormalLine)
 			{
 				state->cached_instruction_rect.x = frame_rect.x + 10;
 				state->cached_instruction_rect.y = frame_rect.y + (frame_rect.h - state->cached_instruction_rect.h - 10);
 				SDL_RenderCopy(r, state->cached_instruction_texture, NULL, &state->cached_instruction_rect);
 			}
+
+			state->action_screen->Draw(r);
 		}
 	}
 }

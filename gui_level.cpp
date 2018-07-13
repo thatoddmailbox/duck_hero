@@ -37,14 +37,14 @@ namespace duckhero
 
 			if (Input::IsButtonReleased(Button::INTERACT))
 			{
-				
+				level.TryInteract();
 			}
 		}
 
 		camera_x = -(level.player.x - (1024/2) + 16);
 		camera_y = -(level.player.y - (600/2) + 16);
 
-		hud.Update(r, &level.player, &level.dialogueManager);
+		hud.Update(r, &level.player, &level);
 
 		GUIScreen::Update(r);
 	}
@@ -52,7 +52,7 @@ namespace duckhero
 	void GUILevelScreen::Draw(SDL_Renderer * r)
 	{
 		level.Draw(r, camera_x, camera_y);
-		hud.Draw(r, &level.player, &level.dialogueManager);
+		hud.Draw(r, &level.player, &level);
 		GUIScreen::Draw(r);
 	}
 }

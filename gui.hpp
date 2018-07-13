@@ -23,6 +23,7 @@ namespace duckhero
 	public:
 		int x, y, w, h;
 		bool enabled = true;
+		void * metadata;
 
 		virtual void Update(SDL_Renderer * r) = 0;
 		virtual void Draw(SDL_Renderer * r) = 0;
@@ -40,9 +41,9 @@ namespace duckhero
 	public:
 		std::string text;
 		int font_size;
-		void (*handler)();
+		void (*handler)(GUIButton *);
 
-		GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)());
+		GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *));
 		~GUIButton();
 		void Update(SDL_Renderer * r) override;
 		void Draw(SDL_Renderer * r) override;

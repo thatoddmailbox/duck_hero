@@ -67,6 +67,20 @@ namespace duckhero
 			pugi::xml_node npc = doc.child("npc");
 
 			name = std::string(npc.child_value("name"));
+
+			for (pugi::xml_node quest_node : npc.child("quests").children("quest"))
+			{
+				std::string quest_name = quest_node.text().as_string();
+				Quest quest = Quest();
+				quest.LoadXMLInfo(quest_name);
+				quests.push_back(quest);
+			}
+
+			for (pugi::xml_node line_node : npc.child("idle").children("line"))
+			{
+				std::string line = line_node.text().as_string();
+				idle.push_back(line);
+			}
 		}
 		else
 		{
@@ -77,10 +91,36 @@ namespace duckhero
 		return returnValue;
 	}
 
+	bool NPC::CanInteract()
+	{
+		return true;
+	}
+
 	void NPC::Interact(void * level)
 	{
 		Level * l = (Level *) level;
-		l->dialogueManager.LoadXMLScript("intro");
+
+		// try giving a quest
+		for (Quest& quest : quests)
+		{
+			if (quest.HasBeenCompleted(level))
+			{
+				continue;
+			}
+			if (quest.AllRequirementsMet(level))
+			{
+				// give this one
+				l->dialogueManager.LoadXMLScript(quest.dialogue_prompt);
+				int last_line_index = l->dialogueManager.lines.size() - 1;
+				l->dialogueManager.lines[last_line_index].special = DialogueLineSpecial::QuestPromptLine;
+				l->dialogueManager.lines[last_line_index].metadata = quest.name;
+				return;
+			}
+		}
+
+		// just say something random then
+		int idle_index = rand() % idle.size();
+		l->dialogueManager.AddLine({ name, idle[idle_index] });
 	}
 
 	void NPC::Update()

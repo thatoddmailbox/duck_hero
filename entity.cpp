@@ -14,6 +14,11 @@ namespace duckhero
 		return { x, y, TILE_WIDTH, TILE_HEIGHT };
 	}
 
+	bool Entity::CanInteract()
+	{
+		return false;
+	}
+
 	void Entity::Interact(void * level)
 	{
 

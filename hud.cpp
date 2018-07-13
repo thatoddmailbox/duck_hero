@@ -8,15 +8,15 @@ namespace duckhero
 		_dialogueState = {};
 	}
 
-	void HUD::Update(SDL_Renderer * r, Player * player, DialogueManager * dialogueManager)
+	void HUD::Update(SDL_Renderer * r, Player * player, Level * level)
 	{
 		_screen.Update(r);
-		GUIDialogue::Update(r, dialogueManager, &_dialogueState);
+		GUIDialogue::Update(r, level, &_dialogueState);
 	}
 
-	void HUD::Draw(SDL_Renderer * r, Player * player, DialogueManager * dialogueManager)
+	void HUD::Draw(SDL_Renderer * r, Player * player, Level * level)
 	{
 		_screen.Draw(r);
-		GUIDialogue::Draw(r, dialogueManager, &_dialogueState);
+		GUIDialogue::Draw(r, level, &_dialogueState);
 	}
 }
