@@ -38,15 +38,26 @@ namespace duckhero
 	{
 		GUIScreen::Draw(r);
 
+		int current_y = _rect.y;
 		for (std::string& quest_name : level->player.current_quests)
 		{
 			Quest q = quest_info[quest_name];
-			_title_cache.Draw(r, q.display_name, _rect.x, _rect.y);
+
+			SDL_Rect title_rect = _title_cache.Draw(r, q.display_name, _rect.x, current_y);
+			current_y += title_rect.h;
+
+			for (Task& t : q.tasks)
+			{
+				SDL_Rect task_rect = _desc_cache.Draw(r, t.display, _rect.x + 16, current_y);
+				current_y += task_rect.h;
+			}
+
+			current_y += 18;
 		}
 
 		if (level->player.current_quests.size() == 0)
 		{
-			_title_cache.Draw(r, "go do something", _rect.x, _rect.y);
+			_title_cache.Draw(r, "You have no quests!", _rect.x, _rect.y);
 		}
 	}
 }

@@ -2,31 +2,40 @@
 
 namespace duckhero
 {
-	void open_menu(GUIButton * button)
+	void toggle_menu(GUIButton * button)
 	{
 		HUD * hud = (HUD *) button->metadata;
 
-		hud->level->showing_menu = true;
-		hud->menu = GUIMenu(hud->level);
+		if (hud->level->showing_menu)
+		{
+			hud->level->showing_menu = false;
+			hud->hud_state.menu_button->text = "Menu";
+		}
+		else
+		{
+			hud->level->showing_menu = true;
+			hud->menu = GUIMenu(hud->level);
+			hud->hud_state.menu_button->text = "Close";
+		}
 	}
 
 	HUD::HUD(std::shared_ptr<Level> in_level)
 	{
 		_screen = GUIScreen();
-		_hud_state = {};
+		hud_state = {};
 		level = in_level;
 
-		_hud_state.menu_button = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Menu", 1024 - 150, 600 - 32, 150, 32, &open_menu));
-		_hud_state.menu_button->metadata = this;
+		hud_state.menu_button = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Menu", 1024 - 150, 600 - 32, 150, 32, &toggle_menu));
+		hud_state.menu_button->metadata = this;
 	}
 
 	HUD::HUD(const HUD& other)
 	{
 		_screen = other._screen;
-		_hud_state = other._hud_state;
-		if (_hud_state.menu_button)
+		hud_state = other.hud_state;
+		if (hud_state.menu_button)
 		{
-			_hud_state.menu_button->metadata = this;
+			hud_state.menu_button->metadata = this;
 		}
 		level = other.level;
 		menu = other.menu;
@@ -35,10 +44,10 @@ namespace duckhero
 	HUD& HUD::operator=(const HUD& other)
 	{
 		_screen = other._screen;
-		_hud_state = other._hud_state;
-		if (_hud_state.menu_button)
+		hud_state = other.hud_state;
+		if (hud_state.menu_button)
 		{
-			_hud_state.menu_button->metadata = this;
+			hud_state.menu_button->metadata = this;
 		}
 		level = other.level;
 		menu = other.menu;
@@ -56,10 +65,10 @@ namespace duckhero
 
 		if (!level->dialogueManager.showingLine)
 		{
-			_hud_state.menu_button->Update(r);
+			hud_state.menu_button->Update(r);
 		}
 
-		GUIDialogue::Update(r, level, &_hud_state);
+		GUIDialogue::Update(r, level, &hud_state);
 	}
 
 	void HUD::Draw(SDL_Renderer * r)
@@ -73,9 +82,9 @@ namespace duckhero
 
 		if (!level->dialogueManager.showingLine)
 		{
-			_hud_state.menu_button->Draw(r);
+			hud_state.menu_button->Draw(r);
 		}
 
-		GUIDialogue::Draw(r, level, &_hud_state);
+		GUIDialogue::Draw(r, level, &hud_state);
 	}
 }

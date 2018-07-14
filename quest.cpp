@@ -30,6 +30,8 @@ namespace duckhero
 			dialogue_prompt = std::string(quest.child("dialogue").child_value("prompt"));
 			dialogue_accept = std::string(quest.child("dialogue").child_value("accept"));
 			dialogue_decline = std::string(quest.child("dialogue").child_value("decline"));
+			dialogue_progress = std::string(quest.child("dialogue").child_value("progress"));
+			dialogue_complete = std::string(quest.child("dialogue").child_value("complete"));
 
 			for (pugi::xml_node requirement_node : quest.child("requirements").children("requirement"))
 			{

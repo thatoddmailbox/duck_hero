@@ -54,6 +54,7 @@ namespace duckhero
 		SDL_Texture * _text_hover_texture;
 		SDL_Rect _text_rect;
 		SDL_Rect _rect;
+		std::string _saved_text;
 		bool _hover, _clicked;
 	public:
 		GUIButtonStyle style;

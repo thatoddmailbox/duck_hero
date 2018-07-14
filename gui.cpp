@@ -36,7 +36,7 @@ namespace duckhero
 	void GUIButton::Update(SDL_Renderer * r)
 	{
 		// handle text texture
-		if (_text_texture == nullptr)
+		if (_text_texture == nullptr || _saved_text != text)
 		{
 			SDL_Surface * text_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, font_size }), text.c_str(), { 255, 255, 255, 255 }, w);
 			SDL_Surface * text_hover_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, font_size }), text.c_str(), { 255, 255, 0, 255 }, w);
@@ -50,6 +50,8 @@ namespace duckhero
 
 			SDL_FreeSurface(text_hover_surface);
 			SDL_FreeSurface(text_surface);
+
+			_saved_text = text;
 		}
 
 		// check if mouse over

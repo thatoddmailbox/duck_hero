@@ -103,9 +103,24 @@ namespace duckhero
 		// try giving a quest
 		for (Quest& quest : quests)
 		{
-			if (quest.HasBeenStarted(level) || quest.HasBeenCompleted(level))
+			if (quest.HasBeenCompleted(level))
 			{
 				continue;
+			}
+			if (quest.HasBeenStarted(level))
+			{
+				if (quest.AllTasksDone(level))
+				{
+					// yay it's done
+					l->dialogueManager.LoadXMLScript(quest.dialogue_complete);
+					// TODO: rewards and stuff
+				}
+				else
+				{
+					// make fun of them for not finishing it
+					l->dialogueManager.LoadXMLScript(quest.dialogue_progress);
+					return;
+				}
 			}
 			if (quest.AllRequirementsMet(level))
 			{

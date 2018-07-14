@@ -4,9 +4,10 @@
 	<requirements></requirements>
 	<dialogue>
 		<prompt>fetch_ask</prompt>
-		<progress>fetch_progress</progress>
 		<accept>fetch_accept</accept>
 		<decline>fetch_decline</decline>
+		<progress>fetch_progress</progress>
+		<complete>fetch_complete</complete>
 	</dialogue>
 	<tasks>
 		<task type="item">

@@ -33,13 +33,13 @@ namespace duckhero
 		int tab_count = 2;
 		int button_width = (rect.w / tab_count);
 		
-		tab_items = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Items", rect.x + (button_width * 0), rect.y, button_width, 32, &open_tab));
-		tab_quests = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quests", rect.x + (button_width * 1), rect.y, button_width, 32, &open_tab));
+		tab_quests = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quests", rect.x + (button_width * 0), rect.y, button_width, 32, &open_tab));
+		tab_items = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Items", rect.x + (button_width * 1), rect.y, button_width, 32, &open_tab));
 
-		tab_items->metadata = tab_quests->metadata = this;
+		tab_quests->metadata = tab_items->metadata = this;
 
-		screen_base.AddElement(tab_items);
 		screen_base.AddElement(tab_quests);
+		screen_base.AddElement(tab_items);
 
 		SDL_Rect screen_rect = rect;
 		// make space for the tabs
@@ -103,6 +103,11 @@ namespace duckhero
 
 	void GUIMenu::Draw(SDL_Renderer * r)
 	{
+		SDL_Rect window_rect = { 0, 0, 1024, 600 };
+		SDL_SetRenderDrawColor(r, 255, 255, 255, 192);
+		SDL_SetRenderDrawBlendMode(r, SDL_BLENDMODE_BLEND);
+		SDL_RenderFillRect(r, &window_rect);
+
 		GUIHelper::DrawFrame(r, rect, GUIHelper::FRAME_BROWN_PAPER);
 		screen_base.Draw(r);
 

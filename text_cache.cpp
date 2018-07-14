@@ -17,7 +17,7 @@ namespace duckhero
 		_wrap_width = in_wrap_width;
 	}
 
-	void TextCache::Draw(SDL_Renderer * r, std::string text, int x, int y)
+	SDL_Rect TextCache::Draw(SDL_Renderer * r, std::string text, int x, int y)
 	{
 		if (!_cache.Exists(text))
 		{
@@ -35,5 +35,7 @@ namespace duckhero
 		SDL_QueryTexture(texture, NULL, NULL, &text_rect.w, &text_rect.h);
 
 		SDL_RenderCopy(r, texture, NULL, &text_rect);
+
+		return text_rect;
 	}
 }

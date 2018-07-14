@@ -12,8 +12,8 @@ namespace duckhero
 	{
 	private:
 		GUIScreen _screen;
-		HUDState _hud_state;
 	public:
+		HUDState hud_state;
 		std::shared_ptr<Level> level;
 		GUIMenu menu = GUIMenu(nullptr);
 
