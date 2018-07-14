@@ -13,14 +13,18 @@ namespace duckhero
 {
 	class GUILevelScreen : public GUIScreen
 	{
+	private:
+		std::shared_ptr<Level> _level;
 	public:
 		GUILevelScreen();
+
+		std::shared_ptr<Level> GetLevel();
+		void SetLevel(std::shared_ptr<Level> new_level);
 
 		void Update(SDL_Renderer * r);
 		void Draw(SDL_Renderer * r);
 
-		std::shared_ptr<Level> level;
-		HUD hud = HUD(level);
+		HUD hud = HUD(_level);
 		int camera_x, camera_y;
 	};
 }

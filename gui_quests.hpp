@@ -15,7 +15,8 @@ namespace duckhero
 	class GUIQuests : public GUIScreen
 	{
 	private:
-		TextCache _title_cache = TextCache(GUI_FONT_NAME, 16, { 0, 0, 0, 255 }, GUI_MENU_WIDTH);
+		TextCache _title_cache = TextCache(GUI_FONT_NAME, 18, { 0, 0, 0, 255 }, GUI_MENU_WIDTH);
+		TextCache _desc_cache = TextCache(GUI_FONT_NAME, 16, { 0, 0, 0, 255 }, GUI_MENU_WIDTH);
 		SDL_Rect _rect;
 	public:
 		std::map<std::string, Quest> quest_info;
