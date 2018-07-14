@@ -1,6 +1,8 @@
 #ifndef _GUI_MANAGER_HPP
 #define _GUI_MANAGER_HPP
 
+#include <memory>
+
 #include "gui.hpp"
 #include "gui_level.hpp"
 

@@ -30,18 +30,18 @@ namespace duckhero
 		level->dialogueManager.LoadXMLScript(quest.dialogue_decline);
 	}
 
-	void GUIDialogue::Update(SDL_Renderer * r, Level * level, GUIDialogueState * state)
+	void GUIDialogue::Update(SDL_Renderer * r, std::shared_ptr<Level> level, HUDState * state)
 	{
 		DialogueManager * dialogueManager = &level->dialogueManager;
 
 		if (state->action_screen == nullptr)
 		{
 			state->action_screen = new GUIScreen();
-			state->action_button_decline = new GUIButton("Decline", (1024 - 350) / 2, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest);
-			state->action_button_decline->metadata = level;
+			state->action_button_decline = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Decline", (1024 - 350) / 2, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest));
+			state->action_button_decline->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_decline);
-			state->action_button_accept = new GUIButton("Accept", ((1024 - 350) / 2) + 200, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest);
-			state->action_button_accept->metadata = level;
+			state->action_button_accept = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Accept", ((1024 - 350) / 2) + 200, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest));
+			state->action_button_accept->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_accept);
 
 			state->action_button_accept->enabled = false;
@@ -133,7 +133,7 @@ namespace duckhero
 		}
 	}
 
-	void GUIDialogue::Draw(SDL_Renderer * r, Level * level, GUIDialogueState * state)
+	void GUIDialogue::Draw(SDL_Renderer * r, std::shared_ptr<Level> level, HUDState * state)
 	{
 		DialogueManager * dialogueManager = &level->dialogueManager;
 

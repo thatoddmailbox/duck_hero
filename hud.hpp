@@ -4,6 +4,7 @@
 #include "gui.hpp"
 #include "gui_dialogue.hpp"
 #include "level.hpp"
+#include "hud_state.hpp"
 
 namespace duckhero
 {
@@ -11,12 +12,17 @@ namespace duckhero
 	{
 	private:
 		GUIScreen _screen;
-		GUIDialogueState _dialogueState;
+		HUDState _hud_state;
 	public:
-		HUD();
+		std::shared_ptr<Level> level;
+		GUIMenu menu = GUIMenu(nullptr);
 
-		void Update(SDL_Renderer * r, Player * player, Level * level);
-		void Draw(SDL_Renderer * r, Player * player, Level * level);
+		HUD(std::shared_ptr<Level> in_level);
+		HUD(const HUD& other);
+		HUD& operator=(const HUD& other);
+
+		void Update(SDL_Renderer * r);
+		void Draw(SDL_Renderer * r);
 	};
 }
 

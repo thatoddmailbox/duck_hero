@@ -2,6 +2,7 @@
 #define _GUI_HPP
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -15,9 +16,25 @@
 #include "spritesheet.hpp"
 
 #define GUI_FONT_NAME "fonts/fixedsys.ttf"
+#define GUI_MENU_WIDTH 800
+#define GUI_MENU_HEIGHT 400
 
 namespace duckhero
 {
+	enum GUIButtonStyle
+	{
+		WhiteStyle = 0,
+		YellowStyle = 6,
+		GreenStyle = 12,
+		OrangeStyle = 18,
+		BlueStyle = 24,
+
+		OldWhiteStyle = 480,
+		OldGrayStyle = 483,
+		OldDarkBrownStyle = 486,
+		OldLightBrownStyle = 489
+	};
+
 	class GUIElement
 	{
 	public:
@@ -39,11 +56,12 @@ namespace duckhero
 		SDL_Rect _rect;
 		bool _hover, _clicked;
 	public:
+		GUIButtonStyle style;
 		std::string text;
 		int font_size;
 		void (*handler)(GUIButton *);
 
-		GUIButton(std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *));
+		GUIButton(GUIButtonStyle in_style, std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *));
 		~GUIButton();
 		void Update(SDL_Renderer * r) override;
 		void Draw(SDL_Renderer * r) override;
@@ -53,11 +71,11 @@ namespace duckhero
 	class GUIScreen
 	{
 	public:
-		void AddElement(GUIElement * e);
+		void AddElement(std::shared_ptr<GUIElement> e);
 		virtual void Update(SDL_Renderer * r);
 		virtual void Draw(SDL_Renderer * r);
 
-		std::vector<GUIElement *> elements;
+		std::vector<std::shared_ptr<GUIElement>> elements;
 	};
 }
 

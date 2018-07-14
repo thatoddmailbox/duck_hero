@@ -62,6 +62,7 @@ namespace duckhero
 		std::vector<Layer> layers;
 		std::vector<std::shared_ptr<Entity>> entities;
 		int width, height;
+		bool showing_menu;
 		Player player;
 		DialogueManager dialogueManager;
 		CollisionMode ** collision_map;

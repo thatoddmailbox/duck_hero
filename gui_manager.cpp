@@ -18,14 +18,14 @@ namespace duckhero
 		//
 		// menu
 		//
-		GUIButton * play = new GUIButton("Test", 10, 10, 200, 32, &menutest);
-		menu.AddElement(play);
+		GUIButton * play = new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Test", 10, 10, 200, 32, &menutest);
+		menu.AddElement(std::shared_ptr<GUIElement>(play));
 
 		//
 		// game
 		//
-		game.level = Level();
-		game.level.LoadFromFile("levels/test.tmx");
+		game.level = std::shared_ptr<Level>(new Level());
+		game.level->LoadFromFile("levels/test.tmx");
 	}
 
 	void GUIManager::Update(SDL_Renderer * r)

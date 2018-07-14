@@ -1,6 +1,8 @@
 #ifndef _GUI_LEVEL_HPP
 #define _GUI_LEVEL_HPP
 
+#include <memory>
+
 #include <SDL.h>
 
 #include "gui.hpp"
@@ -17,8 +19,8 @@ namespace duckhero
 		void Update(SDL_Renderer * r);
 		void Draw(SDL_Renderer * r);
 
-		Level level;
-		HUD hud;
+		std::shared_ptr<Level> level;
+		HUD hud = HUD(level);
 		int camera_x, camera_y;
 	};
 }

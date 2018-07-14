@@ -138,17 +138,7 @@ namespace duckhero
 			}
 			else if (r.type == RequirementType::QuestRequirement)
 			{
-				bool found_quest = false;
-				for (std::string quest_name : level->player.completed_quests)
-				{
-					if (quest_name == r.data_string)
-					{
-						found_quest = true;
-						break;
-					}
-				}
-
-				if (!found_quest)
+				if (std::find(level->player.completed_quests.begin(), level->player.completed_quests.end(), r.data_string) != level->player.completed_quests.end())
 				{
 					// haven't done the requirement yet!
 					return false;
@@ -196,15 +186,22 @@ namespace duckhero
 		return true;
 	}
 
+	bool Quest::HasBeenStarted(void * l)
+	{
+		Level * level = (Level *) l;
+		if (std::find(level->player.current_quests.begin(), level->player.current_quests.end(), name) != level->player.current_quests.end())
+		{
+			return true;
+		}
+		return false;
+	}
+
 	bool Quest::HasBeenCompleted(void * l)
 	{
 		Level * level = (Level *) l;
-		for (std::string quest_name : level->player.completed_quests)
+		if (std::find(level->player.completed_quests.begin(), level->player.completed_quests.end(), name) != level->player.completed_quests.end())
 		{
-			if (quest_name == name)
-			{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}

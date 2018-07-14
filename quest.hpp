@@ -1,6 +1,7 @@
 #ifndef _QUEST_HPP
 #define _QUEST_HPP
 
+#include <algorithm>
 #include <cstdlib>
 #include <string>
 #include <vector>
@@ -68,6 +69,7 @@ namespace duckhero
 
 		bool AllRequirementsMet(void * l);
 		bool AllTasksDone(void * l);
+		bool HasBeenStarted(void * l);
 		bool HasBeenCompleted(void * l);
 	};
 }

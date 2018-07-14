@@ -103,7 +103,7 @@ namespace duckhero
 		// try giving a quest
 		for (Quest& quest : quests)
 		{
-			if (quest.HasBeenCompleted(level))
+			if (quest.HasBeenStarted(level) || quest.HasBeenCompleted(level))
 			{
 				continue;
 			}

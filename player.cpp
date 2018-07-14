@@ -46,7 +46,7 @@ namespace duckhero
 
 	void Player::AddQuest(std::string quest_name)
 	{
-		
+		current_quests.push_back(quest_name);
 	}
 
 	void Player::Update()
