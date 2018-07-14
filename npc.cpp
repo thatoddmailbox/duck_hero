@@ -1,6 +1,7 @@
 #include "npc.hpp"
 
 #include "level.hpp"
+#include "gui_level.hpp"
 
 namespace duckhero
 {
@@ -8,6 +9,7 @@ namespace duckhero
 	{
 		x = y = 0;
 		health = 20;
+
 		_texture = nullptr;
 	}
 
@@ -16,6 +18,12 @@ namespace duckhero
 		x = other.x;
 		y = other.y;
 		health = other.health;
+
+		name = other.name;
+		shop_name = other.shop_name;
+		quests = other.quests;
+		idle = other.idle;
+
 		_texture = nullptr; // don't copy _texture!
 	}
 
@@ -24,6 +32,12 @@ namespace duckhero
 		x = other.x;
 		y = other.y;
 		health = other.health;
+
+		name = other.name;
+		shop_name = other.shop_name;
+		quests = other.quests;
+		idle = other.idle;
+
 		_texture = nullptr; // don't copy _texture!
 		return *this;
 	}
@@ -67,6 +81,7 @@ namespace duckhero
 			pugi::xml_node npc = doc.child("npc");
 
 			name = std::string(npc.child_value("name"));
+			shop_name = std::string(npc.child_value("shop"));
 
 			for (pugi::xml_node quest_node : npc.child("quests").children("quest"))
 			{
@@ -91,51 +106,105 @@ namespace duckhero
 		return returnValue;
 	}
 
+	bool NPC::HasShop()
+	{
+		return (shop_name != "");
+	}
+
+	bool NPC::HasQuests()
+	{
+		return (quests.size() != 0);
+	}
+
 	bool NPC::CanInteract()
 	{
 		return true;
 	}
-
-	void NPC::Interact(void * level)
+	
+	static void prompt_handle_response(GUIPrompt * prompt, std::string action)
 	{
-		Level * l = (Level *) level;
+		NPC * npc = (NPC *) prompt->metadata;
+		GUILevelScreen * level_screen = (GUILevelScreen *) prompt->metadata_2;
+		level_screen->prompt = nullptr;
+		if (action == "Browse shop")
+		{
+			npc->HandleShop(level_screen);
+		}
+		else if (action == "Talk")
+		{
+			npc->HandleQuests(level_screen);
+		}
+	}
 
+	void NPC::Interact(void * level_screen_pointer)
+	{
+		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
+		if (HasQuests() && HasShop())
+		{
+			// ask for clarification
+			std::map<std::string, GUIPromptHandler> actions;
+			actions["Browse shop"] = &prompt_handle_response;
+			actions["Talk"] = &prompt_handle_response;
+			std::shared_ptr<GUIPrompt> ask_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt("Select an option", actions));
+			ask_prompt->metadata = this;
+			ask_prompt->metadata_2 = level_screen;
+			level_screen->prompt = ask_prompt;
+		}
+		else if (HasQuests())
+		{
+			HandleQuests(level_screen);
+		}
+		else if (HasShop())
+		{
+			HandleShop(level_screen);
+		}
+	}
+
+	void NPC::HandleShop(void * level_screen_pointer)
+	{
+		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
+		printf("shop\n");
+	}
+
+	void NPC::HandleQuests(void * level_screen_pointer)
+	{
+		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
 		// try giving a quest
 		for (Quest& quest : quests)
 		{
-			if (quest.HasBeenCompleted(level))
+			if (quest.HasBeenCompleted(level_screen->GetLevel().get()))
 			{
 				continue;
 			}
-			if (quest.HasBeenStarted(level))
+			if (quest.HasBeenStarted(level_screen->GetLevel().get()))
 			{
-				if (quest.AllTasksDone(level))
+				if (quest.AllTasksDone(level_screen->GetLevel().get()))
 				{
 					// yay it's done
-					l->dialogueManager.LoadXMLScript(quest.dialogue_complete);
+					level_screen->GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_complete);
 					// TODO: rewards and stuff
 				}
 				else
 				{
 					// make fun of them for not finishing it
-					l->dialogueManager.LoadXMLScript(quest.dialogue_progress);
+					level_screen->GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_progress);
 					return;
 				}
 			}
-			if (quest.AllRequirementsMet(level))
+			if (quest.AllRequirementsMet(level_screen->GetLevel().get()))
 			{
 				// give this one
-				l->dialogueManager.LoadXMLScript(quest.dialogue_prompt);
-				int last_line_index = l->dialogueManager.lines.size() - 1;
-				l->dialogueManager.lines[last_line_index].special = DialogueLineSpecial::QuestPromptLine;
-				l->dialogueManager.lines[last_line_index].metadata = quest.name;
+				level_screen->GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_prompt);
+				int last_line_index = level_screen->GetLevel()->dialogueManager.lines.size() - 1;
+				level_screen->GetLevel()->dialogueManager.lines[last_line_index].special = DialogueLineSpecial::QuestPromptLine;
+				level_screen->GetLevel()->dialogueManager.lines[last_line_index].metadata = quest.name;
 				return;
 			}
 		}
 
 		// just say something random then
 		int idle_index = rand() % idle.size();
-		l->dialogueManager.AddLine({ name, idle[idle_index] });
+		level_screen->GetLevel()->dialogueManager.AddLine({ name, idle[idle_index] });
 	}
 
 	void NPC::Update()

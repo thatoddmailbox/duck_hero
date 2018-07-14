@@ -54,4 +54,12 @@ namespace duckhero
 		SDL_Rect bottom_right_dst_rect = { location.x + (location.w - tile_w), location.y + (location.h - tile_h), tile_w, tile_h };
 		SDL_RenderCopy(r, ui_sheet_texture, &bottom_right_tile_rect, &bottom_right_dst_rect);
 	}
+
+	void GUIHelper::DrawMenuOverlay(SDL_Renderer * r)
+	{
+		SDL_Rect window_rect = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
+		SDL_SetRenderDrawColor(r, 255, 255, 255, 192);
+		SDL_SetRenderDrawBlendMode(r, SDL_BLENDMODE_BLEND);
+		SDL_RenderFillRect(r, &window_rect);
+	}
 }

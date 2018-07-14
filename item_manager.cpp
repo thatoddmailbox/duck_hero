@@ -2,6 +2,8 @@
 
 namespace duckhero
 {
+	std::map<int, ItemInfo> ItemManager::items = std::map<int, ItemInfo>();
+
 	bool ItemManager::LoadXMLInfo()
 	{
 		// read the file into a string

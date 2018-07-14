@@ -17,9 +17,9 @@ namespace duckhero
 	class ItemManager
 	{
 	public:
-		std::map<int, ItemInfo> items;
+		static std::map<int, ItemInfo> items;
 
-		bool LoadXMLInfo();
+		static bool LoadXMLInfo();
 	};
 }
 

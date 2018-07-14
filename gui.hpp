@@ -60,6 +60,7 @@ namespace duckhero
 		GUIButtonStyle style;
 		std::string text;
 		int font_size;
+		bool active;
 		void (*handler)(GUIButton *);
 
 		GUIButton(GUIButtonStyle in_style, std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *));

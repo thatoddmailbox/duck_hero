@@ -23,18 +23,21 @@ namespace duckhero
 	{
 		level = in_level;
 		rect = SDL_Rect{
-			(1024 - GUI_MENU_WIDTH) / 2,
-			(600 - GUI_MENU_HEIGHT) / 2,
+			(WINDOW_WIDTH - GUI_MENU_WIDTH) / 2,
+			(WINDOW_HEIGHT - GUI_MENU_HEIGHT) / 2,
 			GUI_MENU_WIDTH,
 			GUI_MENU_HEIGHT
 		};
 
 		// create top tabs
 		int tab_count = 2;
-		int button_width = (rect.w / tab_count);
+		int button_width = 250;
+		int button_space = 50;
+		int button_start_x = rect.x + ((rect.w - (tab_count * (button_width + button_space)) + button_space) / 2);
+		int button_top_spacing = 2;
 		
-		tab_quests = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quests", rect.x + (button_width * 0), rect.y, button_width, 32, &open_tab));
-		tab_items = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Items", rect.x + (button_width * 1), rect.y, button_width, 32, &open_tab));
+		tab_quests = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quests", button_start_x + ((button_width + button_space) * 0), rect.y + button_top_spacing, button_width, 32, &open_tab));
+		tab_items = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Items", button_start_x + ((button_width + button_space) * 1), rect.y + button_top_spacing, button_width, 32, &open_tab));
 
 		tab_quests->metadata = tab_items->metadata = this;
 
@@ -42,6 +45,7 @@ namespace duckhero
 		screen_base.AddElement(tab_items);
 
 		SDL_Rect screen_rect = rect;
+		screen_rect.y += button_top_spacing; screen_rect.h -= button_top_spacing;
 		// make space for the tabs
 		screen_rect.y += 32; screen_rect.h -= 32;
 		// create a 10 pixel margin
@@ -50,6 +54,10 @@ namespace duckhero
 
 		// create screens
 		screen_quests = GUIQuests(level, screen_rect);
+		screen_items = GUIItems(level, screen_rect);
+
+		// set tab
+		SwitchTab(GUIMenuTab::Quests);
 	}
 
 	GUIMenu::GUIMenu(const GUIMenu& other)
@@ -85,6 +93,16 @@ namespace duckhero
 	void GUIMenu::SwitchTab(GUIMenuTab new_tab)
 	{
 		current_tab = new_tab;
+		tab_quests->active = false;
+		tab_items->active = false;
+		if (new_tab == GUIMenuTab::Quests)
+		{
+			tab_quests->active = true;
+		}
+		else if (new_tab == GUIMenuTab::Items)
+		{
+			tab_items->active = true;
+		}
 	}
 
 	void GUIMenu::Update(SDL_Renderer * r)
@@ -103,11 +121,7 @@ namespace duckhero
 
 	void GUIMenu::Draw(SDL_Renderer * r)
 	{
-		SDL_Rect window_rect = { 0, 0, 1024, 600 };
-		SDL_SetRenderDrawColor(r, 255, 255, 255, 192);
-		SDL_SetRenderDrawBlendMode(r, SDL_BLENDMODE_BLEND);
-		SDL_RenderFillRect(r, &window_rect);
-
+		GUIHelper::DrawMenuOverlay(r);
 		GUIHelper::DrawFrame(r, rect, GUIHelper::FRAME_BROWN_PAPER);
 		screen_base.Draw(r);
 

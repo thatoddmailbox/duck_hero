@@ -24,7 +24,7 @@ namespace duckhero
 
 	void GUILevelScreen::Update(SDL_Renderer * r)
 	{
-		if (!_level->dialogueManager.showingLine && !_level->showing_menu)
+		if (!_level->dialogueManager.showingLine && !_level->showing_menu && prompt.get() == nullptr)
 		{
 			int speed = 2;
 
@@ -48,16 +48,20 @@ namespace duckhero
 
 			if (Input::IsButtonReleased(Button::INTERACT))
 			{
-				_level->TryInteract();
+				_level->TryInteract(this);
 			}
 		}
 
-		camera_x = -(_level->player.x - (1024/2) + 16);
-		camera_y = -(_level->player.y - (600/2) + 16);
+		camera_x = -(_level->player.x - (WINDOW_WIDTH/2) + 16);
+		camera_y = -(_level->player.y - (WINDOW_HEIGHT/2) + 16);
 
 		hud.Update(r);
-
 		GUIScreen::Update(r);
+
+		if (prompt != nullptr)
+		{
+			prompt->Update(r);
+		}
 	}
 
 	void GUILevelScreen::Draw(SDL_Renderer * r)
@@ -65,5 +69,10 @@ namespace duckhero
 		_level->Draw(r, camera_x, camera_y);
 		hud.Draw(r);
 		GUIScreen::Draw(r);
+
+		if (prompt != nullptr)
+		{
+			prompt->Draw(r);
+		}
 	}
 }

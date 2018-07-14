@@ -1,5 +1,6 @@
 <npc>
 	<name>Joe</name>
+	<shop>joe</shop>
 	<quests>
 		<quest>fetch_thing</quest>
 	</quests>

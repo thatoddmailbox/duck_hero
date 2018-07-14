@@ -326,7 +326,7 @@ namespace duckhero
 		return returnValue;
 	}
 
-	bool Level::TryInteract()
+	bool Level::TryInteract(void * level_screen_pointer)
 	{
 		int range = 5;
 
@@ -342,7 +342,7 @@ namespace duckhero
 			if (SDL_HasIntersection(&player_box, &other_box))
 			{
 				// found something
-				other_entity->Interact((void *) this);
+				other_entity->Interact(level_screen_pointer);
 				return true;
 			}
 		}

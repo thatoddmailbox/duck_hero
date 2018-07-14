@@ -25,7 +25,7 @@ namespace duckhero
 		hud_state = {};
 		level = in_level;
 
-		hud_state.menu_button = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Menu", 1024 - 150, 600 - 32, 150, 32, &toggle_menu));
+		hud_state.menu_button = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Menu", WINDOW_WIDTH - 150, WINDOW_HEIGHT - 32, 150, 32, &toggle_menu));
 		hud_state.menu_button->metadata = this;
 	}
 

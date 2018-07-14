@@ -67,9 +67,10 @@ namespace duckhero
 
 		// set up game subsystems
 		GUIManager::Init();
+		ItemManager::LoadXMLInfo();
 
 		// create window
-		_window = SDL_CreateWindow("Duck Hero", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 600, SDL_WINDOW_SHOWN);
+		_window = SDL_CreateWindow("Duck Hero", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 		if (_window == nullptr)
 		{
 			FatalSDLError("SDL_CreateWindow");

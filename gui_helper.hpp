@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 
+#include "consts.hpp"
 #include "spritesheet.hpp"
 
 namespace duckhero
@@ -14,6 +15,7 @@ namespace duckhero
 		static const int FRAME_MODERN = 613;
 
 		static void DrawFrame(SDL_Renderer * r, SDL_Rect location, int top_left_tile);
+		static void DrawMenuOverlay(SDL_Renderer * r);
 	};
 }
 

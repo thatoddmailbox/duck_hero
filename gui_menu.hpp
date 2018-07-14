@@ -5,8 +5,10 @@
 
 #include <SDL.h>
 
+#include "consts.hpp"
 #include "gui.hpp"
 #include "gui_helper.hpp"
+#include "gui_items.hpp"
 #include "gui_quests.hpp"
 #include "level.hpp"
 
@@ -25,7 +27,7 @@ namespace duckhero
 
 		GUIScreen screen_base;
 		GUIQuests screen_quests = GUIQuests(std::shared_ptr<Level>(), { 0, 0, 0, 0});
-		GUIScreen screen_items;
+		GUIItems screen_items = GUIItems(std::shared_ptr<Level>(), { 0, 0, 0, 0});
 
 		GUIMenuTab current_tab = GUIMenuTab::Quests;
 

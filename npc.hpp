@@ -16,6 +16,7 @@ namespace duckhero
 		SDL_Texture * _texture;
 	public:
 		std::string name;
+		std::string shop_name;
 		std::vector<Quest> quests;
 		std::vector<std::string> idle;
 
@@ -30,8 +31,14 @@ namespace duckhero
 
 		bool LoadXMLInfo(std::string path);
 
+		bool HasShop();
+		bool HasQuests();
+
+		void HandleShop(void * level_screen_pointer);
+		void HandleQuests(void * level_screen_pointer);
+
 		bool CanInteract() override;
-		void Interact(void * level) override;
+		void Interact(void * level_screen_pointer) override;
 		void Update() override;
 		void Draw(SDL_Renderer * r, int x_offset, int y_offset) override;
 	};

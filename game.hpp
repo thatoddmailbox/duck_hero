@@ -15,6 +15,7 @@
 
 #include "content.hpp"
 #include "gui_manager.hpp"
+#include "item_manager.hpp"
 #include "input.hpp"
 
 namespace duckhero

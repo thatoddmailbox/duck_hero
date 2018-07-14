@@ -1,7 +1,5 @@
 #include "entity.hpp"
 
-#include "level.hpp"
-
 namespace duckhero
 {
 	std::string Entity::GetSpritePath()

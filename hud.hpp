@@ -1,6 +1,7 @@
 #ifndef _HUD_HPP
 #define _HUD_HPP
 
+#include "consts.hpp"
 #include "gui.hpp"
 #include "gui_dialogue.hpp"
 #include "level.hpp"

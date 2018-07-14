@@ -7,6 +7,7 @@ namespace duckhero
 	//
 	GUIButton::GUIButton(GUIButtonStyle in_style, std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *))
 	{
+		active = false;
 		style = in_style;
 		text = in_text;
 		x = in_x;
@@ -15,6 +16,7 @@ namespace duckhero
 		h = in_h;
 		handler = in_handler;
 		font_size = 16;
+		_clicked = false;
 		_text_texture = nullptr;
 		_text_hover_texture = nullptr;
 		_text_rect = { 0, 0, 0, 0 };
@@ -36,7 +38,7 @@ namespace duckhero
 	void GUIButton::Update(SDL_Renderer * r)
 	{
 		// handle text texture
-		if (_text_texture == nullptr || _saved_text != text)
+		if ((_text_texture == nullptr || _saved_text != text) && text != "")
 		{
 			SDL_Surface * text_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, font_size }), text.c_str(), { 255, 255, 255, 255 }, w);
 			SDL_Surface * text_hover_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, font_size }), text.c_str(), { 255, 255, 0, 255 }, w);
@@ -95,7 +97,7 @@ namespace duckhero
 		double scale_factor = (double)h / (double)tile_w;
 		int scaled_tile_w = tile_w * scale_factor;
 
-		if (_clicked)
+		if (_clicked || active)
 		{
 			left_tile_index += Spritesheet::ui.cols;
 		}
@@ -115,8 +117,11 @@ namespace duckhero
 		SDL_Rect right_dst_rect = { x + w - scaled_tile_w, y, scaled_tile_w, h };
 		SDL_RenderCopy(r, ui_sheet_texture, &right_tile_rect, &right_dst_rect);
 
-		// text
-		SDL_RenderCopy(r, (_hover ? _text_hover_texture : _text_texture), NULL, &_text_rect);
+		if (_text_texture != nullptr && text != "")
+		{
+			// text
+			SDL_RenderCopy(r, (_hover ? _text_hover_texture : _text_texture), NULL, &_text_rect);
+		}
 	}
 
 	void GUIButton::HandleAction()

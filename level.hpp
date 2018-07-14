@@ -74,7 +74,7 @@ namespace duckhero
 
 		bool LoadFromFile(std::string path);
 
-		bool TryInteract();
+		bool TryInteract(void * level_screen_pointer);
 		bool TryMoveEntity(Entity * e, int x_offset, int y_offset);
 		SDL_Rect GetCollisionBoxForTile(int x, int y);
 

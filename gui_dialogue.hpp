@@ -5,6 +5,7 @@
 
 #include <SDL.h>
 
+#include "consts.hpp"
 #include "dialogue.hpp"
 #include "gui.hpp"
 #include "gui_helper.hpp"
@@ -17,7 +18,7 @@ namespace duckhero
 	class GUIDialogue
 	{
 	public:
-		static const int WIDTH = 1024 - 100;
+		static const int WIDTH = WINDOW_WIDTH - 100;
 		static const int HEIGHT = 150;
 
 		static void Update(SDL_Renderer * r, std::shared_ptr<Level> level, HUDState * state);

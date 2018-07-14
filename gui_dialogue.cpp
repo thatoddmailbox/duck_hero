@@ -37,10 +37,10 @@ namespace duckhero
 		if (state->action_screen == nullptr)
 		{
 			state->action_screen = new GUIScreen();
-			state->action_button_decline = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Decline", (1024 - 350) / 2, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest));
+			state->action_button_decline = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Decline", (WINDOW_WIDTH - 350) / 2, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest));
 			state->action_button_decline->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_decline);
-			state->action_button_accept = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Accept", ((1024 - 350) / 2) + 200, 600 - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest));
+			state->action_button_accept = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Accept", ((WINDOW_WIDTH - 350) / 2) + 200, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest));
 			state->action_button_accept->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_accept);
 
@@ -139,7 +139,7 @@ namespace duckhero
 
 		if (dialogueManager->showingLine)
 		{
-			SDL_Rect frame_rect = { 50, 600 - HEIGHT - 50, WIDTH, HEIGHT };
+			SDL_Rect frame_rect = { 50, WINDOW_HEIGHT - HEIGHT - 50, WIDTH, HEIGHT };
 			GUIHelper::DrawFrame(r, frame_rect, GUIHelper::FRAME_BROWN_PAPER);
 			if (state->cached_character_texture != nullptr)
 			{

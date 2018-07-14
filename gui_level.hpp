@@ -5,7 +5,9 @@
 
 #include <SDL.h>
 
+#include "consts.hpp"
 #include "gui.hpp"
+#include "gui_prompt.hpp"
 #include "level.hpp"
 #include "hud.hpp"
 
@@ -17,6 +19,8 @@ namespace duckhero
 		std::shared_ptr<Level> _level;
 	public:
 		GUILevelScreen();
+
+		std::shared_ptr<GUIPrompt> prompt;
 
 		std::shared_ptr<Level> GetLevel();
 		void SetLevel(std::shared_ptr<Level> new_level);
