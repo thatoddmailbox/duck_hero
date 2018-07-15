@@ -62,6 +62,7 @@ namespace duckhero
 		std::string dialogue_decline;
 		std::string dialogue_progress;
 		std::string dialogue_complete;
+		std::string next;
 
 		std::vector<Requirement> requirements;
 		std::vector<Task> tasks;

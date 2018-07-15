@@ -55,7 +55,27 @@ namespace duckhero
 		camera_x = -(_level->player.x - (WINDOW_WIDTH/2) + 16);
 		camera_y = -(_level->player.y - (WINDOW_HEIGHT/2) + 16);
 
-		hud.Update(r, (shop == nullptr));
+		int max_camera_x = -((_level->width * 32) - WINDOW_WIDTH);
+		int max_camera_y = -((_level->height * 32) - WINDOW_HEIGHT);
+
+		if (camera_x > 0)
+		{
+			camera_x = 0;
+		}
+		if (camera_x < max_camera_x)
+		{
+			camera_x = max_camera_x;
+		}
+		if (camera_y > 0)
+		{
+			camera_y = 0;
+		}
+		if (camera_y < max_camera_y)
+		{
+			camera_y = max_camera_y;
+		}
+
+		hud.Update(r, (shop == nullptr && prompt == nullptr));
 		GUIScreen::Update(r);
 
 		if (shop != nullptr)
@@ -72,12 +92,19 @@ namespace duckhero
 	void GUILevelScreen::Draw(SDL_Renderer * r)
 	{
 		_level->Draw(r, camera_x, camera_y);
-		hud.Draw(r, (shop == nullptr));
+		if (shop == nullptr)
+		{
+			// only draw the hud here if the shop is closed
+			// that way, when the shop is open, we draw the hud above it
+			// then the user can see the coin count
+			hud.Draw(r, (shop == nullptr && prompt == nullptr));
+		}
 		GUIScreen::Draw(r);
 
 		if (shop != nullptr)
 		{
 			shop->Draw(r);
+			hud.Draw(r, (shop == nullptr && prompt == nullptr));
 		}
 
 		if (prompt != nullptr)

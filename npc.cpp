@@ -145,7 +145,7 @@ namespace duckhero
 			std::map<std::string, GUIPromptHandler> actions;
 			actions["Browse shop"] = &prompt_handle_response;
 			actions["Talk"] = &prompt_handle_response;
-			std::shared_ptr<GUIPrompt> ask_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt("Select an option", actions));
+			std::shared_ptr<GUIPrompt> ask_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt(level_screen, "Select an option", actions));
 			ask_prompt->metadata = this;
 			ask_prompt->metadata_2 = level_screen;
 			level_screen->prompt = ask_prompt;
@@ -183,7 +183,36 @@ namespace duckhero
 				{
 					// yay it's done
 					level_screen->GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_complete);
-					// TODO: rewards and stuff
+
+					Player * player = &level_screen->GetLevel()->player;
+					player->current_quests.erase(std::find(player->current_quests.begin(), player->current_quests.end(), quest.name));
+					player->completed_quests.push_back(quest.name);
+
+					for (Reward r : quest.rewards)
+					{
+						if (r.type == RewardType::CoinsReward)
+						{
+							level_screen->GetLevel()->player.coins += r.data;
+						}
+						else if (r.type == RewardType::ItemReward)
+						{
+							level_screen->GetLevel()->player.items.push_back(Item(r.data));
+						}
+					}
+					if (quest.next != "")
+					{
+						// get information
+						Quest next_quest = Quest();
+						next_quest.LoadXMLInfo(quest.next);
+
+						// give the new one
+						level_screen->GetLevel()->dialogueManager.LoadXMLScript(next_quest.dialogue_prompt);
+						int last_line_index = level_screen->GetLevel()->dialogueManager.lines.size() - 1;
+						level_screen->GetLevel()->dialogueManager.lines[last_line_index].special = DialogueLineSpecial::QuestPromptLine;
+						level_screen->GetLevel()->dialogueManager.lines[last_line_index].metadata = next_quest.name;
+						return;
+					}
+					return;
 				}
 				else
 				{

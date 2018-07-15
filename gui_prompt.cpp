@@ -1,5 +1,7 @@
 #include "gui_prompt.hpp"
 
+#include "gui_level.hpp"
+
 namespace duckhero
 {
 	static void prompt_handle_action(GUIButton * button)
@@ -8,10 +10,17 @@ namespace duckhero
 		prompt->actions[button->text](prompt, button->text);
 	}
 
-	GUIPrompt::GUIPrompt(std::string in_message, std::map<std::string, GUIPromptHandler> in_actions)
+	void prompt_close(GUIButton * button)
+	{
+		GUILevelScreen * level_screen = (GUILevelScreen *) button->metadata;
+		level_screen->prompt = nullptr;
+	}
+
+	GUIPrompt::GUIPrompt(void * level_screen_pointer, std::string in_message, std::map<std::string, GUIPromptHandler> in_actions)
 	{
 		message = in_message;
 		actions = in_actions;
+		close.metadata = level_screen_pointer;
 
 		int window_margin = 10;
 		int text_spacing = 16;
@@ -45,6 +54,8 @@ namespace duckhero
 		{
 			button.Update(r);
 		}
+
+		close.Update(r);
 	}
 
 	void GUIPrompt::Draw(SDL_Renderer * r)
@@ -57,5 +68,7 @@ namespace duckhero
 		{
 			button.Draw(r);
 		}
+
+		close.Draw(r);
 	}
 }
