@@ -2,5 +2,6 @@
 	<item>
 		<id>1</id>
 		<name>Thingy</name>
+		<desc>A mysterious thing.</desc>
 	</item>
 </items>

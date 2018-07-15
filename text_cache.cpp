@@ -17,6 +17,25 @@ namespace duckhero
 		_wrap_width = in_wrap_width;
 	}
 
+	SDL_Rect TextCache::MeasureText(SDL_Renderer * r, std::string text)
+	{
+		if (!_cache.Exists(text))
+		{
+			SDL_Surface * text_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ _font_name, _font_size }), text.c_str(), _color, _wrap_width);
+			SDL_Texture * text_texture = SDL_CreateTextureFromSurface(r, text_surface);
+
+			SDL_FreeSurface(text_surface);
+
+			_cache.Put(text, text_texture);
+		}
+
+		SDL_Texture * texture = _cache.Get(text);
+
+		SDL_Rect text_rect = { 0, 0, 0, 0 };
+		SDL_QueryTexture(texture, NULL, NULL, &text_rect.w, &text_rect.h);
+		return text_rect;
+	}
+
 	SDL_Rect TextCache::Draw(SDL_Renderer * r, std::string text, int x, int y)
 	{
 		if (!_cache.Exists(text))

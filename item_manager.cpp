@@ -27,6 +27,7 @@ namespace duckhero
 				ItemInfo info = ItemInfo();
 				info.id = item_node.child("id").text().as_int();
 				info.name = std::string(item_node.child("name").text().as_string());
+				info.desc = std::string(item_node.child("desc").text().as_string());
 				items[info.id] = info;
 			}
 		}

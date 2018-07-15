@@ -6,6 +6,7 @@ namespace duckhero
 	{
 		x = y = 0;
 		health = 20;
+		coins = 350;
 		_texture = nullptr;
 	}
 
@@ -14,6 +15,7 @@ namespace duckhero
 		x = other.x;
 		y = other.y;
 		health = other.health;
+		coins = other.coins;
 		_texture = nullptr; // don't copy _texture!
 	}
 
@@ -22,6 +24,7 @@ namespace duckhero
 		x = other.x;
 		y = other.y;
 		health = other.health;
+		coins = other.coins;
 		_texture = nullptr; // don't copy _texture!
 		return *this;
 	}

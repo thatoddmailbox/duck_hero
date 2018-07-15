@@ -15,10 +15,6 @@
 #include "level.hpp"
 #include "spritesheet.hpp"
 
-#define GUI_FONT_NAME "fonts/fixedsys.ttf"
-#define GUI_MENU_WIDTH 800
-#define GUI_MENU_HEIGHT 400
-
 namespace duckhero
 {
 	enum GUIButtonStyle
@@ -41,6 +37,8 @@ namespace duckhero
 		int x, y, w, h;
 		bool enabled = true;
 		void * metadata;
+		void * metadata_2;
+		int metadata_3;
 
 		virtual void Update(SDL_Renderer * r) = 0;
 		virtual void Draw(SDL_Renderer * r) = 0;

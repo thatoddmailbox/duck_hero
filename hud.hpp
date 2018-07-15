@@ -6,6 +6,8 @@
 #include "gui_dialogue.hpp"
 #include "level.hpp"
 #include "hud_state.hpp"
+#include "text_cache.hpp"
+#include "spritesheet.hpp"
 
 namespace duckhero
 {
@@ -13,6 +15,7 @@ namespace duckhero
 	{
 	private:
 		GUIScreen _screen;
+		TextCache _text_cache = TextCache(GUI_FONT_NAME, 18, { 0, 0, 0, 255 }, GUI_MENU_WIDTH);
 	public:
 		HUDState hud_state;
 		std::shared_ptr<Level> level;
@@ -22,8 +25,8 @@ namespace duckhero
 		HUD(const HUD& other);
 		HUD& operator=(const HUD& other);
 
-		void Update(SDL_Renderer * r);
-		void Draw(SDL_Renderer * r);
+		void Update(SDL_Renderer * r, bool show_menu_button);
+		void Draw(SDL_Renderer * r, bool show_menu_button);
 	};
 }
 

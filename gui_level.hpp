@@ -8,6 +8,7 @@
 #include "consts.hpp"
 #include "gui.hpp"
 #include "gui_prompt.hpp"
+#include "gui_shop.hpp"
 #include "level.hpp"
 #include "hud.hpp"
 
@@ -21,6 +22,7 @@ namespace duckhero
 		GUILevelScreen();
 
 		std::shared_ptr<GUIPrompt> prompt;
+		std::shared_ptr<GUIShop> shop;
 
 		std::shared_ptr<Level> GetLevel();
 		void SetLevel(std::shared_ptr<Level> new_level);

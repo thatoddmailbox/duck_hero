@@ -163,12 +163,13 @@ namespace duckhero
 	void NPC::HandleShop(void * level_screen_pointer)
 	{
 		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
-		printf("shop\n");
+		level_screen->shop = std::shared_ptr<GUIShop>(new GUIShop(level_screen, shop_name));
 	}
 
 	void NPC::HandleQuests(void * level_screen_pointer)
 	{
 		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
+
 		// try giving a quest
 		for (Quest& quest : quests)
 		{

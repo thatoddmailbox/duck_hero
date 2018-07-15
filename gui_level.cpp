@@ -55,8 +55,13 @@ namespace duckhero
 		camera_x = -(_level->player.x - (WINDOW_WIDTH/2) + 16);
 		camera_y = -(_level->player.y - (WINDOW_HEIGHT/2) + 16);
 
-		hud.Update(r);
+		hud.Update(r, (shop == nullptr));
 		GUIScreen::Update(r);
+
+		if (shop != nullptr)
+		{
+			shop->Update(r);
+		}
 
 		if (prompt != nullptr)
 		{
@@ -67,8 +72,13 @@ namespace duckhero
 	void GUILevelScreen::Draw(SDL_Renderer * r)
 	{
 		_level->Draw(r, camera_x, camera_y);
-		hud.Draw(r);
+		hud.Draw(r, (shop == nullptr));
 		GUIScreen::Draw(r);
+
+		if (shop != nullptr)
+		{
+			shop->Draw(r);
+		}
 
 		if (prompt != nullptr)
 		{

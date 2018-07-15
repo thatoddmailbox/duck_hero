@@ -21,6 +21,7 @@ namespace duckhero
 		int _wrap_width;
 	public:
 		TextCache(std::string in_font_name, int in_font_size, SDL_Color in_color, int in_wrap_width);
+		SDL_Rect MeasureText(SDL_Renderer * r, std::string text);
 		SDL_Rect Draw(SDL_Renderer * r, std::string text, int x, int y);
 	};
 }

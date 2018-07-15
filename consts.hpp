@@ -7,4 +7,10 @@
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 600
 
+#define GUI_FONT_NAME "fonts/fixedsys.ttf"
+#define GUI_MENU_WIDTH 800
+#define GUI_MENU_HEIGHT 400
+#define GUI_SHOP_WIDTH 600
+#define GUI_SHOP_HEIGHT 400
+
 #endif

@@ -1,0 +1,16 @@
+<shop>
+	<items>
+		<item>
+			<id>1</id>
+			<price>100</price>
+		</item>
+		<item>
+			<id>1</id>
+			<price>250</price>
+		</item>
+		<item>
+			<id>1</id>
+			<price>500</price>
+		</item>
+	</items>
+</shop>

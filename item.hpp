@@ -17,6 +17,7 @@ namespace duckhero
 	{
 		int id;
 		std::string name;
+		std::string desc;
 	};
 }
 
