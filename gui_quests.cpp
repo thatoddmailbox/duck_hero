@@ -9,6 +9,8 @@ namespace duckhero
 		level = in_level;
 		_rect = in_rect;
 
+		quest_info = std::map<std::string, Quest>();
+
 		if (!level.get())
 		{
 			return;

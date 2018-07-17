@@ -16,11 +16,13 @@ namespace duckhero
 		h = in_h;
 		handler = in_handler;
 		font_size = 16;
+		_hover = false;
 		_clicked = false;
 		_text_texture = nullptr;
 		_text_hover_texture = nullptr;
 		_text_rect = { 0, 0, 0, 0 };
 		_rect = { x, y, w, h };
+		_saved_text = "";
 	}
 
 	GUIButton::~GUIButton()

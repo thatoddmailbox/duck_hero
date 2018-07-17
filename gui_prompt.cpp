@@ -20,6 +20,7 @@ namespace duckhero
 	{
 		message = in_message;
 		actions = in_actions;
+		_buttons = std::vector<GUIButton>();
 		close.metadata = level_screen_pointer;
 
 		int window_margin = 10;
