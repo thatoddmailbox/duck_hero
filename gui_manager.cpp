@@ -25,7 +25,9 @@ namespace duckhero
 		// game
 		//
 		game.SetLevel(std::shared_ptr<Level>(new Level()));
-		game.GetLevel()->LoadFromFile("levels/test.tmx");
+		game.GetLevel()->LoadFromFile("levels/duckville.tmx");
+		game.GetLevel()->player.x = 4 * 32;
+		game.GetLevel()->player.y = 11 * 32;
 	}
 
 	void GUIManager::Update(SDL_Renderer * r)
