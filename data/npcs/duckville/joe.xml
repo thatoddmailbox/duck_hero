@@ -1,0 +1,10 @@
+<npc>
+	<name>Joe</name>
+	<shop></shop>
+	<quests>
+		<quest>duckville/fetch_axe</quest>
+	</quests>
+	<idle>
+		<line>The white tent next to me is mine. I'm not really sure who the other tents belong to.</line>
+	</idle>
+</npc>

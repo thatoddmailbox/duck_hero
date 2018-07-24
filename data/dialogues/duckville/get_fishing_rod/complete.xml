@@ -1,0 +1,30 @@
+<dialogue>
+	<line>
+		<character>Bob</character>
+		<text>Thanks! Here's that weird key I promised you.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Hey, quick question. How do you catch any fish?</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>What do you mean?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>You're fishing in a freshwater pond...I don't think there are any fish in there...</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>...</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Thanks for the fishing pole!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Though, actually, before you go, I have an idea.</text>
+	</line>
+</dialogue>

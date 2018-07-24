@@ -47,6 +47,7 @@ namespace duckhero
 		~Layer();
 
 		bool IsFixedBottom();
+		bool IsFixedTop();
 		void Draw(SDL_Renderer * r, int x_offset, int y_offset, int start_y, int end_y);
 
 		std::string name;

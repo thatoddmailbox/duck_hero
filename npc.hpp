@@ -33,6 +33,7 @@ namespace duckhero
 
 		bool HasShop();
 		bool HasQuests();
+		bool HasIdleLines();
 
 		void HandleShop(void * level_screen_pointer);
 		void HandleQuests(void * level_screen_pointer);

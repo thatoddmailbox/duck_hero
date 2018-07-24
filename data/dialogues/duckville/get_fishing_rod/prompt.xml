@@ -1,0 +1,46 @@
+<dialogue>
+	<line>
+		<character>Bob</character>
+		<text>Hi!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>...hi?</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>I'm a fisherman!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>I catch fish!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>But my fishing pole broke!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Uh...</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Do you want to buy me one?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Not really...</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Great! I can't pay you back, but I'll give you this weird key I have.</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>I'm not really sure what it unlocks, but it's probably something good!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>So, do we have a deal? Get me a fishing rod for my super-cool key?</text>
+	</line>
+</dialogue>

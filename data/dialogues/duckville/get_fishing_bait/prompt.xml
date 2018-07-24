@@ -1,0 +1,30 @@
+<dialogue>
+	<line>
+		<character>Bob</character>
+		<text>Fish love bait!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>That seems pretty important if I want to catch any fish!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Why don't you get me some fish bait?</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>I'll even give you this SUPER mysterious key!!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>It's even more mysterious than the last one!!!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Uh...</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Love the enthusiasm! By the way, I'm just giving you the key, I can't pay you back either.</text>
+	</line>
+</dialogue>

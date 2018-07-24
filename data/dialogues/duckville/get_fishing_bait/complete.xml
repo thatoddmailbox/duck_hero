@@ -1,0 +1,26 @@
+<dialogue>
+	<line>
+		<character>Bob</character>
+		<text>Wow! You actually did it!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>So, you're fishing in a freshwater pond, without a fishing rod or bait?</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Yeah, that's how I caught those fish over there! But now I'll be able to catch MORE fish!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>...how did you catch any fish at all?</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>...</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Nice talking to ya!</text>
+	</line>
+</dialogue>

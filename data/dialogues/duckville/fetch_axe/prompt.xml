@@ -1,0 +1,70 @@
+<dialogue>
+	<line>
+		<character>Joe</character>
+		<text>Hi there! You seem new here!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Who are you? Where am I?</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Welcome to Duckville! We're a tiny village in the middle of nowhere.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>I'm Joe, the Head Camping Overseer of Duckville.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Unfortunately, we're dealing with a robot uprising right now, but I promise you that Duckville is a wonderful place to go camping!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Assuming you have a valid Camping Permit, but I'm sure you knew that already.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>I...what? Robot uprising?</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Yeah! It was super cool! And also really bad!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>The gate to Duck City was blocked off by the robots, so we're all stuck here.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>I'm not really sure how you got here.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Luckily, important services, like my Camping Overseer duties, remain operational, despite our inability to contact Duck Central Government.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>You're governed by ducks?</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Ha-ha, you're funny! No, we just respect them and praise them at every opportunity.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Say, I can't really leave my post here, but I'm realizing that I left my lucky axe at the other campsite!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Could you do me a favor and get it for me?</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Since you're pretty clearly a duck yourself, I'll be generous and pay you 250 gold for your trouble!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>So, what do you say? 250 gold for you to get me my lucky axe?</text>
+	</line>
+</dialogue>

@@ -1,0 +1,10 @@
+<dialogue>
+	<line>
+		<character>Bob</character>
+		<text>Wait, what?</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>I wasn't expecting that to work a second time!</text>
+	</line>
+</dialogue>

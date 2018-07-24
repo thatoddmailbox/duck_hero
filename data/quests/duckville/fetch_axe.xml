@@ -1,0 +1,24 @@
+<quest>
+	<name>Fetch Joe's lucky axe</name>
+	<npc>duckville/bob</npc>
+	<requirements></requirements>
+	<dialogue>
+		<prompt>duckville/fetch_axe/prompt</prompt>
+		<accept>duckville/fetch_axe/accept</accept>
+		<decline>duckville/fetch_axe/decline</decline>
+		<progress>duckville/fetch_axe/progress</progress>
+		<complete>duckville/fetch_axe/complete</complete>
+	</dialogue>
+	<tasks>
+		<task type="item">
+			<display>Find Joe's lucky axe</display>
+			<data>5</data>
+		</task>
+	</tasks>
+	<rewards>
+		<reward type="coins">
+			<data>250</data>
+		</reward>
+	</rewards>
+	<next></next>
+</quest>

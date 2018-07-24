@@ -1,0 +1,22 @@
+<dialogue>
+	<line>
+		<character>Joe</character>
+		<text>Thanks!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Say, maybe you could help us out? You're the only real duck we've seen in a while.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>We'd need someone to hack that gate blocking the way to Duck City, and then get there and somehow overthrow the robots!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Piece of cake for an amazing duck like you!</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Anyways, here's that gold I promised you.</text>
+	</line>
+</dialogue>

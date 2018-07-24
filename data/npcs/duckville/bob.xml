@@ -1,0 +1,13 @@
+<npc>
+	<name>Bob</name>
+	<shop></shop>
+	<quests>
+		<quest>duckville/get_fishing_rod</quest>
+		<quest>duckville/get_fishing_bait</quest>
+	</quests>
+	<idle>
+		<line>Fishing is hard work.</line>
+		<line>Did you know that most fish prefer to live in water? Who knew?</line>
+		<line>The word "fish" has four letters--one of which is actually a vowel! How cool is that?</line>
+	</idle>
+</npc>

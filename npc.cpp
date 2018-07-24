@@ -116,6 +116,11 @@ namespace duckhero
 		return (quests.size() != 0);
 	}
 
+	bool NPC::HasIdleLines()
+	{
+		return (idle.size() != 0);
+	}
+
 	bool NPC::CanInteract()
 	{
 		return true;
@@ -139,7 +144,7 @@ namespace duckhero
 	void NPC::Interact(void * level_screen_pointer)
 	{
 		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
-		if (HasQuests() && HasShop())
+		if ((HasQuests() || HasIdleLines()) && HasShop())
 		{
 			// ask for clarification
 			std::map<std::string, GUIPromptHandler> actions;
@@ -150,7 +155,7 @@ namespace duckhero
 			ask_prompt->metadata_2 = level_screen;
 			level_screen->prompt = ask_prompt;
 		}
-		else if (HasQuests())
+		else if (HasQuests() || HasIdleLines())
 		{
 			HandleQuests(level_screen);
 		}

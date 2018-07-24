@@ -40,7 +40,7 @@ namespace duckhero
 
 				requirement.data_string = std::string(requirement_node.child("data").text().as_string());
 				requirement.data = requirement_node.child("data").text().as_int();
-				const char * type = requirement_node.child("type").text().as_string();
+				const char * type = requirement_node.attribute("type").as_string();
 
 				if (strcmp(type, "coins") == 0)
 				{
@@ -64,7 +64,7 @@ namespace duckhero
 
 				task.display = std::string(task_node.child_value("display"));
 				task.data = task_node.child("data").text().as_int();
-				const char * type = task_node.child("type").text().as_string();
+				const char * type = task_node.attribute("type").as_string();
 
 				if (strcmp(type, "coins") == 0)
 				{
@@ -83,7 +83,7 @@ namespace duckhero
 				Reward reward = Reward();
 
 				reward.data = reward_node.child("data").text().as_int();
-				const char * type = reward_node.child("type").text().as_string();
+				const char * type = reward_node.attribute("type").as_string();
 
 				if (strcmp(type, "coins") == 0)
 				{

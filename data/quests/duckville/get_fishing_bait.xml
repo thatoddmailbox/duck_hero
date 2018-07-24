@@ -1,0 +1,24 @@
+<quest>
+	<name>Get fish bait</name>
+	<npc>duckville/bob</npc>
+	<requirements></requirements>
+	<dialogue>
+		<prompt>duckville/get_fishing_bait/prompt</prompt>
+		<accept>duckville/get_fishing_bait/accept</accept>
+		<decline>duckville/get_fishing_bait/decline</decline>
+		<progress>duckville/get_fishing_bait/progress</progress>
+		<complete>duckville/get_fishing_bait/complete</complete>
+	</dialogue>
+	<tasks>
+		<task type="item">
+			<display>Get Bob a can of fish bait</display>
+			<data>5</data>
+		</task>
+	</tasks>
+	<rewards>
+		<reward type="item">
+			<data>4</data>
+		</reward>
+	</rewards>
+	<next></next>
+</quest>

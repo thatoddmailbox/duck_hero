@@ -1,0 +1,10 @@
+<npc>
+	<name>Shopkeeper</name>
+	<shop>duckville/shopkeeper</shop>
+	<quests></quests>
+	<idle>
+		<line>Why talk to me when you can buy from me instead?</line>
+		<line>I've got this super great sales strategy! I make fishing rods real cheap, but the bait costs a lot. It works out really well!</line>
+		<line>Did you know that I'm the only shopkeeper in Duckville? It's really great having no competition.</line>
+	</idle>
+</npc>

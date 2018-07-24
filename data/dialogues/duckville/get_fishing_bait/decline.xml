@@ -1,0 +1,10 @@
+<dialogue>
+	<line>
+		<character>Bob</character>
+		<text>Oh no! You must've said the wrong thing by mistake!</text>
+	</line>
+	<line>
+		<character>Bob</character>
+		<text>Don't worry! I'm sure you'll realize your mistake and agree to my fair offer.</text>
+	</line>
+</dialogue>

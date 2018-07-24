@@ -435,7 +435,7 @@ namespace duckhero
 				// it's a ground thing so the player is always above
 				layer.Draw(r, x_offset, y_offset, 0, height);
 			}
-			else
+			else if (!layer.IsFixedTop())
 			{
 				// draw up to the player
 				int player_tile_y = ((player.y - 1) / 32);
@@ -461,13 +461,21 @@ namespace duckhero
 		{
 			if (!layer.IsFixedBottom())
 			{
-				// draw after the player
-				int player_tile_y = ((player.y - 1) / 32);
-				if (player_tile_y < 0)
+				if (layer.IsFixedTop())
 				{
-					player_tile_y = 0;
+					// draw the whole thing
+					layer.Draw(r, x_offset, y_offset, 0, height);
 				}
-				layer.Draw(r, x_offset, y_offset, player_tile_y + 1, height);
+				else
+				{
+					// draw after the player
+					int player_tile_y = ((player.y - 1) / 32);
+					if (player_tile_y < 0)
+					{
+						player_tile_y = 0;
+					}
+					layer.Draw(r, x_offset, y_offset, player_tile_y + 1, height);
+				}
 			}
 		}
 	}
@@ -525,6 +533,18 @@ namespace duckhero
 	bool Layer::IsFixedBottom()
 	{
 		if (name == "Ground" || name == "Ground overlay")
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool Layer::IsFixedTop()
+	{
+		if (name == "Top")
 		{
 			return true;
 		}

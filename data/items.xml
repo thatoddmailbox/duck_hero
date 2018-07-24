@@ -1,7 +1,27 @@
 <items>
 	<item>
 		<id>1</id>
-		<name>Thingy</name>
-		<desc>A mysterious thing.</desc>
+		<name>Duckville Working Permit (totally, 100% legitimate)</name>
+		<desc>Allows the user to work and get paid for their work. Valid within Duckville.</desc>
+	</item>
+	<item>
+		<id>2</id>
+		<name>Fishing rod</name>
+		<desc>Traditionally used to catch fish.</desc>
+	</item>
+	<item>
+		<id>3</id>
+		<name>Mysterious key</name>
+		<desc>Probably used to unlock something.</desc>
+	</item>
+	<item>
+		<id>4</id>
+		<name>SUPER mysterious key</name>
+		<desc>Probably used to unlock something.</desc>
+	</item>
+	<item>
+		<id>5</id>
+		<name>Can of fish bait</name>
+		<desc>Food that fish hopefully like.</desc>
 	</item>
 </items>
