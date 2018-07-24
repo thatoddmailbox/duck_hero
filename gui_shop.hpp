@@ -1,12 +1,14 @@
 #ifndef _GUI_SHOP_HPP
 #define _GUI_SHOP_HPP
 
+#include <memory>
 #include <string>
 #include <vector>
 
 #include "consts.hpp"
 #include "gui.hpp"
 #include "gui_helper.hpp"
+#include "gui_prompt.hpp"
 #include "shop.hpp"
 #include "text_cache.hpp"
 
@@ -22,6 +24,7 @@ namespace duckhero
 		int _coins;
 	public:
 		GUIButton close = GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Close", WINDOW_WIDTH - 150, WINDOW_HEIGHT - 32, 150, 32, &shop_close);
+		std::shared_ptr<GUIPrompt> prompt;
 		SDL_Rect rect;
 		Shop shop;
 		std::vector<GUIButton> buttons;

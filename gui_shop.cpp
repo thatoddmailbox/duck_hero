@@ -4,12 +4,41 @@
 
 namespace duckhero
 {
+	static void shop_confirm_action(GUIPrompt * prompt, std::string action)
+	{
+		GUIShop * gui_shop = (GUIShop *) prompt->metadata;
+		GUILevelScreen * level_screen = (GUILevelScreen *) prompt->metadata_2;
+		int index = prompt->metadata_3;
+
+		if (action == "Buy")
+		{
+			gui_shop->BuyItem(level_screen, index);
+		}
+		else
+		{
+			// just do nothing and let the prompt close
+		}
+
+		gui_shop->prompt = nullptr;
+	}
+
 	static void shop_buy(GUIButton * button)
 	{
 		GUIShop * gui_shop = (GUIShop *) button->metadata;
 		GUILevelScreen * level_screen = (GUILevelScreen *) button->metadata_2;
 		int index = button->metadata_3;
-		gui_shop->BuyItem(level_screen, index);
+
+		ShopItem shop_item = gui_shop->shop.items[index];
+		ItemInfo item_info = ItemManager::items[shop_item.item_id];
+
+		std::map<std::string, GUIPromptHandler> actions;
+		actions["Buy"] = &shop_confirm_action;
+		actions["Cancel"] = &shop_confirm_action;
+		std::shared_ptr<GUIPrompt> confirm_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt(level_screen, "Buy " + item_info.name + "?", actions));
+		confirm_prompt->metadata = gui_shop;
+		confirm_prompt->metadata_2 = level_screen;
+		confirm_prompt->metadata_3 = index;
+		gui_shop->prompt = confirm_prompt;
 	}
 
 	void shop_close(GUIButton * button)
@@ -62,7 +91,14 @@ namespace duckhero
 			button.Update(r);
 		}
 
-		close.Update(r);
+		if (prompt)
+		{
+			prompt->Update(r);
+		}
+		else
+		{
+			close.Update(r);
+		}
 	}
 
 	void GUIShop::Draw(SDL_Renderer * r)
@@ -95,6 +131,13 @@ namespace duckhero
 			i++;
 		}
 
-		close.Draw(r);
+		if (prompt)
+		{
+			prompt->Draw(r);
+		}
+		else
+		{
+			close.Draw(r);
+		}
 	}
 }

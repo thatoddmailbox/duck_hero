@@ -36,6 +36,7 @@ namespace duckhero
 
 		void * metadata;
 		void * metadata_2;
+		int metadata_3;
 
 		GUIPrompt(void * level_screen_pointer, std::string in_message, std::map<std::string, GUIPromptHandler> in_actions);
 
