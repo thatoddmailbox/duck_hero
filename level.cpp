@@ -147,6 +147,12 @@ namespace duckhero
 					continue;
 				}
 
+				if (strstr(source, "etc.png") != nullptr)
+				{
+					// skip it, it's not important at all
+					continue;
+				}
+
 				if (sheet == nullptr)
 				{
 					Log::Warning("Level::LoadFromFile", "couldn't find spritesheet for tileset!");
@@ -284,25 +290,40 @@ namespace duckhero
 			for (pugi::xml_node object_group_node : map.children("objectgroup"))
 			{
 				const char * name = object_group_node.attribute("name").as_string();
-				if (strcmp(name, "NPC") == 0)
+				if (strcmp(name, "ETC") == 0)
 				{
-					// it's the NPC layer
+					// it's the ETC layer
 					for (pugi::xml_node object_node : object_group_node.children("object"))
 					{
 						int x = object_node.attribute("x").as_int();
 						int y = object_node.attribute("y").as_int();
+
+						int tile_x = (x) * 2;
+						int tile_y = (y - 16) * 2;
+
 						for (pugi::xml_node property_node : object_node.child("properties").children("property"))
 						{
 							const char * property_name = property_node.attribute("name").as_string();
-							const char * property_value = property_node.attribute("value").as_string();
 
 							if (strcmp(property_name, "npc") == 0)
 							{
+								const char * property_value = property_node.attribute("value").as_string();
+
 								NPC * npc = new NPC();
 								npc->LoadXMLInfo(std::string(property_value));
-								npc->x = (x) * 2;
-								npc->y = (y - 16) * 2;
+								npc->x = tile_x;
+								npc->y = tile_y;
 								entities.push_back(std::shared_ptr<Entity>(npc));
+							}
+							else if (strcmp(property_name, "item") == 0)
+							{
+								int property_value = property_node.attribute("value").as_int();
+
+								Pickup * pickup = new Pickup();
+								pickup->x = tile_x;
+								pickup->y = tile_y;
+								pickup->item_id = property_value;
+								entities.push_back(std::shared_ptr<Entity>(pickup));
 							}
 						}
 					}

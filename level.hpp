@@ -17,6 +17,7 @@
 #include "log.hpp"
 #include "npc.hpp"
 #include "spritesheet.hpp"
+#include "pickup.hpp"
 #include "player.hpp"
 
 namespace duckhero

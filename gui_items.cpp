@@ -27,6 +27,9 @@ namespace duckhero
 			SDL_Rect name_rect = _title_cache.Draw(r, info.name, _rect.x, current_y);
 			current_y += name_rect.h;
 
+			SDL_Rect desc_rect = _desc_cache.Draw(r, info.desc, _rect.x, current_y);
+			current_y += desc_rect.h;
+
 			current_y += 18;
 		}
 

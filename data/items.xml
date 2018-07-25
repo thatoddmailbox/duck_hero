@@ -24,4 +24,9 @@
 		<name>Can of fish bait</name>
 		<desc>Food that fish hopefully like.</desc>
 	</item>
+	<item>
+		<id>6</id>
+		<name>Joe's Lucky Axe</name>
+		<desc>It's very lucky.</desc>
+	</item>
 </items>
