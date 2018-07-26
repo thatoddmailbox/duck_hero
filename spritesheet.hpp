@@ -21,6 +21,7 @@ namespace duckhero
 		static Spritesheet city;
 		static Spritesheet dungeon;
 		static Spritesheet indoor;
+		static Spritesheet duck;
 
 		Spritesheet(std::string in_path, int in_cols, int in_rows, int in_tile_w, int in_tile_h, int in_margin);
 

@@ -139,6 +139,10 @@ namespace duckhero
 				{
 					sheet = &Spritesheet::indoor;
 				}
+				else if (strstr(source, "duck.png") != nullptr)
+				{
+					sheet = &Spritesheet::duck;
+				}
 
 				if (strstr(source, "collision.png") != nullptr)
 				{
@@ -262,7 +266,7 @@ namespace duckhero
 					{
 						int currentSheetGid = iter->first;
 						Spritesheet * currentSheet = iter->second;
-						if (gid > currentSheetGid)
+						if (gid >= currentSheetGid)
 						{
 							// found the correct spritesheet, stop now
 							sheet = currentSheet;
@@ -601,7 +605,6 @@ namespace duckhero
 				{
 					continue;
 				}
-
 
 				SDL_Texture * sheet_texture = t.sheet->GetTexture(r);
 				SDL_Rect tile_rect = t.sheet->GetCoordinatesForTile(t.id);
