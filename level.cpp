@@ -446,6 +446,16 @@ namespace duckhero
 		return { 0, 0, 0, 0 };
 	}
 
+	void Level::Update(SDL_Renderer * r)
+	{
+		for (std::shared_ptr<Entity>& e : entities)
+		{
+			e->Update();
+		}
+
+		player.Update();
+	}
+
 	void Level::Draw(SDL_Renderer * r, int x_offset, int y_offset)
 	{
 		// draw the layers up to the player's y

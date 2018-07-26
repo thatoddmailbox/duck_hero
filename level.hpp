@@ -80,6 +80,7 @@ namespace duckhero
 		bool TryMoveEntity(Entity * e, int x_offset, int y_offset);
 		SDL_Rect GetCollisionBoxForTile(int x, int y);
 
+		void Update(SDL_Renderer * r);
 		void Draw(SDL_Renderer * r, int x_offset, int y_offset);
 	};
 }

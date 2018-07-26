@@ -13,4 +13,9 @@
 #define GUI_SHOP_WIDTH 600
 #define GUI_SHOP_HEIGHT 400
 
+#define DIRECTION_UP 0
+#define DIRECTION_DOWN 1
+#define DIRECTION_LEFT 2
+#define DIRECTION_RIGHT 3
+
 #endif

@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "content.hpp"
+#include "consts.hpp"
 #include "entity.hpp"
 #include "item.hpp"
 
@@ -13,12 +14,20 @@ namespace duckhero
 	class Player : public Entity
 	{
 	private:
-		SDL_Texture * _texture;
+		SDL_Texture * _texture_up;
+		SDL_Texture * _texture_down;
+		SDL_Texture * _texture_left;
+		SDL_Texture * _texture_right;
 	public:
 		std::vector<std::string> current_quests;
 		std::vector<std::string> completed_quests;
 		std::vector<Item> items;
 		int coins;
+
+		bool walking;
+		int animation_frame;
+		int animation_timer;
+		int direction;
 
 		Player();
 		Player(const Player& other);

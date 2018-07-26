@@ -28,22 +28,32 @@ namespace duckhero
 		{
 			int speed = 2;
 
+			_level->player.walking = false;
+
 			if (Input::IsButtonDown(Button::UP))
 			{
 				_level->TryMoveEntity(&_level->player, 0, -speed);
+				_level->player.direction = DIRECTION_UP;
+				_level->player.walking = true;
 			}
 			else if (Input::IsButtonDown(Button::DOWN))
 			{
 				_level->TryMoveEntity(&_level->player, 0, speed);
+				_level->player.direction = DIRECTION_DOWN;
+				_level->player.walking = true;
 			}
 
 			if (Input::IsButtonDown(Button::LEFT))
 			{
 				_level->TryMoveEntity(&_level->player, -speed, 0);
+				_level->player.direction = DIRECTION_LEFT;
+				_level->player.walking = true;
 			}
 			else if (Input::IsButtonDown(Button::RIGHT))
 			{
 				_level->TryMoveEntity(&_level->player, speed, 0);
+				_level->player.direction = DIRECTION_RIGHT;
+				_level->player.walking = true;
 			}
 
 			if (Input::IsButtonReleased(Button::INTERACT))
@@ -75,6 +85,7 @@ namespace duckhero
 			camera_y = max_camera_y;
 		}
 
+		_level->Update(r);
 		hud.Update(r, (shop == nullptr && prompt == nullptr));
 		GUIScreen::Update(r);
 
