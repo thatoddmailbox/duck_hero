@@ -7,8 +7,7 @@ namespace duckhero
 {
 	NPC::NPC()
 	{
-		x = y = 0;
-		health = 20;
+		Entity::Entity();
 
 		_texture = nullptr;
 	}

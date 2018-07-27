@@ -8,9 +8,11 @@ namespace duckhero
 		entities = std::vector<std::shared_ptr<Entity>>();
 		width = 0;
 		height = 0;
+		showing_menu = false;
 		player = Player();
 		dialogueManager = DialogueManager();
 		collision_map = nullptr;
+		interact_texture = nullptr;
 	}
 
 	Level::Level(const Level& other)
@@ -19,6 +21,7 @@ namespace duckhero
 		entities = other.entities;
 		width = other.width;
 		height = other.height;
+		showing_menu = other.showing_menu;
 		player = other.player;
 		dialogueManager = other.dialogueManager;
 		if (other.collision_map)
@@ -29,6 +32,7 @@ namespace duckhero
 		{
 			collision_map = nullptr;
 		}
+		interact_texture = nullptr;
 	}
 
 	Level& Level::operator=(const Level& other)
@@ -37,6 +41,7 @@ namespace duckhero
 		entities = other.entities;
 		width = other.width;
 		height = other.height;
+		showing_menu = other.showing_menu;
 		player = other.player;
 		dialogueManager = other.dialogueManager;
 		if (other.collision_map)
@@ -47,6 +52,7 @@ namespace duckhero
 		{
 			collision_map = nullptr;
 		}
+		interact_texture = nullptr;
 		return *this;
 	}
 
@@ -59,6 +65,10 @@ namespace duckhero
 				free(collision_map[x]);
 			}
 			free(collision_map);
+		}
+		if (interact_texture)
+		{
+			SDL_DestroyTexture(interact_texture);
 		}
 	}
 
@@ -405,6 +415,12 @@ namespace duckhero
 			}
 		}
 
+		// reset range flags of all entities
+		for (std::shared_ptr<Entity>& entity : entities)
+		{
+			entity->in_range = false;
+		}
+
 		// are we colliding with any other entities?
 		for (std::shared_ptr<Entity>& test_entity : entities)
 		{
@@ -412,6 +428,7 @@ namespace duckhero
 			if (test_entity.get() != e && SDL_HasIntersection(&entity_box, &test_box))
 			{
 				// we can't do this movement!
+				test_entity->in_range = true; // but we can interact with them
 				return false;
 			}
 		}
@@ -490,6 +507,24 @@ namespace duckhero
 
 		// draw the player
 		player.Draw(r, x_offset, y_offset);
+
+		// draw entity interact icons
+		for (std::shared_ptr<Entity>& e : entities)
+		{
+			if (e->in_range && e->CanInteract())
+			{
+				// draw the interact symbol
+				if (!interact_texture)
+				{
+					interact_texture = SDL_CreateTextureFromSurface(r, Content::GetBitmap("ui/interact.png"));
+				}
+				SDL_Rect entity_rect = e->GetCollisionBox(e->x, e->y);
+				SDL_Rect interact_rect = { entity_rect.x + ((entity_rect.w - 16) / 2), entity_rect.y - 16, 16, 16 };
+				interact_rect.x += x_offset;
+				interact_rect.y += y_offset;
+				SDL_RenderCopy(r, interact_texture, NULL, &interact_rect);
+			}
+		}
 
 		// draw the layers up to the player's y
 		for (Layer& layer : layers)

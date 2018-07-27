@@ -6,8 +6,7 @@ namespace duckhero
 {
 	Pickup::Pickup()
 	{
-		x = y = 0;
-		health = 20;
+		Entity::Entity();
 
 		item_id = 0;
 		picked_up = false;

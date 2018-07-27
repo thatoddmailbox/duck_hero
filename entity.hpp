@@ -14,6 +14,10 @@ namespace duckhero
 	public:
 		int health;
 		int x, y;
+		bool in_range;
+
+		Entity();
+
 		virtual std::string GetSpritePath();
 		virtual SDL_Rect GetCollisionBox(int x, int y);
 		virtual bool CanInteract();

@@ -4,8 +4,8 @@ namespace duckhero
 {
 	Player::Player()
 	{
-		x = y = 0;
-		health = 20;
+		Entity::Entity();
+
 		coins = 350;
 
 		current_quests = std::vector<std::string>();

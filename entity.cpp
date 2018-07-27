@@ -2,6 +2,13 @@
 
 namespace duckhero
 {
+	Entity::Entity()
+	{
+		x = y = 0;
+		health = 10;
+		in_range = false;
+	}
+
 	std::string Entity::GetSpritePath()
 	{
 		return "";
