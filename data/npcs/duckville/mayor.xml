@@ -1,0 +1,12 @@
+<npc>
+	<name>Mayor</name>
+	<shop></shop>
+	<quests>
+		<quest>duckville/get_camp_report</quest>
+	</quests>
+	<idle>
+		<line>Robots are pretty scary.</line>
+		<line>This room is oddly comfy.</line>
+		<line>Do you think the barricades will hold up? I hope so...</line>
+	</idle>
+</npc>

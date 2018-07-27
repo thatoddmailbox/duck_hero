@@ -141,9 +141,9 @@ namespace duckhero
 			}
 			else if (r.type == RequirementType::QuestRequirement)
 			{
-				if (std::find(level->player.completed_quests.begin(), level->player.completed_quests.end(), r.data_string) != level->player.completed_quests.end())
+				if (std::find(level->player.current_quests.begin(), level->player.current_quests.end(), r.data_string) == level->player.current_quests.end())
 				{
-					// haven't done the requirement yet!
+					// don't have the quest!
 					return false;
 				}
 			}

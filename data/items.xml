@@ -29,4 +29,24 @@
 		<name>Joe's Lucky Axe</name>
 		<desc>It's very lucky.</desc>
 	</item>
+	<item>
+		<id>7</id>
+		<name>Duckville Work Permit</name>
+		<desc>Allows you to use Work Machines within Duckville.</desc>
+	</item>
+	<item>
+		<id>8</id>
+		<name>Duckville Exit Permit</name>
+		<desc>Allows you to exit Duckville.</desc>
+	</item>
+	<item>
+		<id>9</id>
+		<name>Camp Report</name>
+		<desc>A report about camping in Duckville, prepared by the Head Camping Overseer.</desc>
+	</item>
+	<item>
+		<id>10</id>
+		<name>Sheet of Paper</name>
+		<desc>Used to write things on.</desc>
+	</item>
 </items>

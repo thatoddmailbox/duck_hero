@@ -1,0 +1,24 @@
+<quest>
+	<name>Get camp report</name>
+	<npc>duckville/mayor</npc>
+	<requirements></requirements>
+	<dialogue>
+		<prompt>duckville/get_camp_report/prompt</prompt>
+		<accept>duckville/get_camp_report/accept</accept>
+		<decline>duckville/get_camp_report/decline</decline>
+		<progress>duckville/get_camp_report/progress</progress>
+		<complete>duckville/get_camp_report/complete</complete>
+	</dialogue>
+	<tasks>
+		<task type="item">
+			<display>Get a Camp Report for the Mayor</display>
+			<data>9</data>
+		</task>
+	</tasks>
+	<rewards>
+		<reward type="item">
+			<data>7</data>
+		</reward>
+	</rewards>
+	<next></next>
+</quest>

@@ -1,0 +1,18 @@
+<dialogue>
+	<line>
+		<character>$PLAYER</character>
+		<text>Hey, the mayor asked me for a Camp Report?</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Of course! There's just one thing though...</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>You see, I wrote up this Camp Report, but I don't have any more paper for future Camp Reports.</text>
+	</line>
+	<line>
+		<character>Joe</character>
+		<text>Do you think you could get me some paper? Then I'll give you this week's Camp Report.</text>
+	</line>
+</dialogue>

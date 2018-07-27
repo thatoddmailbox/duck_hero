@@ -1,0 +1,50 @@
+<dialogue>
+	<line>
+		<character>???</character>
+		<text>!!!</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>How did you get in here?!?!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Uh...I got a key from some random fisherman and it unlocked the back door...</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>Oh, Bob! Well if he trusts you, you must be safe.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>I'm the mayor of Duckville! It is an honor to be in the presence of a duck such as yourself.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>You know, we're actually in a bit of a situation here.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>There was some sort of robot uprising and now we're all trapped here.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>If you could make your way to Duck City and get rid of the evil robots, that'd be great!</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>Unfortunately, you'll need an Exit Key to leave Duckville, because we barricaded the main exit.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>I don't really have an Exit Key to give you, but I can give you a Work Permit! It'll let you earn some money, which'll probably help!</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>I just need you to do a quick favor.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>Could you get me the latest Camp Report from Joe, the Head Camping Overseer? Then I'll give you the Work Permit.</text>
+	</line>
+</dialogue>

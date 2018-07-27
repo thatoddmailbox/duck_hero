@@ -141,8 +141,10 @@ namespace duckhero
 		{
 			SDL_Rect frame_rect = { 50, WINDOW_HEIGHT - HEIGHT - 50, WIDTH, HEIGHT };
 			GUIHelper::DrawFrame(r, frame_rect, GUIHelper::FRAME_BROWN_PAPER);
-			if (state->cached_character_texture != nullptr)
+			bool have_character = false;
+			if (state->cached_character_texture != nullptr && dialogueManager->currentLine.character != "")
 			{
+				have_character = true;
 				state->cached_character_rect.x = frame_rect.x + 10;
 				state->cached_character_rect.y = frame_rect.y + 10;
 				SDL_RenderCopy(r, state->cached_character_texture, NULL, &state->cached_character_rect);
@@ -150,7 +152,7 @@ namespace duckhero
 			if (state->cached_text_texture != nullptr)
 			{
 				state->cached_text_rect.x = frame_rect.x + 10;
-				state->cached_text_rect.y = frame_rect.y + 10 + 18 + 5;
+				state->cached_text_rect.y = frame_rect.y + 10 + (have_character ? (18 + 5) : 0);
 				SDL_RenderCopy(r, state->cached_text_texture, NULL, &state->cached_text_rect);
 			}
 			if (state->cached_instruction_texture != nullptr && dialogueManager->currentLine.special == DialogueLineSpecial::NormalLine)
