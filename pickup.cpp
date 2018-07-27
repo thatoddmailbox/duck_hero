@@ -74,6 +74,7 @@ namespace duckhero
 		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
 		level_screen->GetLevel()->player.items.push_back(Item(item_id));
 		picked_up = true;
+		in_range = false;
 	}
 
 	void Pickup::Update()

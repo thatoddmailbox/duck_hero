@@ -339,6 +339,24 @@ namespace duckhero
 								pickup->item_id = property_value;
 								entities.push_back(std::shared_ptr<Entity>(pickup));
 							}
+							else if (strcmp(property_name, "sign") == 0)
+							{
+								Sign * sign = new Sign();
+								sign->x = tile_x;
+								sign->y = tile_y;
+								sign->text = std::string(property_node.attribute("value").as_string());
+								entities.push_back(std::shared_ptr<Entity>(sign));
+							}
+							else if (strcmp(property_name, "door_key") == 0)
+							{
+								int property_value = property_node.attribute("value").as_int();
+
+								Door * door = new Door();
+								door->x = tile_x;
+								door->y = tile_y;
+								door->key_id = property_value;
+								entities.push_back(std::shared_ptr<Entity>(door));
+							}
 						}
 					}
 				}
@@ -406,12 +424,14 @@ namespace duckhero
 		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x + 1, tile_y));
 		tiles_to_check.push_back(GetCollisionBoxForTile(tile_x + 1, tile_y + 1));
 
+		bool can_do_movement = true;
+
 		for (SDL_Rect tile_to_check : tiles_to_check)
 		{
 			if (SDL_HasIntersection(&entity_box, &tile_to_check))
 			{
 				// we can't do this movement!
-				return false;
+				can_do_movement = false;
 			}
 		}
 
@@ -428,9 +448,16 @@ namespace duckhero
 			if (test_entity.get() != e && SDL_HasIntersection(&entity_box, &test_box))
 			{
 				// we can't do this movement!
-				test_entity->in_range = true; // but we can interact with them
-				return false;
+				can_do_movement = false;
+
+				// but we can interact with them
+				test_entity->in_range = true; 
 			}
+		}
+
+		if (!can_do_movement)
+		{
+			return false;
 		}
 
 		// we made it this far, we can move

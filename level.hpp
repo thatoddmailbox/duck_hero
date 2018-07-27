@@ -13,12 +13,14 @@
 
 #include "consts.hpp"
 #include "dialogue.hpp"
+#include "door.hpp"
 #include "entity.hpp"
 #include "log.hpp"
 #include "npc.hpp"
 #include "spritesheet.hpp"
 #include "pickup.hpp"
 #include "player.hpp"
+#include "sign.hpp"
 
 namespace duckhero
 {
