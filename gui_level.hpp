@@ -11,6 +11,7 @@
 #include "gui_shop.hpp"
 #include "level.hpp"
 #include "hud.hpp"
+#include "save_manager.hpp"
 
 namespace duckhero
 {

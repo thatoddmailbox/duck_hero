@@ -56,6 +56,17 @@ namespace duckhero
 				_level->player.walking = true;
 			}
 
+			if (SDL_GetKeyboardState(NULL)[SDL_SCANCODE_F3])
+			{
+				std::string path = SaveManager::GetPathForSlot(0);
+				SaveManager::SaveToFile(path, _level.get());
+			}
+			else if (SDL_GetKeyboardState(NULL)[SDL_SCANCODE_F2])
+			{
+				std::string path = SaveManager::GetPathForSlot(0);
+				SaveManager::LoadFromFile(path, _level.get());
+			}
+
 			if (Input::IsButtonReleased(Button::INTERACT))
 			{
 				_level->TryInteract(this);
