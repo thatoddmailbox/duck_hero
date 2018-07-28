@@ -87,6 +87,7 @@ namespace duckhero
 
 	bool Level::LoadFromFile(std::string path)
 	{
+		map_name = path;
 		layers = std::vector<Layer>();
 
 		// read the file into a string

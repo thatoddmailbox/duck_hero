@@ -41,16 +41,32 @@ namespace duckhero
 			l->player.items.push_back(Item(item_node.attribute("id").as_int()));
 		}
 
-		for (pugi::xml_node pickup_node : save_node.child("pickups"))
+		// reset existing pickups
+		for (std::shared_ptr<Entity>& e : l->entities)
 		{
+			if (Pickup * p = dynamic_cast<Pickup *>(e.get()))
+			{
+				p->picked_up = false;
+			}
+		}
+
+		// load new pickup information
+		l->player.pickups.clear();
+		for (pugi::xml_node pickup_node : player_node.child("pickups"))
+		{
+			// save info
+			PickupInfo info;
+			info.x = pickup_node.attribute("x").as_int();
+			info.y = pickup_node.attribute("y").as_int();
+			info.map = pickup_node.attribute("map").as_string();
+			l->player.pickups.push_back(info);
+
 			// find the corresponding pickup entity
-			int pickup_x = pickup_node.attribute("x").as_int();
-			int pickup_y = pickup_node.attribute("y").as_int();
 			for (std::shared_ptr<Entity>& e : l->entities)
 			{
 				if (Pickup * p = dynamic_cast<Pickup *>(e.get()))
 				{
-					if (p->x == pickup_x && p->y == pickup_y)
+					if (p->x == info.x && p->y == info.y)
 					{
 						p->picked_up = true;
 						break;
@@ -69,6 +85,7 @@ namespace duckhero
 		player_node.append_attribute("x").set_value(l->player.x);
 		player_node.append_attribute("y").set_value(l->player.y);
 		player_node.append_attribute("health").set_value(l->player.health);
+		player_node.append_child("map").text().set(l->map_name.c_str());
 		player_node.append_child("coins").text().set(l->player.coins);
 
 		pugi::xml_node current_quests_node = player_node.append_child("current_quests");
@@ -92,19 +109,13 @@ namespace duckhero
 			item_node.append_attribute("id").set_value(item.id);
 		}
 
-		pugi::xml_node pickups_node = save_node.append_child("pickups");
-		for (std::shared_ptr<Entity>& e : l->entities)
+		pugi::xml_node pickups_node = player_node.append_child("pickups");
+		for (PickupInfo& p : l->player.pickups)
 		{
-			if (Pickup * p = dynamic_cast<Pickup *>(e.get()))
-			{
-				if (p->picked_up)
-				{
-					// save that we've picked this up already
-					pugi::xml_node pickup_node = pickups_node.append_child("pickup");
-					pickup_node.append_attribute("x").set_value(p->x);
-					pickup_node.append_attribute("y").set_value(p->y);
-				}
-			}
+			pugi::xml_node pickup_node = pickups_node.append_child("pickup");
+			pickup_node.append_attribute("x").set_value(p.x);
+			pickup_node.append_attribute("y").set_value(p.y);
+			pickup_node.append_attribute("name").set_value(p.map.c_str());
 		}
 
 		save_document.save_file(path.c_str());

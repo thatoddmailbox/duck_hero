@@ -75,6 +75,13 @@ namespace duckhero
 		level_screen->GetLevel()->player.items.push_back(Item(item_id));
 		picked_up = true;
 		in_range = false;
+
+		PickupInfo info;
+		info.x = x;
+		info.y = y;
+		info.map = level_screen->GetLevel()->map_name;
+		level_screen->GetLevel()->player.pickups.push_back(info);
+
 	}
 
 	void Pickup::Update()

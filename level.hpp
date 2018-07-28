@@ -63,6 +63,7 @@ namespace duckhero
 	private:
 		void copy_into_data_from(const Level& other);
 	public:
+		std::string map_name;
 		std::vector<Layer> layers;
 		std::vector<std::shared_ptr<Entity>> entities;
 		int width, height;

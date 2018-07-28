@@ -10,6 +10,13 @@
 
 namespace duckhero
 {
+	struct PickupInfo
+	{
+		int x;
+		int y;
+		std::string map;
+	};
+
 	class Pickup : public Entity
 	{
 	private:

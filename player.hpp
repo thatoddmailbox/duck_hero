@@ -8,6 +8,7 @@
 #include "consts.hpp"
 #include "entity.hpp"
 #include "item.hpp"
+#include "pickup.hpp"
 
 namespace duckhero
 {
@@ -21,6 +22,7 @@ namespace duckhero
 	public:
 		std::vector<std::string> current_quests;
 		std::vector<std::string> completed_quests;
+		std::vector<PickupInfo> pickups;
 		std::vector<Item> items;
 		int coins;
 
