@@ -40,6 +40,24 @@ namespace duckhero
 		{
 			l->player.items.push_back(Item(item_node.attribute("id").as_int()));
 		}
+
+		for (pugi::xml_node pickup_node : save_node.child("pickups"))
+		{
+			// find the corresponding pickup entity
+			int pickup_x = pickup_node.attribute("x").as_int();
+			int pickup_y = pickup_node.attribute("y").as_int();
+			for (std::shared_ptr<Entity>& e : l->entities)
+			{
+				if (Pickup * p = dynamic_cast<Pickup *>(e.get()))
+				{
+					if (p->x == pickup_x && p->y == pickup_y)
+					{
+						p->picked_up = true;
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	void SaveManager::SaveToFile(std::string path, Level * l)
@@ -72,6 +90,21 @@ namespace duckhero
 		{
 			pugi::xml_node item_node = items_node.append_child("item");
 			item_node.append_attribute("id").set_value(item.id);
+		}
+
+		pugi::xml_node pickups_node = save_node.append_child("pickups");
+		for (std::shared_ptr<Entity>& e : l->entities)
+		{
+			if (Pickup * p = dynamic_cast<Pickup *>(e.get()))
+			{
+				if (p->picked_up)
+				{
+					// save that we've picked this up already
+					pugi::xml_node pickup_node = pickups_node.append_child("pickup");
+					pickup_node.append_attribute("x").set_value(p->x);
+					pickup_node.append_attribute("y").set_value(p->y);
+				}
+			}
 		}
 
 		save_document.save_file(path.c_str());
