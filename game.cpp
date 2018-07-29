@@ -15,6 +15,11 @@ namespace duckhero
 	void Game::FatalSDLError(std::string error)
 	{
 		std::cerr << error << " Error: " << SDL_GetError() << std::endl;
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                         "Fatal error",
+                         SDL_GetError(),
+                         NULL);
+
 		_running = false;
 	}
 
@@ -35,8 +40,8 @@ namespace duckhero
 
 		if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) != 0)
 		{
-			FatalSDLError("Mix_OpenAudio");
-			return 1;
+			//FatalSDLError("Mix_OpenAudio");
+			//return 1;
 		}
 
 		if (TTF_Init() != 0)
