@@ -146,11 +146,11 @@ namespace duckhero
 	{
 		for (std::vector<std::shared_ptr<GUIElement>>::iterator it = elements.begin(); it != elements.end(); ++it)
 		{
-			if (!(*it.base())->enabled)
+			if (!(*it)->enabled)
 			{
 				continue;
 			}
-			(*it.base())->Update(r);
+			(*it)->Update(r);
 		}
 	}
 
@@ -158,11 +158,11 @@ namespace duckhero
 	{
 		for (std::vector<std::shared_ptr<GUIElement>>::iterator it = elements.begin(); it != elements.end(); ++it)
 		{
-			if (!(*it.base())->enabled)
+			if (!(*it)->enabled)
 			{
 				continue;
 			}
-			(*it.base())->Draw(r);
+			(*it)->Draw(r);
 		}
 	}
 }

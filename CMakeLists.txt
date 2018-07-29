@@ -2,6 +2,12 @@ cmake_minimum_required (VERSION 3.1)
 
 set(CMAKE_CXX_STANDARD 11)
 
+if(CMAKE_CXX_COMPILER MATCHES "MSVC")
+	set(CMAKE_CXX_FLAGS "/EHsc /Zi")
+	set(CMAKE_SHARED_LINKER_FLAGS "/DEBUG /OPT:REF /OPT:ICF")
+	set(CMAKE_CREATE_WIN32_EXE "/SUBSYSTEM:WINDOWS")
+endif()
+
 project(duck_hero)
 
 file(GLOB SOURCES 
@@ -11,12 +17,12 @@ file(GLOB SOURCES
 	"external/*.cpp"
 )
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} WIN32 ${SOURCES})
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 find_package(SDL2 REQUIRED)
-target_link_libraries(${PROJECT_NAME} "${SDL2_LIBRARY}")
+target_link_libraries(${PROJECT_NAME} "${SDL2_LIBRARY}" "${SDL2MAIN_LIBRARY}")
 include_directories("${SDL2_INCLUDE_DIR}")
 
 find_package(SDL2_gfx REQUIRED)

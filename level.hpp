@@ -2,7 +2,9 @@
 #define _LEVEL_H
 
 #include <cstdlib>
+#include <functional>
 #include <map>
+#include <memory>
 #include <string>
 #include <sstream>
 #include <vector>
