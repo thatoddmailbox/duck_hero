@@ -10,7 +10,7 @@
 		<complete>duckville/get_fishing_bait/complete</complete>
 	</dialogue>
 	<tasks>
-		<task type="item">
+		<task type="item" consumed="yes">
 			<display>Get Bob a can of fish bait</display>
 			<data>5</data>
 		</task>

@@ -10,7 +10,7 @@
 		<complete>duckville/get_camp_report/complete</complete>
 	</dialogue>
 	<tasks>
-		<task type="item">
+		<task type="item" consumed="yes">
 			<display>Get a Camp Report for the Mayor</display>
 			<data>9</data>
 		</task>

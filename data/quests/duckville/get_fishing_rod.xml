@@ -10,7 +10,7 @@
 		<complete>duckville/get_fishing_rod/complete</complete>
 	</dialogue>
 	<tasks>
-		<task type="item">
+		<task type="item" consumed="yes">
 			<display>Get Bob a new fishing rod</display>
 			<data>2</data>
 		</task>

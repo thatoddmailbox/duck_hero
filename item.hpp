@@ -11,6 +11,8 @@ namespace duckhero
 		int id;
 
 		Item(int new_id);
+		bool operator==(Item &other);
+		bool operator==(const Item &other);
 	};
 
 	struct ItemInfo

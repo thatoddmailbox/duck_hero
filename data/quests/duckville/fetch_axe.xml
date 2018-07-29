@@ -10,7 +10,7 @@
 		<complete>duckville/fetch_axe/complete</complete>
 	</dialogue>
 	<tasks>
-		<task type="item">
+		<task type="item" consumed="true">
 			<display>Find Joe's lucky axe</display>
 			<data>6</data>
 		</task>

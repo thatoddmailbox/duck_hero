@@ -188,21 +188,8 @@ namespace duckhero
 					// yay it's done
 					level_screen->GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_complete);
 
-					Player * player = &level_screen->GetLevel()->player;
-					player->current_quests.erase(std::find(player->current_quests.begin(), player->current_quests.end(), quest.name));
-					player->completed_quests.push_back(quest.name);
+					quest.Complete(level_screen->GetLevel().get());
 
-					for (Reward r : quest.rewards)
-					{
-						if (r.type == RewardType::CoinsReward)
-						{
-							level_screen->GetLevel()->player.coins += r.data;
-						}
-						else if (r.type == RewardType::ItemReward)
-						{
-							level_screen->GetLevel()->player.items.push_back(Item(r.data));
-						}
-					}
 					if (quest.next != "")
 					{
 						// get information

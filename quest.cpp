@@ -64,6 +64,7 @@ namespace duckhero
 
 				task.display = std::string(task_node.child_value("display"));
 				task.data = task_node.child("data").text().as_int();
+				task.consumed = task_node.attribute("consumed").as_bool();
 				const char * type = task_node.attribute("type").as_string();
 
 				if (strcmp(type, "coins") == 0)
@@ -187,6 +188,41 @@ namespace duckhero
 		}
 
 		return true;
+	}
+
+	void Quest::Complete(void * l)
+	{
+		Level * level = (Level *) l;
+		Player * player = &level->player;
+
+		// log quest as completed
+		player->current_quests.erase(std::find(player->current_quests.begin(), player->current_quests.end(), name));
+		player->completed_quests.push_back(name);
+
+		// consume items that are supposed to be consumed
+		for (Task& t: tasks)
+		{
+			if (t.type == TaskType::ItemTask)
+			{
+				if (t.consumed)
+				{
+					player->items.erase(std::find(player->items.begin(), player->items.end(), Item(t.data)));
+				}
+			}
+		}
+
+		// give rewards
+		for (Reward r : rewards)
+		{
+			if (r.type == RewardType::CoinsReward)
+			{
+				level->player.coins += r.data;
+			}
+			else if (r.type == RewardType::ItemReward)
+			{
+				level->player.items.push_back(Item(r.data));
+			}
+		}
 	}
 
 	bool Quest::HasBeenStarted(void * l)

@@ -43,6 +43,7 @@ namespace duckhero
 		std::string display;
 		TaskType type;
 		int data;
+		bool consumed;
 	};
 
 	struct Reward
@@ -72,6 +73,9 @@ namespace duckhero
 
 		bool AllRequirementsMet(void * l);
 		bool AllTasksDone(void * l);
+
+		void Complete(void * l);
+
 		bool HasBeenStarted(void * l);
 		bool HasBeenCompleted(void * l);
 	};

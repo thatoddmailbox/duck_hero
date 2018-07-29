@@ -6,4 +6,14 @@ namespace duckhero
 	{
 		id = new_id;
 	}
+
+	bool Item::operator==(Item &other)
+	{
+		return (id == other.id);
+	}
+
+	bool Item::operator==(const Item &other)
+	{
+		return (id == other.id);
+	}
 }
