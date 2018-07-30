@@ -4,10 +4,8 @@
 
 namespace duckhero
 {
-	Sign::Sign()
+	Sign::Sign() : Entity()
 	{
-		Entity::Entity();
-
 		text = "";
 
 		_texture = nullptr;

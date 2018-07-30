@@ -5,10 +5,8 @@
 
 namespace duckhero
 {
-	NPC::NPC()
+	NPC::NPC() : Entity()
 	{
-		Entity::Entity();
-
 		_texture = nullptr;
 	}
 

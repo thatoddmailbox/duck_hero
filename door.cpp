@@ -4,10 +4,8 @@
 
 namespace duckhero
 {
-	Door::Door()
+	Door::Door() : Entity()
 	{
-		Entity::Entity();
-
 		key_id = 0;
 		unlocked = false;
 

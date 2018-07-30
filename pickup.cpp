@@ -4,10 +4,8 @@
 
 namespace duckhero
 {
-	Pickup::Pickup()
+	Pickup::Pickup() : Entity()
 	{
-		Entity::Entity();
-
 		item_id = 0;
 		picked_up = false;
 
