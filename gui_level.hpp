@@ -9,6 +9,7 @@
 #include "gui.hpp"
 #include "gui_prompt.hpp"
 #include "gui_shop.hpp"
+#include "gui_work.hpp"
 #include "level.hpp"
 #include "hud.hpp"
 #include "save_manager.hpp"
@@ -20,19 +21,22 @@ namespace duckhero
 	private:
 		std::shared_ptr<Level> _level;
 	public:
-		GUILevelScreen();
-
 		std::shared_ptr<GUIPrompt> prompt;
 		std::shared_ptr<GUIShop> shop;
+		std::shared_ptr<GUIWork> work;
+
+		HUD hud = HUD(_level);
+		int camera_x, camera_y;
+
+		GUILevelScreen();
+
+		bool IsSomethingOpen();
 
 		std::shared_ptr<Level> GetLevel();
 		void SetLevel(std::shared_ptr<Level> new_level);
 
 		void Update(SDL_Renderer * r);
 		void Draw(SDL_Renderer * r);
-
-		HUD hud = HUD(_level);
-		int camera_x, camera_y;
 	};
 }
 

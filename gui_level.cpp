@@ -8,7 +8,16 @@ namespace duckhero
 	GUILevelScreen::GUILevelScreen()
 	{
 		_level = std::shared_ptr<Level>(new Level());
+		prompt = nullptr;
+		shop = nullptr;
+		work = nullptr;
 		hud = HUD(_level);
+		camera_x = camera_y = 0;
+	}
+
+	bool GUILevelScreen::IsSomethingOpen()
+	{
+		return _level->dialogueManager.showingLine || _level->showing_menu || prompt.get() != nullptr || shop.get() != nullptr || work.get() != nullptr;
 	}
 
 	std::shared_ptr<Level> GUILevelScreen::GetLevel()
@@ -24,7 +33,7 @@ namespace duckhero
 
 	void GUILevelScreen::Update(SDL_Renderer * r)
 	{
-		if (!_level->dialogueManager.showingLine && !_level->showing_menu && prompt.get() == nullptr)
+		if (!IsSomethingOpen())
 		{
 			int speed = 2;
 
@@ -97,14 +106,17 @@ namespace duckhero
 		}
 
 		_level->Update(r);
-		hud.Update(r, (shop == nullptr && prompt == nullptr));
+		hud.Update(r, !IsSomethingOpen());
 		GUIScreen::Update(r);
 
+		if (work != nullptr)
+		{
+			work->Update(r);
+		}
 		if (shop != nullptr)
 		{
 			shop->Update(r);
 		}
-
 		if (prompt != nullptr)
 		{
 			prompt->Update(r);
@@ -123,12 +135,15 @@ namespace duckhero
 		}
 		GUIScreen::Draw(r);
 
+		if (work != nullptr)
+		{
+			work->Draw(r);
+		}
 		if (shop != nullptr)
 		{
 			shop->Draw(r);
 			hud.Draw(r, (shop == nullptr && prompt == nullptr));
 		}
-
 		if (prompt != nullptr)
 		{
 			prompt->Draw(r);

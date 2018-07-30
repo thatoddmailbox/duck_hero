@@ -23,6 +23,7 @@
 #include "pickup.hpp"
 #include "player.hpp"
 #include "sign.hpp"
+#include "working_machine.hpp"
 
 namespace duckhero
 {

@@ -358,6 +358,16 @@ namespace duckhero
 								door->key_id = property_value;
 								entities.push_back(std::shared_ptr<Entity>(door));
 							}
+							else if (strcmp(property_name, "working_facing_right") == 0)
+							{
+								bool property_value = property_node.attribute("value").as_bool();
+
+								WorkingMachine * working_machine = new WorkingMachine();
+								working_machine->x = tile_x;
+								working_machine->y = tile_y;
+								working_machine->facing_right = property_value;
+								entities.push_back(std::shared_ptr<Entity>(working_machine));
+							}
 						}
 					}
 				}
