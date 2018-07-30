@@ -2,10 +2,8 @@
 
 namespace duckhero
 {
-	GUIItems::GUIItems(std::shared_ptr<Level> in_level, SDL_Rect in_rect)
+	GUIItems::GUIItems(std::shared_ptr<Level> in_level, SDL_Rect in_rect) : GUIScreen()
 	{
-		GUIScreen::GUIScreen();
-
 		level = in_level;
 		_rect = in_rect;
 	}
