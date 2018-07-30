@@ -2,14 +2,14 @@
 
 namespace duckhero
 {
-	Spritesheet Spritesheet::ui = Spritesheet::Spritesheet("tiles/ui.png", 30, 33, 16, 16, 2);
+	Spritesheet Spritesheet::ui = Spritesheet("tiles/ui.png", 30, 33, 16, 16, 2);
 
-	Spritesheet Spritesheet::base = Spritesheet::Spritesheet("tiles/base.png", 57, 31, 16, 16, 1);
-	Spritesheet Spritesheet::characters = Spritesheet::Spritesheet("tiles/characters.png", 57, 12, 16, 16, 1);
-	Spritesheet Spritesheet::city = Spritesheet::Spritesheet("tiles/city.png", 37, 28, 16, 16, 1);
-	Spritesheet Spritesheet::dungeon = Spritesheet::Spritesheet("tiles/dungeon.png", 30, 19, 16, 16, 1);
-	Spritesheet Spritesheet::indoor = Spritesheet::Spritesheet("tiles/indoor.png", 27, 18, 16, 16, 1);
-	Spritesheet Spritesheet::duck = Spritesheet::Spritesheet("tiles/duck.png", 3, 1, 16, 16, 0);
+	Spritesheet Spritesheet::base = Spritesheet("tiles/base.png", 57, 31, 16, 16, 1);
+	Spritesheet Spritesheet::characters = Spritesheet("tiles/characters.png", 57, 12, 16, 16, 1);
+	Spritesheet Spritesheet::city = Spritesheet("tiles/city.png", 37, 28, 16, 16, 1);
+	Spritesheet Spritesheet::dungeon = Spritesheet("tiles/dungeon.png", 30, 19, 16, 16, 1);
+	Spritesheet Spritesheet::indoor = Spritesheet("tiles/indoor.png", 27, 18, 16, 16, 1);
+	Spritesheet Spritesheet::duck = Spritesheet("tiles/duck.png", 3, 1, 16, 16, 0);
 
 	Spritesheet::Spritesheet(std::string in_path, int in_cols, int in_rows, int in_tile_w, int in_tile_h, int in_margin)
 	{
