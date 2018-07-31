@@ -128,7 +128,7 @@ namespace duckhero
 				}
 
 				// try and match it to a spritesheet
-				Spritesheet * sheet;
+				Spritesheet * sheet = nullptr;
 
 				if (strstr(source, "base.png") != nullptr)
 				{

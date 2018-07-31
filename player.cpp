@@ -130,7 +130,7 @@ namespace duckhero
 		Entity::Draw(r, x_offset, y_offset);
 
 		SDL_Rect src_rect = { 0, 0, 32, 32 };
-		SDL_Texture * tex;
+		SDL_Texture * tex = nullptr;
 
 		if (direction == DIRECTION_UP)
 		{

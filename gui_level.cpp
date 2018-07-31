@@ -131,7 +131,7 @@ namespace duckhero
 			// only draw the hud here if the shop is closed
 			// that way, when the shop is open, we draw the hud above it
 			// then the user can see the coin count
-			hud.Draw(r, (shop == nullptr && prompt == nullptr));
+			hud.Draw(r, (prompt == nullptr));
 		}
 		GUIScreen::Draw(r);
 

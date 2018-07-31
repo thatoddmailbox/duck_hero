@@ -23,6 +23,10 @@ namespace duckhero
 		_buttons = std::vector<GUIButton>();
 		close.metadata = level_screen_pointer;
 
+		metadata = nullptr;
+		metadata_2 = nullptr;
+		metadata_3 = 0;
+
 		int window_margin = 10;
 		int text_spacing = 16;
 		int button_x = 10;

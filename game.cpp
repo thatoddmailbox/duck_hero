@@ -5,6 +5,8 @@ namespace duckhero
 	Game::Game()
 	{
 		_running = true;
+		_window = nullptr;
+		_renderer = nullptr;
 	}
 	
 	Game::~Game()
