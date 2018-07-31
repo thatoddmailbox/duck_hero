@@ -84,7 +84,7 @@ namespace duckhero
 			return 1;
 		}
 
-		_renderer = SDL_CreateRenderer(_window, 0, 0);
+		_renderer = SDL_CreateRenderer(_window, 0, SDL_RENDERER_PRESENTVSYNC);
 		if (_renderer == nullptr)
 		{
 			FatalSDLError("SDL_CreateRenderer");
