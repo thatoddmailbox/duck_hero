@@ -40,7 +40,7 @@ namespace duckhero
 		void * metadata_2;
 		int metadata_3;
 
-		virtual void Update(SDL_Renderer * r) = 0;
+		virtual bool Update(SDL_Renderer * r) = 0;
 		virtual void Draw(SDL_Renderer * r) = 0;
 		virtual void HandleAction() = 0;
 	};
@@ -63,7 +63,7 @@ namespace duckhero
 
 		GUIButton(GUIButtonStyle in_style, std::string in_text, int in_x, int in_y, int in_w, int in_h, void (*in_handler)(GUIButton *));
 		~GUIButton();
-		void Update(SDL_Renderer * r) override;
+		bool Update(SDL_Renderer * r) override;
 		void Draw(SDL_Renderer * r) override;
 		void HandleAction() override;
 	};

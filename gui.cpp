@@ -37,7 +37,7 @@ namespace duckhero
 		}
 	}
 
-	void GUIButton::Update(SDL_Renderer * r)
+	bool GUIButton::Update(SDL_Renderer * r)
 	{
 		// handle text texture
 		if ((_text_texture == nullptr || _saved_text != text) && text != "")
@@ -84,10 +84,13 @@ namespace duckhero
 					// we're still being hovered over, this means the mouse was clicked and released over this button
 					// trigger an action
 					HandleAction();
+					return true;
 				}
 			}
 			_clicked = false;
 		}
+
+		return false;
 	}
 
 	void GUIButton::Draw(SDL_Renderer * r)

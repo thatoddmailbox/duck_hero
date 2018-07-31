@@ -51,12 +51,16 @@ namespace duckhero
 
 	void GUIPrompt::Update(SDL_Renderer * r)
 	{
+		close.Update(r);
+
 		for (GUIButton& button : _buttons)
 		{
-			button.Update(r);
+			if (button.Update(r))
+			{
+				// we were closed, exit now
+				break;
+			}
 		}
-
-		close.Update(r);
 	}
 
 	void GUIPrompt::Draw(SDL_Renderer * r)
