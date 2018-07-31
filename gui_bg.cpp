@@ -6,6 +6,7 @@ namespace duckhero
 	{
 		_bg_texture = nullptr;
 		_bg_rect = { 0, 0, 0, 0 };
+		_bg_x = 0;
 	}
 
 	GUIBG::~GUIBG()
