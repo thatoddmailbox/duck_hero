@@ -12,6 +12,7 @@ namespace duckhero
 	{
 	public:
 		static const int FRAME_BROWN_PAPER = 390;
+		static const int FRAME_DARK_BROWN_PAPER = 399;
 		static const int FRAME_MODERN = 613;
 
 		static void DrawFrame(SDL_Renderer * r, SDL_Rect location, int top_left_tile);

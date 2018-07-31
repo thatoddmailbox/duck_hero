@@ -4,7 +4,9 @@
 #include <memory>
 
 #include "gui.hpp"
+#include "gui_bg.hpp"
 #include "gui_level.hpp"
+#include "gui_logo.hpp"
 
 namespace duckhero
 {
