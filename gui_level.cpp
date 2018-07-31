@@ -106,7 +106,7 @@ namespace duckhero
 		}
 
 		_level->Update(r);
-		hud.Update(r, !IsSomethingOpen());
+		hud.Update(r, (shop == nullptr && prompt == nullptr && work == nullptr));
 		GUIScreen::Update(r);
 
 		if (work != nullptr)

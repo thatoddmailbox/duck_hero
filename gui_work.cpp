@@ -13,10 +13,27 @@ namespace duckhero
 	GUIWork::GUIWork(void * level_screen_pointer)
 	{
 		GUILevelScreen * level_screen = (GUILevelScreen *) level_screen_pointer;
+
 		state = GUIWorkState::Select;
 		nonogram = Nonogram();
 		rect = { (WINDOW_WIDTH - 700) / 2, (WINDOW_HEIGHT - 400) / 2, 700, 400 };
 		close.metadata = level_screen_pointer;
+
+		// check if player has the permit
+		bool have_permit = false;
+		for (Item& i : level_screen->GetLevel()->player.items)
+		{
+			if (i.id == GUI_WORK_PERMIT_ITEM_ID)
+			{
+				have_permit = true;
+				break;
+			}
+		}
+
+		if (!have_permit)
+		{
+			state = GUIWorkState::MissingPermit;
+		}
 	}
 
 	void GUIWork::Update(SDL_Renderer * r)
@@ -39,7 +56,7 @@ namespace duckhero
 		}
 		else if (state == GUIWorkState::MissingPermit)
 		{
-			_title_cache.Draw(r, "You're missing a Work Permit, which is required before you can use this machine!", rect.x + 10, rect.y + 10);
+			_title_cache.Draw(r, "You're missing a Work Permit, which is required to use this machine!", rect.x + 10, rect.y + 10);
 		}
 
 		close.Draw(r);
