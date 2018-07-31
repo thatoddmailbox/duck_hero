@@ -7,6 +7,7 @@
 #include "gui_bg.hpp"
 #include "gui_level.hpp"
 #include "gui_logo.hpp"
+#include "save_manager.hpp"
 
 namespace duckhero
 {

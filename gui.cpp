@@ -84,6 +84,7 @@ namespace duckhero
 					// we're still being hovered over, this means the mouse was clicked and released over this button
 					// trigger an action
 					HandleAction();
+					_clicked = false;
 					return true;
 				}
 			}

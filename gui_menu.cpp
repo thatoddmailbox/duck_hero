@@ -5,6 +5,13 @@ namespace duckhero
 	void open_tab(GUIButton * button)
 	{
 		GUIMenu * menu = (GUIMenu *) button->metadata;
+
+		if (button->text == "Save game" || button->text == "Game saved")
+		{
+			SaveManager::SaveToFile(SaveManager::GetPathForSlot(0), menu->level.get());
+			button->text = "Game saved";
+			return;
+		}
 		
 		GUIMenuTab new_tab;
 		if (button->text == "Quests")
@@ -30,19 +37,21 @@ namespace duckhero
 		};
 
 		// create top tabs
-		int tab_count = 2;
-		int button_width = 250;
+		int tab_count = 3;
+		int button_width = 200;
 		int button_space = 50;
 		int button_start_x = rect.x + ((rect.w - (tab_count * (button_width + button_space)) + button_space) / 2);
 		int button_top_spacing = 2;
 		
 		tab_quests = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quests", button_start_x + ((button_width + button_space) * 0), rect.y + button_top_spacing, button_width, 32, &open_tab));
 		tab_items = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Items", button_start_x + ((button_width + button_space) * 1), rect.y + button_top_spacing, button_width, 32, &open_tab));
+		tab_save = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Save game", button_start_x + ((button_width + button_space) * 2), rect.y + button_top_spacing, button_width, 32, &open_tab));
 
-		tab_quests->metadata = tab_items->metadata = this;
+		tab_quests->metadata = tab_items->metadata = tab_save->metadata = this;
 
 		screen_base.AddElement(tab_quests);
 		screen_base.AddElement(tab_items);
+		screen_base.AddElement(tab_save);
 
 		SDL_Rect screen_rect = rect;
 		screen_rect.y += button_top_spacing; screen_rect.h -= button_top_spacing;
@@ -70,8 +79,9 @@ namespace duckhero
 		level = other.level;
 		tab_items = other.tab_items;
 		tab_quests = other.tab_quests;
+		tab_save = other.tab_save;
 
-		tab_items->metadata = tab_quests->metadata = this;
+		tab_items->metadata = tab_quests->metadata = tab_save->metadata = this;
 	}
 
 	GUIMenu& GUIMenu::operator=(const GUIMenu& other)
@@ -84,8 +94,9 @@ namespace duckhero
 		level = other.level;
 		tab_items = other.tab_items;
 		tab_quests = other.tab_quests;
+		tab_save = other.tab_save;
 
-		tab_items->metadata = tab_quests->metadata = this;
+		tab_items->metadata = tab_quests->metadata = tab_save->metadata = this;
 
 		return *this;
 	}

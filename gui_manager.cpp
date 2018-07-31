@@ -7,9 +7,20 @@ namespace duckhero
 	GUIScreen GUIManager::menu = GUIScreen();
 	GUILevelScreen GUIManager::game = GUILevelScreen();
 
-	void menu_test(GUIButton * button)
+	void menu_new(GUIButton * button)
 	{
-		printf("yay\n");
+		GUIManager::game.SetLevel(std::shared_ptr<Level>(new Level()));
+		GUIManager::game.GetLevel()->LoadFromFile("levels/duckville.tmx");
+		GUIManager::game.GetLevel()->player.x = 4 * 32;
+		GUIManager::game.GetLevel()->player.y = 11 * 32;
+		GUIManager::current_screen = &GUIManager::game;
+	}
+
+	void menu_load(GUIButton * button)
+	{
+		GUIManager::game.SetLevel(std::shared_ptr<Level>(new Level()));
+		GUIManager::game.GetLevel()->LoadFromFile("levels/duckville.tmx");
+		SaveManager::LoadFromFile(SaveManager::GetPathForSlot(0), GUIManager::game.GetLevel().get());
 		GUIManager::current_screen = &GUIManager::game;
 	}
 
@@ -28,16 +39,13 @@ namespace duckhero
 		menu.AddElement(std::shared_ptr<GUIElement>(new GUIBG()));
 		menu.AddElement(std::shared_ptr<GUIElement>(new GUILogo()));
 
-		menu.AddElement(std::shared_ptr<GUIElement>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Test", (WINDOW_WIDTH - 200) / 2, 130, 200, 32, &menu_test)));
-		menu.AddElement(std::shared_ptr<GUIElement>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quit", (WINDOW_WIDTH - 200) / 2, 130 + ((32 + 10) * 1), 200, 32, &menu_quit)));
+		menu.AddElement(std::shared_ptr<GUIElement>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "New game", (WINDOW_WIDTH - 200) / 2, 130, 200, 32, &menu_new)));
+		menu.AddElement(std::shared_ptr<GUIElement>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Load game", (WINDOW_WIDTH - 200) / 2, 130 + ((32 + 10) * 1), 200, 32, &menu_load)));
+		menu.AddElement(std::shared_ptr<GUIElement>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quit", (WINDOW_WIDTH - 200) / 2, 130 + ((32 + 10) * 2), 200, 32, &menu_quit)));
 
 		//
 		// game
 		//
-		game.SetLevel(std::shared_ptr<Level>(new Level()));
-		game.GetLevel()->LoadFromFile("levels/duckville.tmx");
-		game.GetLevel()->player.x = 4 * 32;
-		game.GetLevel()->player.y = 11 * 32;
 	}
 
 	void GUIManager::Update(SDL_Renderer * r)
