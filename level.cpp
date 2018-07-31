@@ -88,7 +88,8 @@ namespace duckhero
 	bool Level::LoadFromFile(std::string path)
 	{
 		map_name = path;
-		layers = std::vector<Layer>();
+		layers.clear();
+		entities.clear();
 
 		// read the file into a string
 		PHYSFS_File * f = PHYSFS_openRead(path.c_str());
@@ -289,6 +290,11 @@ namespace duckhero
 					layer.data[x][y] = Tile();
 					layer.data[x][y].id = id;
 					layer.data[x][y].sheet = sheet;
+
+					if (id == TILE_FLAME_0 || id == TILE_FLAME_1)
+					{
+						layer.animated_tiles.push_back(std::pair<int, int>(x, y));
+					}
 
 					x++;
 					if (x >= width)
@@ -507,6 +513,11 @@ namespace duckhero
 
 	void Level::Update(SDL_Renderer * r)
 	{
+		for (Layer& l : layers)
+		{
+			l.Update(r);
+		}
+
 		for (std::shared_ptr<Entity>& e : entities)
 		{
 			e->Update();
@@ -594,6 +605,8 @@ namespace duckhero
 		width = 0;
 		height = 0;
 		data = nullptr;
+		animated_tiles = std::vector<std::pair<int, int>>();
+		_animation_timer = 0;
 	}
 
 	Layer::Layer(const Layer& other)
@@ -601,7 +614,9 @@ namespace duckhero
 		name = other.name;
 		width = other.width;
 		height = other.height;
+		animated_tiles = other.animated_tiles;
 		copy_into_data_from(other);
+		_animation_timer = other._animation_timer;
 	}
 
 	Layer& Layer::operator=(const Layer& other)
@@ -609,7 +624,9 @@ namespace duckhero
 		name = other.name;
 		width = other.width;
 		height = other.height;
+		animated_tiles = other.animated_tiles;
 		copy_into_data_from(other);
+		_animation_timer = other._animation_timer;
 		return *this;
 	}
 
@@ -659,6 +676,27 @@ namespace duckhero
 		else
 		{
 			return false;
+		}
+	}
+
+	void Layer::Update(SDL_Renderer * r)
+	{
+		_animation_timer++;
+		if (_animation_timer == 15)
+		{
+			_animation_timer = 0;
+			for (std::pair<int, int>& tile_coords : animated_tiles)
+			{
+				Tile * tile = &data[tile_coords.first][tile_coords.second];
+				if (tile->id == TILE_FLAME_0)
+				{
+					tile->id = TILE_FLAME_1;
+				}
+				else if (tile->id == TILE_FLAME_1)
+				{
+					tile->id = TILE_FLAME_0;
+				}
+			}
 		}
 	}
 

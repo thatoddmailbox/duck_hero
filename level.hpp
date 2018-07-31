@@ -45,6 +45,8 @@ namespace duckhero
 	class Layer
 	{
 	private:
+		int _animation_timer;
+
 		void copy_into_data_from(const Layer& other);
 	public:
 		Layer();
@@ -52,8 +54,12 @@ namespace duckhero
 		Layer& operator=(const Layer& other);
 		~Layer();
 
+		std::vector<std::pair<int, int>> animated_tiles;
+
 		bool IsFixedBottom();
 		bool IsFixedTop();
+
+		void Update(SDL_Renderer * r);
 		void Draw(SDL_Renderer * r, int x_offset, int y_offset, int start_y, int end_y);
 
 		std::string name;
