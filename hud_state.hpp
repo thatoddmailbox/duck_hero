@@ -7,7 +7,6 @@
 #include <SDL.h>
 
 #include "gui.hpp"
-#include "gui_menu.hpp"
 
 namespace duckhero
 {

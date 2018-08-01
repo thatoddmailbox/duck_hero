@@ -4,6 +4,7 @@
 #include "consts.hpp"
 #include "gui.hpp"
 #include "gui_dialogue.hpp"
+#include "gui_menu.hpp"
 #include "level.hpp"
 #include "hud_state.hpp"
 #include "text_cache.hpp"

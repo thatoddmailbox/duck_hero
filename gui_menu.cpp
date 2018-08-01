@@ -1,7 +1,19 @@
 #include "gui_menu.hpp"
 
+#include "gui_manager.hpp"
+
 namespace duckhero
 {
+	static void menu_confirm_action(GUIPrompt * prompt, std::string action)
+	{
+		GUIMenu * menu = (GUIMenu *) prompt->metadata;
+		menu->prompt = nullptr;
+		if (action == "Continue")
+		{
+			GUIManager::current_screen = &GUIManager::menu;
+		}
+	}
+
 	void open_tab(GUIButton * button)
 	{
 		GUIMenu * menu = (GUIMenu *) button->metadata;
@@ -10,6 +22,17 @@ namespace duckhero
 		{
 			SaveManager::SaveToFile(SaveManager::GetPathForSlot(0), menu->level.get());
 			button->text = "Game saved";
+			return;
+		}
+
+		if (button->text == "Back to menu")
+		{
+			std::map<std::string, GUIPromptHandler> actions;
+			actions["Continue"] = &menu_confirm_action;
+			actions["Wait, go back!"] = &menu_confirm_action;
+			std::shared_ptr<GUIPrompt> confirm_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt(nullptr, "You'll lose any unsaved progress!", actions));
+			confirm_prompt->metadata = menu;
+			menu->prompt = confirm_prompt;
 			return;
 		}
 		
@@ -46,12 +69,14 @@ namespace duckhero
 		tab_quests = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Quests", button_start_x + ((button_width + button_space) * 0), rect.y + button_top_spacing, button_width, 32, &open_tab));
 		tab_items = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Items", button_start_x + ((button_width + button_space) * 1), rect.y + button_top_spacing, button_width, 32, &open_tab));
 		tab_save = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Save game", button_start_x + ((button_width + button_space) * 2), rect.y + button_top_spacing, button_width, 32, &open_tab));
+		main_menu = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Back to menu", 0, WINDOW_HEIGHT - 32, 150, 32, &open_tab));
 
-		tab_quests->metadata = tab_items->metadata = tab_save->metadata = this;
+		tab_quests->metadata = tab_items->metadata = tab_save->metadata = main_menu->metadata = this;
 
 		screen_base.AddElement(tab_quests);
 		screen_base.AddElement(tab_items);
 		screen_base.AddElement(tab_save);
+		screen_base.AddElement(main_menu);
 
 		SDL_Rect screen_rect = rect;
 		screen_rect.y += button_top_spacing; screen_rect.h -= button_top_spacing;
@@ -80,8 +105,9 @@ namespace duckhero
 		tab_items = other.tab_items;
 		tab_quests = other.tab_quests;
 		tab_save = other.tab_save;
+		main_menu = other.main_menu;
 
-		tab_items->metadata = tab_quests->metadata = tab_save->metadata = this;
+		tab_quests->metadata = tab_items->metadata = tab_save->metadata = main_menu->metadata = this;
 	}
 
 	GUIMenu& GUIMenu::operator=(const GUIMenu& other)
@@ -95,8 +121,9 @@ namespace duckhero
 		tab_items = other.tab_items;
 		tab_quests = other.tab_quests;
 		tab_save = other.tab_save;
+		main_menu = other.main_menu;
 
-		tab_items->metadata = tab_quests->metadata = tab_save->metadata = this;
+		tab_quests->metadata = tab_items->metadata = tab_save->metadata = main_menu->metadata = this;
 
 		return *this;
 	}
@@ -118,6 +145,12 @@ namespace duckhero
 
 	void GUIMenu::Update(SDL_Renderer * r)
 	{
+		if (prompt != nullptr)
+		{
+			prompt->Update(r);
+			return;
+		}
+
 		screen_base.Update(r);
 
 		if (current_tab == GUIMenuTab::Quests)
@@ -143,6 +176,11 @@ namespace duckhero
 		else if (current_tab == GUIMenuTab::Items)
 		{
 			screen_items.Draw(r);
+		}
+
+		if (prompt != nullptr)
+		{
+			prompt->Draw(r);
 		}
 	}
 }

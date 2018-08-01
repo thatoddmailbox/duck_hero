@@ -9,6 +9,7 @@
 #include "gui.hpp"
 #include "gui_helper.hpp"
 #include "gui_items.hpp"
+#include "gui_prompt.hpp"
 #include "gui_quests.hpp"
 #include "level.hpp"
 #include "save_manager.hpp"
@@ -37,6 +38,10 @@ namespace duckhero
 		std::shared_ptr<GUIButton> tab_quests;
 		std::shared_ptr<GUIButton> tab_items;
 		std::shared_ptr<GUIButton> tab_save;
+
+		std::shared_ptr<GUIButton> main_menu;
+
+		std::shared_ptr<GUIPrompt> prompt;
 
 		GUIMenu(std::shared_ptr<Level> in_level);
 		GUIMenu(const GUIMenu& other);

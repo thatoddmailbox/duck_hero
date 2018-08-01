@@ -21,7 +21,15 @@ namespace duckhero
 		message = in_message;
 		actions = in_actions;
 		_buttons = std::vector<GUIButton>();
-		close.metadata = level_screen_pointer;
+		if (level_screen_pointer != nullptr)
+		{
+			close.enabled = true;
+			close.metadata = level_screen_pointer;
+		}
+		else
+		{
+			close.enabled = false;
+		}
 
 		metadata = nullptr;
 		metadata_2 = nullptr;
