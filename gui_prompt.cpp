@@ -63,7 +63,10 @@ namespace duckhero
 
 	void GUIPrompt::Update(SDL_Renderer * r)
 	{
-		close.Update(r);
+		if (close.enabled)
+		{
+			close.Update(r);
+		}
 
 		for (GUIButton& button : _buttons)
 		{
@@ -86,6 +89,9 @@ namespace duckhero
 			button.Draw(r);
 		}
 
-		close.Draw(r);
+		if (close.enabled)
+		{
+			close.Draw(r);
+		}
 	}
 }

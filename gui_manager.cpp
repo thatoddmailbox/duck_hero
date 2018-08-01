@@ -3,9 +3,15 @@
 namespace duckhero
 {
 	GUIScreen * GUIManager::current_screen = &menu;
+	std::shared_ptr<GUIPrompt> GUIManager::prompt = nullptr;
 
 	GUIScreen GUIManager::menu = GUIScreen();
 	GUILevelScreen GUIManager::game = GUILevelScreen();
+
+	void menu_dismiss_alert(GUIPrompt * prompt, std::string action)
+	{
+		GUIManager::prompt = nullptr;
+	}
 
 	void menu_new(GUIButton * button)
 	{
@@ -20,8 +26,17 @@ namespace duckhero
 	{
 		GUIManager::game.SetLevel(std::shared_ptr<Level>(new Level()));
 		GUIManager::game.GetLevel()->LoadFromFile("levels/duckville.tmx");
-		SaveManager::LoadFromFile(SaveManager::GetPathForSlot(0), GUIManager::game.GetLevel().get());
-		GUIManager::current_screen = &GUIManager::game;
+		if (SaveManager::LoadFromFile(SaveManager::GetPathForSlot(0), GUIManager::game.GetLevel().get()))
+		{
+			GUIManager::current_screen = &GUIManager::game;
+		}
+		else
+		{
+			std::map<std::string, GUIPromptHandler> actions;
+			actions["OK"] = &menu_dismiss_alert;
+			std::shared_ptr<GUIPrompt> alert_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt(nullptr, "You don't have a saved game to load!", actions));
+			GUIManager::prompt = alert_prompt;
+		}
 	}
 
 	void menu_quit(GUIButton * button)
@@ -51,10 +66,18 @@ namespace duckhero
 	void GUIManager::Update(SDL_Renderer * r)
 	{
 		current_screen->Update(r);
+		if (prompt)
+		{
+			prompt->Update(r);
+		}
 	}
 
 	void GUIManager::Draw(SDL_Renderer * r)
 	{
 		current_screen->Draw(r);
+		if (prompt)
+		{
+			prompt->Draw(r);
+		}
 	}
 }

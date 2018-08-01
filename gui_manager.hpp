@@ -7,6 +7,7 @@
 #include "gui_bg.hpp"
 #include "gui_level.hpp"
 #include "gui_logo.hpp"
+#include "gui_prompt.hpp"
 #include "save_manager.hpp"
 
 namespace duckhero
@@ -15,6 +16,7 @@ namespace duckhero
 	{
 	public:
 		static GUIScreen * current_screen;
+		static std::shared_ptr<GUIPrompt> prompt;
 
 		static GUIScreen menu;
 		static GUILevelScreen game;

@@ -13,7 +13,7 @@ namespace duckhero
 	{
 	public:
 		static std::string GetPathForSlot(int slot_index);
-		static void LoadFromFile(std::string path, Level * l);
+		static bool LoadFromFile(std::string path, Level * l);
 		static void SaveToFile(std::string path, Level * l);
 	};
 }

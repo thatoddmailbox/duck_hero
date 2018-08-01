@@ -11,10 +11,13 @@ namespace duckhero
 		return base_path_str + "save" + std::to_string(slot_index) + ".xml";
 	}
 
-	void SaveManager::LoadFromFile(std::string path, Level * l)
+	bool SaveManager::LoadFromFile(std::string path, Level * l)
 	{
 		pugi::xml_document save_document;
-		save_document.load_file(path.c_str());
+		if (!save_document.load_file(path.c_str()))
+		{
+			return false;
+		}
 		pugi::xml_node save_node = save_document.child("save");
 
 		pugi::xml_node player_node = save_node.child("player");
@@ -99,6 +102,8 @@ namespace duckhero
 				}
 			}
 		}
+
+		return true;
 	}
 
 	void SaveManager::SaveToFile(std::string path, Level * l)
