@@ -70081,7 +70081,7 @@
   </object>
   <object id="8" gid="4465" x="1520" y="832" width="16" height="16">
    <properties>
-    <property name="door_key" type="int" value="3"/>
+    <property name="door_key" type="int" value="4"/>
    </properties>
   </object>
   <object id="10" gid="4466" x="1488" y="832" width="16" height="16">
@@ -70108,7 +70108,7 @@ AUTHORIZED ACCESS ONLY</property>
   </object>
   <object id="15" gid="4465" x="1232" y="1344" width="16" height="16">
    <properties>
-    <property name="door_key" type="int" value="4"/>
+    <property name="door_key" type="int" value="999"/>
    </properties>
   </object>
   <object id="16" gid="4463" x="1216" y="720" width="16" height="16">

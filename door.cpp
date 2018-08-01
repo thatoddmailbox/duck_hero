@@ -84,13 +84,19 @@ namespace duckhero
 
 		if (!has_key)
 		{
-			level_screen->GetLevel()->dialogueManager.AddLine({ "", "A key is required to open this door." });
+			level_screen->GetLevel()->dialogueManager.AddLine({ "", "You don't have the key for this door." });
 			return;
 		}
 
 		ItemInfo key_info = ItemManager::items[key_id];
 		
 		level_screen->GetLevel()->dialogueManager.AddLine({ "", "You use the " + key_info.name + " to unlock the door." });
+
+		DoorInfo info;
+		info.x = x;
+		info.y = y;
+		info.map = level_screen->GetLevel()->map_name;
+		level_screen->GetLevel()->player.doors.push_back(info);
 
 		unlocked = true;
 	}

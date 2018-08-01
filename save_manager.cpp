@@ -74,6 +74,31 @@ namespace duckhero
 				}
 			}
 		}
+
+		// load new door information
+		l->player.doors.clear();
+		for (pugi::xml_node pickup_node : player_node.child("doors"))
+		{
+			// save info
+			DoorInfo info;
+			info.x = pickup_node.attribute("x").as_int();
+			info.y = pickup_node.attribute("y").as_int();
+			info.map = pickup_node.attribute("map").as_string();
+			l->player.doors.push_back(info);
+
+			// find the corresponding door entity
+			for (std::shared_ptr<Entity>& e : l->entities)
+			{
+				if (Door * p = dynamic_cast<Door *>(e.get()))
+				{
+					if (p->x == info.x && p->y == info.y)
+					{
+						p->unlocked = true;
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	void SaveManager::SaveToFile(std::string path, Level * l)
@@ -115,7 +140,16 @@ namespace duckhero
 			pugi::xml_node pickup_node = pickups_node.append_child("pickup");
 			pickup_node.append_attribute("x").set_value(p.x);
 			pickup_node.append_attribute("y").set_value(p.y);
-			pickup_node.append_attribute("name").set_value(p.map.c_str());
+			pickup_node.append_attribute("map").set_value(p.map.c_str());
+		}
+
+		pugi::xml_node doors_node = player_node.append_child("doors");
+		for (DoorInfo& p : l->player.doors)
+		{
+			pugi::xml_node door_node = doors_node.append_child("door");
+			door_node.append_attribute("x").set_value(p.x);
+			door_node.append_attribute("y").set_value(p.y);
+			door_node.append_attribute("map").set_value(p.map.c_str());
 		}
 
 		save_document.save_file(path.c_str());

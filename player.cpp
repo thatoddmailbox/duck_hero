@@ -8,7 +8,9 @@ namespace duckhero
 
 		current_quests = std::vector<std::string>();
 		completed_quests = std::vector<std::string>();
+		doors = std::vector<DoorInfo>();
 		items = std::vector<Item>();
+		pickups = std::vector<PickupInfo>();
 
 		walking = false;
 		animation_frame = 0;

@@ -9,6 +9,13 @@
 
 namespace duckhero
 {
+	struct DoorInfo
+	{
+		int x;
+		int y;
+		std::string map;
+	};
+
 	class Door : public Entity
 	{
 	private:
