@@ -28,13 +28,13 @@ namespace duckhero
 		metadata_3 = 0;
 
 		int window_margin = 10;
-		int text_spacing = 16;
+		int text_height = (in_message.size() > 20 ? 32 : 16);
 		int button_x = 10;
 		int button_height = 32;
 		int button_margin = 10;
 
 		int total_width = button_x + GUI_PROMPT_CONTENT_WIDTH + button_x;
-		int total_height = window_margin + text_spacing + window_margin + ((button_height + button_margin) * actions.size());
+		int total_height = window_margin + text_height + window_margin + ((button_height + button_margin) * actions.size());
 
 		window_rect = SDL_Rect{
 			(WINDOW_WIDTH - total_width) / 2,
@@ -43,7 +43,7 @@ namespace duckhero
 			total_height
 		};
 
-		int button_y = window_margin + text_spacing + window_margin;
+		int button_y = window_margin + text_height + window_margin;
 		for (std::map<std::string, GUIPromptHandler>::iterator it = actions.begin(); it != actions.end(); ++it)
 		{
 			GUIButton button = GUIButton(GUIButtonStyle::OldDarkBrownStyle, it->first, window_rect.x + button_x, window_rect.y + button_y, GUI_PROMPT_CONTENT_WIDTH, button_height, &prompt_handle_action);

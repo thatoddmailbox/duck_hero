@@ -109,9 +109,9 @@ namespace duckhero
 		hud.Update(r, (shop == nullptr && prompt == nullptr && work == nullptr));
 		GUIScreen::Update(r);
 
-		if (work != nullptr)
+		if (work != nullptr && prompt == nullptr)
 		{
-			work->Update(r);
+			work->Update(r, this);
 		}
 		if (shop != nullptr)
 		{
@@ -126,10 +126,10 @@ namespace duckhero
 	void GUILevelScreen::Draw(SDL_Renderer * r)
 	{
 		_level->Draw(r, camera_x, camera_y);
-		if (shop == nullptr)
+		if (shop == nullptr && work == nullptr)
 		{
-			// only draw the hud here if the shop is closed
-			// that way, when the shop is open, we draw the hud above it
+			// only draw the hud here if the shop and work gui are both closed
+			// that way, when they are open, we draw the hud above them
 			// then the user can see the coin count
 			hud.Draw(r, (prompt == nullptr));
 		}
@@ -142,11 +142,15 @@ namespace duckhero
 		if (shop != nullptr)
 		{
 			shop->Draw(r);
-			hud.Draw(r, (shop == nullptr && prompt == nullptr));
 		}
 		if (prompt != nullptr)
 		{
 			prompt->Draw(r);
+		}
+
+		if (work != nullptr || shop != nullptr)
+		{
+			hud.Draw(r, false);
 		}
 	}
 }

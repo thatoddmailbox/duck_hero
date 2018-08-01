@@ -6,6 +6,7 @@ namespace duckhero
 	{
 		width = height = 0;
 		have_hints = false;
+		mouse_down = false;
 		horizontal_hints = std::vector<std::vector<int>>();
 		vertical_hints = std::vector<std::vector<int>>();
 		data = std::vector<std::vector<NonogramCell>>();
@@ -24,8 +25,8 @@ namespace duckhero
 
 			for (int y = 0; y < height; y++)
 			{
-				data[y].push_back(NonogramCell::Empty);
-				solution[y].push_back(NonogramCell::Empty);
+				data[x].push_back(NonogramCell::Empty);
+				solution[x].push_back(NonogramCell::Empty);
 			}
 		}
 	}
@@ -43,7 +44,7 @@ namespace duckhero
 			int current_group = 0;
 			for (int y = 0; y < height; y++)
 			{
-				NonogramCell cell_value = data[x][y];
+				NonogramCell cell_value = solution[x][y];
 
 				if (cell_value == NonogramCell::Filled)
 				{
@@ -51,9 +52,17 @@ namespace duckhero
 				}
 				else
 				{
-					clues_for_column.push_back(current_group);
-					current_group = 0;
+					if (current_group > 0)
+					{
+						clues_for_column.push_back(current_group);
+						current_group = 0;
+					}
 				}
+			}
+
+			if (current_group > 0)
+			{
+				clues_for_column.push_back(current_group);
 			}
 
 			horizontal_hints.push_back(clues_for_column);
@@ -67,7 +76,7 @@ namespace duckhero
 			int current_group = 0;
 			for (int x = 0; x < width; x++)
 			{
-				NonogramCell cell_value = data[x][y];
+				NonogramCell cell_value = solution[x][y];
 
 				if (cell_value == NonogramCell::Filled)
 				{
@@ -75,13 +84,44 @@ namespace duckhero
 				}
 				else
 				{
-					clues_for_row.push_back(current_group);
-					current_group = 0;
+					if (current_group > 0)
+					{
+						clues_for_row.push_back(current_group);
+						current_group = 0;
+					}
 				}
+			}
+
+			if (current_group > 0)
+			{
+				clues_for_row.push_back(current_group);
 			}
 
 			vertical_hints.push_back(clues_for_row);
 		}
+	}
+
+	bool Nonogram::IsSolved()
+	{
+		for (int x = 0; x < width; x++)
+		{
+			for (int y = 0; y < height; y++)
+			{
+				NonogramCell solution_cell = solution[x][y];
+				NonogramCell data_cell = data[x][y];
+				if (data_cell == NonogramCell::Flagged)
+				{
+					data_cell = NonogramCell::Empty;
+				}
+
+				if (data_cell != solution_cell)
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	std::vector<std::vector<int>>& Nonogram::GetHorizontalHints()

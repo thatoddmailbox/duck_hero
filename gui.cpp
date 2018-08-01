@@ -154,7 +154,12 @@ namespace duckhero
 			{
 				continue;
 			}
-			(*it)->Update(r);
+			if ((*it)->Update(r))
+			{
+				// if the element reports being triggered, stop now
+				// this protects against a use-after-free when a button is clicked and that causes the screen to be freed
+				return;
+			}
 		}
 	}
 

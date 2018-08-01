@@ -24,11 +24,15 @@ namespace duckhero
 		std::vector<std::vector<int>> horizontal_hints;
 		std::vector<std::vector<int>> vertical_hints;
 
+		bool mouse_down;
+
 		Nonogram();
 
 		void CreateDataArray();
 
 		void GenerateHints();
+
+		bool IsSolved();
 
 		std::vector<std::vector<int>>& GetHorizontalHints();
 		std::vector<std::vector<int>>& GetVerticalHints();

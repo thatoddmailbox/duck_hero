@@ -6,6 +6,7 @@
 #include "consts.hpp"
 #include "gui.hpp"
 #include "gui_helper.hpp"
+#include "gui_nonogram.hpp"
 #include "nonogram.hpp"
 #include "text_cache.hpp"
 
@@ -15,7 +16,6 @@ namespace duckhero
 
 	enum GUIWorkState
 	{
-		Select,
 		Puzzle,
 		MissingPermit
 	};
@@ -30,11 +30,16 @@ namespace duckhero
 
 		GUIWorkState state;
 		Nonogram nonogram;
+		SDL_Rect nonogram_rect;
 		SDL_Rect rect;
+
+		int puzzle_reward;
 
 		GUIWork(void * level_screen_pointer);
 
-		void Update(SDL_Renderer * r);
+		void GenerateNewNonogram();
+
+		void Update(SDL_Renderer * r, void * level_screen_pointer);
 		void Draw(SDL_Renderer * r);
 	};
 }
