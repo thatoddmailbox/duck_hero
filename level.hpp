@@ -81,6 +81,7 @@ namespace duckhero
 		DialogueManager dialogueManager;
 		CollisionMode ** collision_map;
 		SDL_Texture * interact_texture;
+		SDL_Rect end_trigger_rect;
 
 		Level();
 		Level(const Level& other);

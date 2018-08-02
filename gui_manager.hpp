@@ -5,6 +5,7 @@
 
 #include "gui.hpp"
 #include "gui_bg.hpp"
+#include "gui_credits.hpp"
 #include "gui_level.hpp"
 #include "gui_logo.hpp"
 #include "gui_prompt.hpp"
@@ -20,6 +21,7 @@ namespace duckhero
 
 		static GUIScreen menu;
 		static GUILevelScreen game;
+		static GUIScreen credits;
 
 		static void Init();
 		static void Update(SDL_Renderer * r);

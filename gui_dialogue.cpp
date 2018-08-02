@@ -1,5 +1,7 @@
 #include "gui_dialogue.hpp"
 
+#include "gui_manager.hpp"
+
 namespace duckhero
 {
 	void accept_quest(GUIButton * button)
@@ -127,6 +129,10 @@ namespace duckhero
 						dialogueManager->showingLine = false;
 					}
 				}
+				else if (dialogueManager->currentLine.special == DialogueLineSpecial::CreditsNextLine)
+				{
+					GUIManager::current_screen = &GUIManager::credits;
+				}
 			}
 
 			state->action_screen->Update(r);
@@ -155,7 +161,7 @@ namespace duckhero
 				state->cached_text_rect.y = frame_rect.y + 10 + (have_character ? (18 + 5) : 0);
 				SDL_RenderCopy(r, state->cached_text_texture, NULL, &state->cached_text_rect);
 			}
-			if (state->cached_instruction_texture != nullptr && dialogueManager->currentLine.special == DialogueLineSpecial::NormalLine)
+			if (state->cached_instruction_texture != nullptr && (dialogueManager->currentLine.special == DialogueLineSpecial::NormalLine || dialogueManager->currentLine.special == DialogueLineSpecial::CreditsNextLine))
 			{
 				state->cached_instruction_rect.x = frame_rect.x + 10;
 				state->cached_instruction_rect.y = frame_rect.y + (frame_rect.h - state->cached_instruction_rect.h - 10);

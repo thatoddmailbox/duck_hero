@@ -15,7 +15,8 @@ namespace duckhero
 	enum DialogueLineSpecial
 	{
 		NormalLine = 0,
-		QuestPromptLine
+		QuestPromptLine,
+		CreditsNextLine
 	};
 
 	struct DialogueLine

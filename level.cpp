@@ -322,58 +322,68 @@ namespace duckhero
 						int tile_x = (x) * 2;
 						int tile_y = (y - 16) * 2;
 
-						for (pugi::xml_node property_node : object_node.child("properties").children("property"))
+						if (object_node.attribute("gid"))
 						{
-							const char * property_name = property_node.attribute("name").as_string();
-
-							if (strcmp(property_name, "npc") == 0)
+							for (pugi::xml_node property_node : object_node.child("properties").children("property"))
 							{
-								const char * property_value = property_node.attribute("value").as_string();
+								const char * property_name = property_node.attribute("name").as_string();
 
-								NPC * npc = new NPC();
-								npc->LoadXMLInfo(std::string(property_value));
-								npc->x = tile_x;
-								npc->y = tile_y;
-								entities.push_back(std::shared_ptr<Entity>(npc));
-							}
-							else if (strcmp(property_name, "item") == 0)
-							{
-								int property_value = property_node.attribute("value").as_int();
+								if (strcmp(property_name, "npc") == 0)
+								{
+									const char * property_value = property_node.attribute("value").as_string();
 
-								Pickup * pickup = new Pickup();
-								pickup->x = tile_x;
-								pickup->y = tile_y;
-								pickup->item_id = property_value;
-								entities.push_back(std::shared_ptr<Entity>(pickup));
-							}
-							else if (strcmp(property_name, "sign") == 0)
-							{
-								Sign * sign = new Sign();
-								sign->x = tile_x;
-								sign->y = tile_y;
-								sign->text = std::string(property_node.attribute("value").as_string());
-								entities.push_back(std::shared_ptr<Entity>(sign));
-							}
-							else if (strcmp(property_name, "door_key") == 0)
-							{
-								int property_value = property_node.attribute("value").as_int();
+									NPC * npc = new NPC();
+									npc->LoadXMLInfo(std::string(property_value));
+									npc->x = tile_x;
+									npc->y = tile_y;
+									entities.push_back(std::shared_ptr<Entity>(npc));
+								}
+								else if (strcmp(property_name, "item") == 0)
+								{
+									int property_value = property_node.attribute("value").as_int();
 
-								Door * door = new Door();
-								door->x = tile_x;
-								door->y = tile_y;
-								door->key_id = property_value;
-								entities.push_back(std::shared_ptr<Entity>(door));
-							}
-							else if (strcmp(property_name, "working_facing_right") == 0)
-							{
-								bool property_value = property_node.attribute("value").as_bool();
+									Pickup * pickup = new Pickup();
+									pickup->x = tile_x;
+									pickup->y = tile_y;
+									pickup->item_id = property_value;
+									entities.push_back(std::shared_ptr<Entity>(pickup));
+								}
+								else if (strcmp(property_name, "sign") == 0)
+								{
+									Sign * sign = new Sign();
+									sign->x = tile_x;
+									sign->y = tile_y;
+									sign->text = std::string(property_node.attribute("value").as_string());
+									entities.push_back(std::shared_ptr<Entity>(sign));
+								}
+								else if (strcmp(property_name, "door_key") == 0)
+								{
+									int property_value = property_node.attribute("value").as_int();
 
-								WorkingMachine * working_machine = new WorkingMachine();
-								working_machine->x = tile_x;
-								working_machine->y = tile_y;
-								working_machine->facing_right = property_value;
-								entities.push_back(std::shared_ptr<Entity>(working_machine));
+									Door * door = new Door();
+									door->x = tile_x;
+									door->y = tile_y;
+									door->key_id = property_value;
+									entities.push_back(std::shared_ptr<Entity>(door));
+								}
+								else if (strcmp(property_name, "working_facing_right") == 0)
+								{
+									bool property_value = property_node.attribute("value").as_bool();
+
+									WorkingMachine * working_machine = new WorkingMachine();
+									working_machine->x = tile_x;
+									working_machine->y = tile_y;
+									working_machine->facing_right = property_value;
+									entities.push_back(std::shared_ptr<Entity>(working_machine));
+								}
 							}
+						}
+						else
+						{
+							end_trigger_rect.x = tile_x;
+							end_trigger_rect.y = tile_y;
+							end_trigger_rect.w = ((int) object_node.attribute("width").as_double()) * 2;
+							end_trigger_rect.h = ((int) object_node.attribute("height").as_double()) * 2;
 						}
 					}
 				}
@@ -481,6 +491,12 @@ namespace duckhero
 		e->x += x_offset;
 		e->y += y_offset;
 
+		if (SDL_HasIntersection(&entity_box, &end_trigger_rect))
+		{
+			dialogueManager.LoadXMLScript("duckville/end");
+			dialogueManager.lines[dialogueManager.lines.size() - 1].special = DialogueLineSpecial::CreditsNextLine;
+		}
+
 		return true;
 	}
 
@@ -523,7 +539,10 @@ namespace duckhero
 			e->Update();
 		}
 
-		player.Update();
+		if (!dialogueManager.showingLine)
+		{
+			player.Update();
+		}
 	}
 
 	void Level::Draw(SDL_Renderer * r, int x_offset, int y_offset)

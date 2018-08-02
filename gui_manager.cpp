@@ -7,6 +7,7 @@ namespace duckhero
 
 	GUIScreen GUIManager::menu = GUIScreen();
 	GUILevelScreen GUIManager::game = GUILevelScreen();
+	GUIScreen GUIManager::credits = GUIScreen();
 
 	void menu_dismiss_alert(GUIPrompt * prompt, std::string action)
 	{
@@ -46,6 +47,11 @@ namespace duckhero
 		SDL_PushEvent(&quit_event);
 	}
 
+	void credits_back(GUIButton * button)
+	{
+		GUIManager::current_screen = &GUIManager::menu;
+	}
+
 	void GUIManager::Init()
 	{
 		//
@@ -61,6 +67,12 @@ namespace duckhero
 		//
 		// game
 		//
+
+		//
+		// credits
+		//
+		credits.AddElement(std::shared_ptr<GUIElement>(new GUICredits()));
+		credits.AddElement(std::shared_ptr<GUIElement>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Back", (WINDOW_WIDTH - 200) / 2, WINDOW_HEIGHT - 32 - 10, 200, 32, &credits_back)));
 	}
 
 	void GUIManager::Update(SDL_Renderer * r)

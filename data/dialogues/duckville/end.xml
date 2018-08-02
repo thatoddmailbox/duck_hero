@@ -1,0 +1,74 @@
+<dialogue>
+	<line>
+		<character>???</character>
+		<text>Hey! Wait a second!</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>I know you! You're Ducky!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Quack?</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>What are you doing here?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Oh, I was on my way to save a city from a robot uprising.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Nothing big.</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>Wait, what?</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>What about Zap? Or Duck Enterprises?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>What? I don't know what you're talking about.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>I just sort of appeared here. And now the people of Duckville need me to defend them from the robots!</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>Uhhh...are you're sure you're Ducky?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>100%! I'm Ducky Flippers, ultimate ruler of the universe! And a little offended that you don't recognize me.</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>So, I--wait, Flippers?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Yes. Bow to your leader, you--who even are you?</text>
+	</line>
+	<line>
+		<character>Zala</character>
+		<text>Uh...I'm Zala the Zum. I just took the DuckLine Emergency Express out of Duck Enterprises, and it stopped here for some reason. And I think you should come with me.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>I'm busy with the robot uprising thing, sorry.</text>
+	</line>
+	<line>
+		<character>Zala</character>
+		<text>Yeah, I'm not so sure about the whole robot uprising thing. Duck City's looking pretty abandoned.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Really? Ok, I guess I'll go with you then.</text>
+	</line>
+</dialogue>

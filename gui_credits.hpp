@@ -1,21 +1,18 @@
-#ifndef _GUI_BG_HPP
-#define _GUI_BG_HPP
+#ifndef _GUI_CREDITS_HPP
+#define _GUI_CREDITS_HPP
 
 #include "gui.hpp"
+#include "text_cache.hpp"
 
 #include <SDL.h>
 
 namespace duckhero
 {
-	class GUIBG : public GUIElement
+	class GUICredits : public GUIElement
 	{
 	private:
-		SDL_Texture * _bg_texture;
-		SDL_Rect _bg_rect;
-		int _bg_x;
+		TextCache _text_cache = TextCache(GUI_FONT_NAME, 24, { 255, 255, 255, 255 }, WINDOW_WIDTH);
 	public:
-		GUIBG();
-		~GUIBG();
 		bool Update(SDL_Renderer * r) override;
 		void Draw(SDL_Renderer * r) override;
 		void HandleAction() override;
