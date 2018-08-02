@@ -16,6 +16,7 @@ namespace duckhero
 		y = other.y;
 		health = other.health;
 
+		path = other.path;
 		name = other.name;
 		shop_name = other.shop_name;
 		quests = other.quests;
@@ -30,6 +31,7 @@ namespace duckhero
 		y = other.y;
 		health = other.health;
 
+		path = other.path;
 		name = other.name;
 		shop_name = other.shop_name;
 		quests = other.quests;
@@ -49,16 +51,18 @@ namespace duckhero
 
 	std::string NPC::GetSpritePath()
 	{
-		return "characters/ducky.png";
+		return "characters/" + path + ".png";
 	}
 
 	SDL_Rect NPC::GetCollisionBox(int x, int y)
 	{
-		return Entity::GetCollisionBox(x, y);
+		return { x, y + 4, TILE_WIDTH, 28 };
 	}
 
-	bool NPC::LoadXMLInfo(std::string path)
+	bool NPC::LoadXMLInfo(std::string in_path)
 	{
+		path = in_path;
+
 		std::string full_path = "npcs/" + path + ".xml";
 
 		// read the file into a string

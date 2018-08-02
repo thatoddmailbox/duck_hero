@@ -15,6 +15,7 @@ namespace duckhero
 	private:
 		SDL_Texture * _texture;
 	public:
+		std::string path;
 		std::string name;
 		std::string shop_name;
 		std::vector<Quest> quests;
@@ -29,7 +30,7 @@ namespace duckhero
 
 		SDL_Rect GetCollisionBox(int x, int y) override;
 
-		bool LoadXMLInfo(std::string path);
+		bool LoadXMLInfo(std::string in_path);
 
 		bool HasShop();
 		bool HasQuests();
