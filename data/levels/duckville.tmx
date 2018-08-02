@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="20">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="26">
  <tileset firstgid="1" name="base" tilewidth="16" tileheight="16" spacing="1" tilecount="1767" columns="57">
   <image source="../tiles/base.png" width="968" height="526"/>
  </tileset>
@@ -14140,9 +14140,9 @@
    <tile/>
    <tile/>
    <tile gid="719"/>
-   <tile gid="720"/>
-   <tile gid="720"/>
-   <tile gid="720"/>
+   <tile gid="721"/>
+   <tile gid="579"/>
+   <tile gid="719"/>
    <tile gid="721"/>
    <tile/>
    <tile/>
@@ -27964,7 +27964,7 @@
    <tile gid="644"/>
    <tile gid="587"/>
    <tile gid="644"/>
-   <tile gid="587"/>
+   <tile/>
    <tile/>
    <tile gid="587"/>
    <tile/>
@@ -28063,8 +28063,8 @@
    <tile/>
    <tile gid="587"/>
    <tile gid="644"/>
-   <tile gid="587"/>
-   <tile gid="644"/>
+   <tile/>
+   <tile/>
    <tile gid="587"/>
    <tile gid="644"/>
    <tile gid="587"/>
@@ -28162,8 +28162,8 @@
    <tile/>
    <tile/>
    <tile gid="644"/>
-   <tile gid="587"/>
-   <tile gid="644"/>
+   <tile/>
+   <tile/>
    <tile gid="587"/>
    <tile gid="644"/>
    <tile gid="587"/>
@@ -28261,8 +28261,8 @@
    <tile gid="3301"/>
    <tile/>
    <tile/>
-   <tile gid="587"/>
-   <tile gid="644"/>
+   <tile/>
+   <tile/>
    <tile gid="587"/>
    <tile gid="644"/>
    <tile gid="587"/>
@@ -28361,7 +28361,7 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="644"/>
+   <tile/>
    <tile gid="587"/>
    <tile gid="644"/>
    <tile gid="587"/>
@@ -64161,7 +64161,7 @@
    <tile/>
    <tile gid="4460"/>
    <tile gid="4460"/>
-   <tile gid="4460"/>
+   <tile/>
    <tile gid="4460"/>
    <tile gid="4460"/>
    <tile/>
@@ -68080,105 +68080,6 @@
    <tile/>
    <tile gid="4460"/>
    <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
    <tile/>
    <tile/>
    <tile gid="4460"/>
@@ -68203,7 +68104,7 @@
    <tile/>
    <tile gid="4460"/>
    <tile/>
-   <tile gid="4460"/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -68256,28 +68157,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="4460"/>
-   <tile gid="4460"/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile gid="4460"/>
    <tile/>
    <tile/>
@@ -68286,21 +68165,19 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile gid="4460"/>
    <tile/>
    <tile/>
    <tile/>
+   <tile gid="4460"/>
+   <tile gid="4460"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="4460"/>
    <tile/>
    <tile/>
    <tile/>
@@ -68328,11 +68205,8 @@
    <tile/>
    <tile gid="4460"/>
    <tile/>
-   <tile gid="4460"/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile gid="4460"/>
    <tile/>
    <tile/>
    <tile/>
@@ -68365,6 +68239,47 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="4460"/>
    <tile/>
    <tile/>
@@ -68377,9 +68292,94 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
    <tile gid="4460"/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="4460"/>
    <tile/>
    <tile/>
    <tile/>
@@ -70056,9 +70056,6 @@
   </data>
  </layer>
  <objectgroup name="ETC">
-  <properties>
-   <property name="door" type="int" value="204"/>
-  </properties>
   <object id="1" gid="4463" x="392" y="216" width="16" height="16">
    <properties>
     <property name="npc" value="duckville/joe"/>
@@ -70108,7 +70105,7 @@ AUTHORIZED ACCESS ONLY</property>
   </object>
   <object id="15" gid="4465" x="1232" y="1344" width="16" height="16">
    <properties>
-    <property name="door_key" type="int" value="999"/>
+    <property name="door_key" type="int" value="14"/>
    </properties>
   </object>
   <object id="16" gid="4463" x="1216" y="720" width="16" height="16">
@@ -70129,6 +70126,36 @@ AUTHORIZED ACCESS ONLY</property>
   <object id="19" gid="4463" x="1440" y="752" width="16" height="16">
    <properties>
     <property name="working_facing_right" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="20" gid="4463" x="1504" y="752" width="16" height="16">
+   <properties>
+    <property name="npc" value="duckville/rb157"/>
+   </properties>
+  </object>
+  <object id="21" gid="4464" x="544" y="1392" width="16" height="16">
+   <properties>
+    <property name="item" value="12"/>
+   </properties>
+  </object>
+  <object id="22" gid="4465" x="128" y="672" width="16" height="16">
+   <properties>
+    <property name="door_key" type="int" value="12"/>
+   </properties>
+  </object>
+  <object id="23" gid="4463" x="128" y="704" width="16" height="16">
+   <properties>
+    <property name="npc" value="duckville/officer"/>
+   </properties>
+  </object>
+  <object id="24" gid="4465" x="416" y="1312" width="16" height="16">
+   <properties>
+    <property name="door_key" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="25" gid="4465" x="1232" y="1376" width="16" height="16">
+   <properties>
+    <property name="door_key" type="int" value="8"/>
    </properties>
   </object>
  </objectgroup>

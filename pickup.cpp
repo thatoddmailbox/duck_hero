@@ -58,7 +58,19 @@ namespace duckhero
 		}
 		else
 		{
-			return Entity::GetCollisionBox(x, y);
+			// totally not a hack
+			if (item_id == 6)
+			{
+				return { x + 9, y + 1, 14, 30 };
+			}
+			else if (item_id == 12)
+			{
+				return { x , y + 8, TILE_WIDTH, 16 };
+			}
+			else
+			{
+				return Entity::GetCollisionBox(x, y);
+			}
 		}
 	}
 

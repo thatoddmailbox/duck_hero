@@ -1,0 +1,26 @@
+<dialogue>
+	<line>
+		<character>Mayor</character>
+		<text>Though, actually, there's one more thing you could do for me...</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>Could you get me a Security Report from my Head of Security?</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>I'll give you a key that will let you go through the barricade we have to Duck City.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>You'll still have to get an Exit Permit, but I'm sure you can find one somewhere.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>I can't really get you a new one because the robots shut down the permit system.</text>
+	</line>
+	<line>
+		<character>Mayor</character>
+		<text>So, get a Security Report from my Head of Security (he should be patrolling the barricades or something) for an Exit Key. Deal?</text>
+	</line>
+</dialogue>

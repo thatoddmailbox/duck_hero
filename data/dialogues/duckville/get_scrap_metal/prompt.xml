@@ -1,0 +1,46 @@
+<dialogue>
+	<line>
+		<character>???</character>
+		<text>Hello.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Uh...hello.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>I am RB-157.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>I am a robot.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Uh...I think this place is supposed to be under control by robots because of an uprising or something.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>Hm. Interesting. That's rather unfortunate.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>I'm sure this is a misunderstanding.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>If you would like, I could help you regain control from the robots.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Well, I need an Exit Permit so I can go to Duck City and confront them.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>I am capable of fabricating an Exit Permit for you; however, I require Scrap Metal.</text>
+	</line>
+	<line>
+		<character>RB-157</character>
+		<text>Please acquire some Scrap Metal for me and then I shall create an Exit Permit.</text>
+	</line>
+</dialogue>

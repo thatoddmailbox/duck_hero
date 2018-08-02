@@ -1,0 +1,28 @@
+<quest>
+	<name>Get paper</name>
+	<npc>duckville/joe</npc>
+	<requirements>
+		<requirement type="quest">
+			<data>duckville/get_security_report</data>
+		</requirement>
+	</requirements>
+	<dialogue>
+		<prompt>duckville/get_security_paper/prompt</prompt>
+		<accept>duckville/get_security_paper/accept</accept>
+		<decline>duckville/get_security_paper/decline</decline>
+		<progress>duckville/get_security_paper/progress</progress>
+		<complete>duckville/get_security_paper/complete</complete>
+	</dialogue>
+	<tasks>
+		<task type="item" consumed="true">
+			<display>Get a Sheet of Paper for the Security Officer</display>
+			<data>10</data>
+		</task>
+	</tasks>
+	<rewards>
+		<reward type="item">
+			<data>13</data>
+		</reward>
+	</rewards>
+	<next></next>
+</quest>

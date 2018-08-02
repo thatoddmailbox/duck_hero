@@ -6,22 +6,22 @@
 	</item>
 	<item>
 		<id>2</id>
-		<name>Fishing rod</name>
+		<name>Fishing Rod</name>
 		<desc>Traditionally used to catch fish.</desc>
 	</item>
 	<item>
 		<id>3</id>
-		<name>Mysterious key</name>
+		<name>Mysterious Key</name>
 		<desc>Probably used to unlock something.</desc>
 	</item>
 	<item>
 		<id>4</id>
-		<name>SUPER mysterious key</name>
+		<name>SUPER Mysterious Key</name>
 		<desc>Probably used to unlock something.</desc>
 	</item>
 	<item>
 		<id>5</id>
-		<name>Can of fish bait</name>
+		<name>Can of Fish Bait</name>
 		<desc>Food that fish hopefully like.</desc>
 	</item>
 	<item>
@@ -47,6 +47,31 @@
 	<item>
 		<id>10</id>
 		<name>Sheet of Paper</name>
-		<desc>Used to write things on.</desc>
+		<desc>A blank piece of paper.</desc>
+	</item>
+	<item>
+		<id>11</id>
+		<name>Robot Processing Unit</name>
+		<desc>Heavily scratched and scuffed, seems to be used.</desc>
+	</item>
+	<item>
+		<id>12</id>
+		<name>High Security Access Card</name>
+		<desc>Grants access to High Security areas.</desc>
+	</item>
+	<item>
+		<id>13</id>
+		<name>Security Report</name>
+		<desc>A report about security in Duckville, prepared by the Head of Security.</desc>
+	</item>
+	<item>
+		<id>14</id>
+		<name>Exit Key</name>
+		<desc>Lets you get through the first round of barricades to Duck City. Not to be confused with an Exit Permit.</desc>
+	</item>
+	<item>
+		<id>15</id>
+		<name>Scrap Metal</name>
+		<desc>Was something useful at some point in its life.</desc>
 	</item>
 </items>

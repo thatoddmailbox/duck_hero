@@ -1,0 +1,22 @@
+<dialogue>
+	<line>
+		<character>???</character>
+		<text>...</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>Retrieving satellite lock status...</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>Beginning initialization process...</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>Fatal error!</text>
+	</line>
+	<line>
+		<character>???</character>
+		<text>The Robot Processing Unit has failed. Please purchase a new RPU to continue.</text>
+	</line>
+</dialogue>

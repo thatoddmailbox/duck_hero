@@ -36,7 +36,7 @@ namespace duckhero
 		metadata_3 = 0;
 
 		int window_margin = 10;
-		int text_height = (in_message.size() > 20 ? 32 : 16);
+		int text_height = (in_message.size() > 25 ? 32 : 16);
 		int button_x = 10;
 		int button_height = 32;
 		int button_margin = 10;

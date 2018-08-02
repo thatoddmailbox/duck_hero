@@ -1,0 +1,12 @@
+<npc>
+	<name>Security Officer</name>
+	<shop></shop>
+	<quests>
+		<quest>duckville/get_security_paper</quest>
+	</quests>
+	<idle>
+		<line>Sorry, I can't talk right now. I'm busy keeping Duckville safe.</line>
+		<line>When I'm patrolling, there's no way any robots could sneak by!</line>
+		<line>Wow, patrolling is tough work!</line>
+	</idle>
+</npc>

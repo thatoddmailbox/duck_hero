@@ -1,0 +1,42 @@
+<dialogue>
+	<line>
+		<character>Security Officer</character>
+		<text>HALT!</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>...</text>
+	</line>
+	<line>
+		<character>Security Officer</character>
+		<text>Oh! I'm sorry, I didn't realize you're a duck. Please excuse me.</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Uh...ok...</text>
+	</line>
+	<line>
+		<character>Security Officer</character>
+		<text>What can I do for you?</text>
+	</line>
+	<line>
+		<character>$PLAYER</character>
+		<text>Well...the mayor asked me for a Security Report, do you have one?</text>
+	</line>
+	<line>
+		<character>Security Officer</character>
+		<text>Sure, but there's just one thing...</text>
+	</line>
+	<line>
+		<character>Security Officer</character>
+		<text>I'd need you to get me a piece of paper so that I can write the next report.</text>
+	</line>
+	<line>
+		<character>Security Officer</character>
+		<text>It's the standard procedure, you see.</text>
+	</line>
+	<line>
+		<character>Security Officer</character>
+		<text>Get me the piece of a paper and then I'll give you my Security Report.</text>
+	</line>
+</dialogue>

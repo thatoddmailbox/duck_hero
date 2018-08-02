@@ -1,0 +1,20 @@
+<quest>
+	<name>Get RPU</name>
+	<npc>duckville/rb157</npc>
+	<requirements></requirements>
+	<dialogue>
+		<prompt>duckville/get_rpu/prompt</prompt>
+		<accept>duckville/get_rpu/accept</accept>
+		<decline>duckville/get_rpu/decline</decline>
+		<progress>duckville/get_rpu/progress</progress>
+		<complete>duckville/get_rpu/complete</complete>
+	</dialogue>
+	<tasks>
+		<task type="item" consumed="true">
+			<display>Get a new Robot Processing Unit for the mysterious robot</display>
+			<data>11</data>
+		</task>
+	</tasks>
+	<rewards></rewards>
+	<next>duckville/get_scrap_metal</next>
+</quest>

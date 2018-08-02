@@ -1,0 +1,24 @@
+<quest>
+	<name>Get scrap metal</name>
+	<npc>duckville/rb157</npc>
+	<requirements></requirements>
+	<dialogue>
+		<prompt>duckville/get_scrap_metal/prompt</prompt>
+		<accept>duckville/get_scrap_metal/accept</accept>
+		<decline>duckville/get_scrap_metal/decline</decline>
+		<progress>duckville/get_scrap_metal/progress</progress>
+		<complete>duckville/get_scrap_metal/complete</complete>
+	</dialogue>
+	<tasks>
+		<task type="item" consumed="true">
+			<display>Get some Scrap Metal for RB-157</display>
+			<data>15</data>
+		</task>
+	</tasks>
+	<rewards>
+		<reward type="item">
+			<data>8</data>
+		</reward>
+	</rewards>
+	<next></next>
+</quest>

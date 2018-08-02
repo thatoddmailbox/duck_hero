@@ -12,5 +12,13 @@
 			<id>10</id>
 			<price>100</price>
 		</item>
+		<item>
+			<id>11</id>
+			<price>1000</price>
+		</item>
+		<item>
+			<id>15</id>
+			<price>300</price>
+		</item>
 	</items>
 </shop>

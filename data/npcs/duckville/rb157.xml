@@ -1,0 +1,11 @@
+<npc>
+	<name>RB-157</name>
+	<shop></shop>
+	<quests>
+		<quest>duckville/get_rpu</quest>
+		<quest>duckville/get_scrap_metal</quest>
+	</quests>
+	<idle>
+		<line>*random beeping noises*</line>
+	</idle>
+</npc>
