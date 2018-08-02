@@ -34,7 +34,7 @@ namespace duckhero
 		std::map<std::string, GUIPromptHandler> actions;
 		actions["Buy"] = &shop_confirm_action;
 		actions["Cancel"] = &shop_confirm_action;
-		std::shared_ptr<GUIPrompt> confirm_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt(level_screen, "Buy " + item_info.name + "?", actions));
+		std::shared_ptr<GUIPrompt> confirm_prompt = std::shared_ptr<GUIPrompt>(new GUIPrompt(nullptr, "Buy " + item_info.name + "?", actions));
 		confirm_prompt->metadata = gui_shop;
 		confirm_prompt->metadata_2 = level_screen;
 		confirm_prompt->metadata_3 = index;

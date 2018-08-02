@@ -70093,9 +70093,7 @@
   </object>
   <object id="13" gid="4466" x="1120" y="1248" width="16" height="16">
    <properties>
-    <property name="sign">MAYOR'S OFFICE
-PLEASE USE FRONT DOOR
-AUTHORIZED ACCESS ONLY</property>
+    <property name="sign" value="MAYOR'S OFFICE. PLEASE USE FRONT DOOR. AUTHORIZED ACCESS ONLY."/>
    </properties>
   </object>
   <object id="14" gid="4463" x="976" y="1152" width="16" height="16">
