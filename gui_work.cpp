@@ -9,6 +9,7 @@ namespace duckhero
 		GUILevelScreen * level_screen = (GUILevelScreen *) prompt->metadata;
 		if (action == "Close anyway")
 		{
+			MusicManager::PlayBackground("music/normal");
 			level_screen->work = nullptr;
 		}
 		else if (action == "OK")
@@ -61,6 +62,8 @@ namespace duckhero
 			nonogram_rect = { 0, 0, 0, 0 };
 			puzzle_reward = 0;
 		}
+
+		MusicManager::PlayBackground("music/puzzle");
 	}
 
 	void GUIWork::GenerateNewNonogram()

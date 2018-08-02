@@ -9,6 +9,7 @@
 #include "gui_level.hpp"
 #include "gui_logo.hpp"
 #include "gui_prompt.hpp"
+#include "music_manager.hpp"
 #include "save_manager.hpp"
 
 namespace duckhero

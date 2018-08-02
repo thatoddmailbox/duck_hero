@@ -6,6 +6,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
 #include "external/physfsrwops.h"
@@ -27,6 +28,9 @@ namespace duckhero
 	public:
 		// Gets the specified font resource.
 		static TTF_Font * GetFont(FontDesc desc);
+
+		// Gets the specified music resource. DO NOT free the Mix_Music.
+		static Mix_Music * GetMusic(std::string file);
 
 		// Gets the specified bitmap resource. DO NOT free the SDL_Surface.
 		static SDL_Surface * GetBitmap(std::string file);

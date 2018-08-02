@@ -7,6 +7,7 @@
 #include "gui.hpp"
 #include "gui_helper.hpp"
 #include "gui_nonogram.hpp"
+#include "music_manager.hpp"
 #include "nonogram.hpp"
 #include "text_cache.hpp"
 

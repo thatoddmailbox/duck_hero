@@ -11,6 +11,7 @@ namespace duckhero
 	};
 
 	std::map<FontDesc, TTF_Font *, FontDescComparer> _fonts_cache = std::map<FontDesc, TTF_Font *, FontDescComparer>();
+	std::map<std::string, Mix_Music *> _music_cache = std::map<std::string, Mix_Music *>();
 	std::map<std::string, SDL_Surface *> _surfaces_cache = std::map<std::string, SDL_Surface *>();
 
 	TTF_Font * Content::GetFont(FontDesc desc)
@@ -24,12 +25,23 @@ namespace duckhero
 		return _fonts_cache[desc];
 	}
 
+	Mix_Music * Content::GetMusic(std::string file)
+	{
+		std::map<std::string, Mix_Music*>::iterator i = _music_cache.find(file);
+		if (i == _music_cache.end())
+		{
+			Mix_Music * music = Mix_LoadMUS_RW(PHYSFSRWOPS_openRead(file.c_str()), 1);
+			i = _music_cache.insert(i, std::make_pair(file, music));
+		}
+		return i->second;
+	}
+
 	SDL_Surface * Content::GetBitmap(std::string file)
 	{
 		std::map<std::string, SDL_Surface*>::iterator i = _surfaces_cache.find(file);
 		if (i == _surfaces_cache.end())
 		{
-			SDL_Surface* surf = IMG_Load_RW(PHYSFSRWOPS_openRead(file.c_str()), 1);
+			SDL_Surface * surf = IMG_Load_RW(PHYSFSRWOPS_openRead(file.c_str()), 1);
 			if (surf != NULL && ((file.find("_tile.bmp") != file.npos) || file == "images/zap.bmp" || file == "images/zala.bmp" || file == "images/helperbot.bmp" || file == "images/usefulbot.bmp"))
 			{
 				SDL_SetColorKey(surf, 1, SDL_MapRGB(surf->format, 255, 255, 255));

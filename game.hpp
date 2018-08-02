@@ -17,6 +17,7 @@
 #include "gui_manager.hpp"
 #include "item_manager.hpp"
 #include "input.hpp"
+#include "music_manager.hpp"
 
 namespace duckhero
 {

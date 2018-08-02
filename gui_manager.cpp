@@ -20,6 +20,7 @@ namespace duckhero
 		GUIManager::game.GetLevel()->LoadFromFile("levels/duckville.tmx");
 		GUIManager::game.GetLevel()->player.x = 4 * 32;
 		GUIManager::game.GetLevel()->player.y = 11 * 32;
+		MusicManager::PlayBackground("music/normal");
 		GUIManager::current_screen = &GUIManager::game;
 	}
 
@@ -29,6 +30,7 @@ namespace duckhero
 		GUIManager::game.GetLevel()->LoadFromFile("levels/duckville.tmx");
 		if (SaveManager::LoadFromFile(SaveManager::GetPathForSlot(0), GUIManager::game.GetLevel().get()))
 		{
+			MusicManager::PlayBackground("music/normal");
 			GUIManager::current_screen = &GUIManager::game;
 		}
 		else
@@ -49,6 +51,7 @@ namespace duckhero
 
 	void credits_back(GUIButton * button)
 	{
+		MusicManager::PlayBackground("music/menu");
 		GUIManager::current_screen = &GUIManager::menu;
 	}
 

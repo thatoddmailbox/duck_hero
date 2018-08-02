@@ -40,12 +40,6 @@ namespace duckhero
 			return 1;
 		}
 
-		if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) != 0)
-		{
-			//FatalSDLError("Mix_OpenAudio");
-			//return 1;
-		}
-
 		if (TTF_Init() != 0)
 		{
 			FatalSDLError("TTF_Init");
@@ -74,6 +68,7 @@ namespace duckhero
 
 		// set up game subsystems
 		GUIManager::Init();
+		MusicManager::Init();
 		ItemManager::LoadXMLInfo();
 
 		// create window
@@ -93,6 +88,8 @@ namespace duckhero
 
 		SDL_initFramerate(&_fpsManager);
 		SDL_setFramerate(&_fpsManager, 60);
+
+		MusicManager::PlayBackground("music/menu");
 
 		SDL_Event e;
 		while (_running)
