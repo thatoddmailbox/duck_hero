@@ -13,6 +13,7 @@ namespace duckhero
 		dialogueManager = DialogueManager();
 		collision_map = nullptr;
 		interact_texture = nullptr;
+		end_trigger_rect = { 0, 0, 0, 0 };
 	}
 
 	Level::Level(const Level& other)

@@ -34,11 +34,14 @@ namespace duckhero
 	class GUIElement
 	{
 	public:
-		int x, y, w, h;
+		int x = 0;
+		int y = 0;
+		int w = 0;
+		int h = 0;
 		bool enabled = true;
-		void * metadata;
-		void * metadata_2;
-		int metadata_3;
+		void * metadata = nullptr;
+		void * metadata_2 = nullptr;
+		int metadata_3 = 0;
 
 		virtual bool Update(SDL_Renderer * r) = 0;
 		virtual void Draw(SDL_Renderer * r) = 0;
