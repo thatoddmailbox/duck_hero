@@ -32,7 +32,7 @@ namespace duckhero
 		if (current_track != new_track)
 		{
 			Mix_Music * music = Content::GetMusic(new_track + ".ogg");
-			Mix_FadeOutMusic(200);
+			Mix_FadeOutMusic(50);
 			Mix_FadeInMusic(music, -1, 200);
 			current_track = new_track;
 		}

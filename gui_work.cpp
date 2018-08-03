@@ -23,6 +23,13 @@ namespace duckhero
 	{
 		GUILevelScreen * level_screen = (GUILevelScreen *) button->metadata;
 
+		if (level_screen->work->state == GUIWorkState::MissingPermit)
+		{
+			MusicManager::PlayBackground("music/normal");
+			level_screen->work = nullptr;
+			return;
+		}
+
 		std::map<std::string, GUIPromptHandler> actions;
 		actions["Close anyway"] = &work_close_handle_action;
 		actions["Resume puzzle"] = &work_close_handle_action;
