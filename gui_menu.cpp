@@ -10,6 +10,7 @@ namespace duckhero
 		menu->prompt = nullptr;
 		if (action == "Continue")
 		{
+			MusicManager::PlayBackground("music/menu");
 			GUIManager::current_screen = &GUIManager::menu;
 		}
 	}

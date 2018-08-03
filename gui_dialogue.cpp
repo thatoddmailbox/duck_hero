@@ -56,7 +56,11 @@ namespace duckhero
 
 		if (state->cached_instruction_texture == nullptr)
 		{
-			SDL_Surface * instruction_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, 16 }), "Press SPACE to continue...", { 0, 0, 0, 255 }, WIDTH);
+			std::string instruction_text = "Press SPACE to continue...";
+			#ifdef WIN32
+			instruction_text = "Press SPA CE to continue..."; // ???
+			#endif
+			SDL_Surface * instruction_surface = TTF_RenderText_Blended_Wrapped(Content::GetFont({ GUI_FONT_NAME, 16 }), instruction_text.c_str(), { 0, 0, 0, 255 }, WIDTH);
 			state->cached_instruction_texture = SDL_CreateTextureFromSurface(r, instruction_surface);
 
 			state->cached_instruction_rect = { 0, 0, 0, 0 };

@@ -28,6 +28,12 @@ namespace duckhero
 				info.id = item_node.child("id").text().as_int();
 				info.name = std::string(item_node.child("name").text().as_string());
 				info.desc = std::string(item_node.child("desc").text().as_string());
+				#ifdef WIN32
+				if (info.desc.find("A ") != std::string::npos)
+				{
+					info.desc = info.desc.replace(info.desc.find("A "), 2, "A  ");
+				}
+				#endif
 				items[info.id] = info;
 			}
 		}
