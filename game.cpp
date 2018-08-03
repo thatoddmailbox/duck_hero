@@ -57,7 +57,7 @@ namespace duckhero
 
 		// set up physicsfs
 		// TODO: improve this
-		if (PHYSFS_mount("../data", NULL, 1) == 0)
+		if (PHYSFS_mount("data", NULL, 1) == 0)
 		{
 			#pragma GCC diagnostic push
 			#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
