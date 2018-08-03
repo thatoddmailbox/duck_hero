@@ -6,30 +6,26 @@ namespace duckhero
 {
 	void accept_quest(GUIButton * button)
 	{
-		Level * level = (Level *) button->metadata;
-
-		std::string quest_name = level->dialogueManager.currentLine.metadata;
+		std::string quest_name = GUIManager::game.GetLevel()->dialogueManager.currentLine.metadata;
 		Quest quest = Quest();
 		quest.LoadXMLInfo(quest_name);
 
-		level->dialogueManager.lines.clear();
-		level->dialogueManager.showingLine = false;
-		level->dialogueManager.LoadXMLScript(quest.dialogue_accept);
+		GUIManager::game.GetLevel()->dialogueManager.lines.clear();
+		GUIManager::game.GetLevel()->dialogueManager.showingLine = false;
+		GUIManager::game.GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_accept);
 
-		level->player.AddQuest(quest_name);
+		GUIManager::game.GetLevel()->player.AddQuest(quest_name);
 	}
 
 	void decline_quest(GUIButton * button)
 	{
-		Level * level = (Level *) button->metadata;
-
-		std::string quest_name = level->dialogueManager.currentLine.metadata;
+		std::string quest_name = GUIManager::game.GetLevel()->dialogueManager.currentLine.metadata;
 		Quest quest = Quest();
 		quest.LoadXMLInfo(quest_name);
 
-		level->dialogueManager.lines.clear();
-		level->dialogueManager.showingLine = false;
-		level->dialogueManager.LoadXMLScript(quest.dialogue_decline);
+		GUIManager::game.GetLevel()->dialogueManager.lines.clear();
+		GUIManager::game.GetLevel()->dialogueManager.showingLine = false;
+		GUIManager::game.GetLevel()->dialogueManager.LoadXMLScript(quest.dialogue_decline);
 	}
 
 	void GUIDialogue::Update(SDL_Renderer * r, std::shared_ptr<Level> level, HUDState * state)
@@ -40,14 +36,12 @@ namespace duckhero
 		{
 			state->action_screen = new GUIScreen();
 			state->action_button_decline = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Decline", (WINDOW_WIDTH - 350) / 2, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest));
-			state->action_button_decline->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_decline);
 			std::string accept_text = "Accept";
 			#ifdef WIN32
 			accept_text = "A ccept"; // i'm not sure why this works but it does
 			#endif
 			state->action_button_accept = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, accept_text, ((WINDOW_WIDTH - 350) / 2) + 200, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest));
-			state->action_button_accept->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_accept);
 
 			state->action_button_accept->enabled = false;
