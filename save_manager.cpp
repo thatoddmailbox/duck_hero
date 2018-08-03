@@ -4,7 +4,7 @@ namespace duckhero
 {
 	std::string SaveManager::GetPathForSlot(int slot_index)
 	{
-		char * base_path = SDL_GetPrefPath("Flippers", "Duck Hero");
+		char * base_path = SDL_GetPrefPath("Dogo", "Duck Hero");
 		std::string base_path_str = std::string(base_path);
 		SDL_free(base_path);
 

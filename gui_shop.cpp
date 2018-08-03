@@ -1,6 +1,7 @@
 #include "gui_shop.hpp"
 
 #include "gui_level.hpp"
+#include "gui_manager.hpp"
 
 namespace duckhero
 {
@@ -43,8 +44,7 @@ namespace duckhero
 
 	void shop_close(GUIButton * button)
 	{
-		GUILevelScreen * level_screen = (GUILevelScreen *) button->metadata;
-		level_screen->shop = nullptr;
+		GUIManager::game.shop = nullptr;
 	}
 
 	GUIShop::GUIShop(void * level_screen_pointer, std::string shop_name)
