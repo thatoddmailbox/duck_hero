@@ -19,6 +19,7 @@ namespace duckhero
 		tile_w = in_tile_w;
 		tile_h = in_tile_h;
 		margin = in_margin;
+		_texture = nullptr;
 	}
 
 	SDL_Rect Spritesheet::GetCoordinatesForTile(int x, int y)

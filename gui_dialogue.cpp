@@ -42,7 +42,11 @@ namespace duckhero
 			state->action_button_decline = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Decline", (WINDOW_WIDTH - 350) / 2, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &decline_quest));
 			state->action_button_decline->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_decline);
-			state->action_button_accept = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, "Accept", ((WINDOW_WIDTH - 350) / 2) + 200, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest));
+			std::string accept_text = "Accept";
+			#ifdef WIN32
+			accept_text = "A ccept"; // i'm not sure why this works but it does
+			#endif
+			state->action_button_accept = std::shared_ptr<GUIButton>(new GUIButton(GUIButtonStyle::OldDarkBrownStyle, accept_text, ((WINDOW_WIDTH - 350) / 2) + 200, WINDOW_HEIGHT - HEIGHT - 50 - 20 - 32, 150, 32, &accept_quest));
 			state->action_button_accept->metadata = level.get();
 			state->action_screen->AddElement(state->action_button_accept);
 
