@@ -36,6 +36,7 @@ endif()
 find_path(PHYSFS_INCLUDE_DIR physfs.h
   HINTS
     ENV PHYSFSDIR
+  PATH_SUFFIXES include
 )
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -48,7 +49,7 @@ if(NOT PHYSFS_LIBRARY AND PHYSFS_LIBRARY)
   set(PHYSFS_LIBRARY ${PHYSFS_LIBRARY} CACHE FILEPATH "file cache entry initialized from old variable name")
 endif()
 find_library(PHYSFS_LIBRARY
-  NAMES PhysFS
+  NAMES physfs
   HINTS
     ENV PHYSFSDIR
     ${PHYSFS_SEARCH_PATHS}
