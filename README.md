@@ -8,6 +8,7 @@ The pugixml library is used to save and restore your progress in the game, and t
 The tile images come from [kenney.nl](https://www.kenney.nl/), although some (like Ducky) were drawn in [aseprite](https://www.aseprite.org/). The map layout was drawn in [Tiled](https://www.mapeditor.org/) and parsed with some custom code that makes use of pugixml.
 
 ## Additional screenshots
+Click on a screenshot to expand it.
 <p float="left">
 	<img src="./screenshots/game1.png" width="49%">
 	<img src="./screenshots/game2.png" width="49%">
